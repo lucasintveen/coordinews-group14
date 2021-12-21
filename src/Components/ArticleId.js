@@ -5,6 +5,7 @@ import Spinner from "react-bootstrap/Spinner";
 import { useParams } from "react-router-dom";
 import "../App.css";
 import Popup from "./Popup";
+import Parse from "parse";
 
 import { uploadArticle } from "../DatabaseInteraction/db";
 
@@ -21,6 +22,10 @@ export default function ArticleId(props) {
     const article = await getArticle(articleId);
     setArticle(article);
     props.passChildData([articleId, article.Deadline]);
+    console.log(await getArticle(articleId));
+    const Article = new Parse.Object("Article");
+    Article.set("objectId", articleId);
+    console.log("objectID: ", Article);
   }
 
   useEffect(getArticleFromDb, []);
@@ -43,6 +48,18 @@ export default function ArticleId(props) {
       [event.target.name]: event.target.value,
     });
     console.log("Change ID: ", event.target.value);
+  }
+
+  async function deleteArticle() {
+    const Article = new Parse.Object("Article");
+    Article.set("objectId", articleId);
+    try {
+      await Article.destroy();
+      window.location.reload();
+      return true;
+    } catch (error) {
+      // Error can be caused by lack of Internet connection
+    }
   }
 
   return (
@@ -208,8 +225,12 @@ export default function ArticleId(props) {
         </div>
 
         <div className="form-inputs2">
-          <button className="form-input-btn" type="submit">
-            Edit Article<span style={{ color: "#D7BADD" }}>(Dummy)</span>
+          <button
+            className="form-input-btn"
+            type="submit"
+            onClick={deleteArticle}
+          >
+            Delete Article<span style={{ color: "#D7BADD" }}>(Dummy)</span>
           </button>
           <button className="form-input-btn" type="submit">
             Submit Article<span style={{ color: "#D7BADD" }}>(Dummy)</span>
