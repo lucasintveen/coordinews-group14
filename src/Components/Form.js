@@ -15,6 +15,8 @@ const Form = () => {
     setIsSubmitted(true);
   }
 
+  const formTypeArticle = true;
+
   const [childData, setChildData] = useState("");
   console.log("Child Data: ", childData);
   console.log("Id: ", childData[0]);
