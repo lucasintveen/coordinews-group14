@@ -50,18 +50,6 @@ export default function ArticleId(props) {
     console.log("Change ID: ", event.target.value);
   }
 
-  async function deleteArticle() {
-    const Article = new Parse.Object("Article");
-    Article.set("objectId", articleId);
-    try {
-      await Article.destroy();
-      window.location.reload();
-      return true;
-    } catch (error) {
-      // Error can be caused by lack of Internet connection
-    }
-  }
-
   return (
     <div className="form-content-right">
       <form className="form">
@@ -228,7 +216,7 @@ export default function ArticleId(props) {
           <button
             className="form-input-btn"
             type="submit"
-            onClick={deleteArticle}
+            onClick={props.deleteArticle()}
           >
             Delete Article<span style={{ color: "#D7BADD" }}>(Dummy)</span>
           </button>

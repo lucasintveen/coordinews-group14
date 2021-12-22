@@ -185,6 +185,46 @@
   color: #8d519a;
 }
 
+.form-delete-btn {
+  width: 80%;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background: #538272;
+  outline: none;
+  border: none;
+  color: #f5f4f5;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-delete-btn:hover {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background: #254d3f;
+  color: #f5f4f5;
+}
+
+.form-decline-btn {
+  width: 80%;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background: #f5f4f5;
+  outline: none;
+  border: none;
+  color: #5a535c;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-decline-btn:hover {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background: #5a535c;
+  color: #f5f4f5;
+}
+
 .form-input-login {
   font-size: 0.8rem;
   margin-top: 10px;

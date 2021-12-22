@@ -34,7 +34,7 @@ function App() {
             path="/ideas/ideaDetails/:ideaId"
             element={<IdeaConverter />}
           />
-          <Route path="addIdea" element={<Form />} />
+          <Route path="addIdea" element={<AddArticle />} />
 
           <Route path="/" element={<LandingPage />} />
         </Routes>

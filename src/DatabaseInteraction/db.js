@@ -89,6 +89,26 @@ async function uploadArticle(articles) {
   );
 }
 
+async function uploadDeletion(object) {
+  return await Promise.all(
+    object.map((item) => {
+      try {
+        const EditorCommunication = Parse.Object.extend("EditorCommunication");
+        const newDeletion = new EditorCommunication();
+        newDeletion.set("Type", item.type);
+        newDeletion.set("Comment", item.comment);
+        newDeletion.set("ArticleId", item.articleId);
+        newDeletion.set("IdeaId", item.IdeaId);
+
+        return newDeletion.save();
+      } catch (error) {
+        alert(error);
+        return Promise.reject("something went wrong");
+      }
+    })
+  );
+}
+
 export {
   getUsers,
   getArticles,
@@ -98,4 +118,5 @@ export {
   getPhotographer,
   getJournalist,
   uploadArticle,
+  uploadDeletion,
 };

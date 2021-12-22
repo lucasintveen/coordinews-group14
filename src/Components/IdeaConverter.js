@@ -33,11 +33,11 @@ const IdeaConverter = () => {
         <div className="form-content-left">
           <img className="form-img" src={News} alt="news icon" />
         </div>
-        {!isSubmitted ? (
-          <IdeaId submitForm={submitForm} passChildData={setChildData} />
-        ) : (
+        {/* {!isSubmitted ? ( */}
+        <IdeaId submitForm={submitForm} passChildData={setChildData} />
+        {/* ) : (
           <FormSuccess />
-        )}
+        )} */}
       </div>
     </>
   );
