@@ -18,23 +18,29 @@ const Form = () => {
   const formTypeArticle = true;
 
   const [childData, setChildData] = useState("");
-  console.log("Child Data: ", childData);
-  console.log("Id: ", childData[0]);
+
   return (
     <>
       <div className="form-container">
-        <span className="trash-btn">
-          <FaTrash />
-          <FaShareAlt />
-        </span>
+        {!isSubmitted ? (
+          <span className="trash-btn">
+            <FaTrash onClick={deleteArticle() && submitForm()} />
+            <FaShareAlt />
+          </span>
+        ) : (
+          <span className="trash-btn">
+            <FaArrowLeft />
+          </span>
+        )}
+
         <span className="Id--expiration">Article ID: {childData[0]}</span>
         <div className="form-content-left">
           <img className="form-img" src={News} alt="idea icon" />
         </div>
         {!isSubmitted ? (
-          <ArticleId submitForm={submitForm} passChildData={setChildData} />
+          <ArticleId passChildData={setChildData} />
         ) : (
-          <FormSuccess />
+          <FormSuccess formType={formTypeArticle} />
         )}
       </div>
     </>
