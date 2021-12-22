@@ -5,7 +5,7 @@ import AddIdea from "./AddArticle";
 import ArticleId from "./ArticleId";
 import FormSuccess from "./FormSuccess";
 import Idea from "../Images/Bulb.png";
-import { FaTrash, FaShareAlt } from "react-icons/fa";
+import { FaTrash, FaShareAlt, FaArrowLeft } from "react-icons/fa";
 import News from "../Images/News.png";
 
 const Form = () => {
@@ -24,7 +24,7 @@ const Form = () => {
       <div className="form-container">
         {!isSubmitted ? (
           <span className="trash-btn">
-            <FaTrash onClick={deleteArticle() && submitForm()} />
+            <FaTrash />
             <FaShareAlt />
           </span>
         ) : (
