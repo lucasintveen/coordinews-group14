@@ -177,7 +177,7 @@ export default function HomeMes(props) {
           <div className="form-inputs2">
             <button className="form-decline-btn-mes" type="submit">
               Decline!
-              <span style={{ color: "#D7BADD" }}>(Dummy)</span>
+              <span style={{ color: "#D7BADD" }}></span>
             </button>
             <button
               className="form-delete-btn-mes"
@@ -185,7 +185,7 @@ export default function HomeMes(props) {
               onClick={artAccept(3)}
             >
               Accept the task
-              <span style={{ color: "#D7BADD" }}>(Dummy)</span>
+              <span style={{ color: "#D7BADD" }}></span>
             </button>
           </div>
         </>

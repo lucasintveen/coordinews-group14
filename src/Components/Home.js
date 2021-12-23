@@ -11,6 +11,10 @@ import { FaTrash, FaShareAlt } from "react-icons/fa";
 import Parse from "parse";
 import HomeArt from "./HomeArt";
 import HomeMes from "./HomeMes";
+import BBCAPI from "./BBCAPI";
+import BBCLogo from "../Images/BBC_News.svg.png";
+import NYTLogo from "../Images/New York Times.png";
+import SecondAPI from "./SecondAPI";
 
 const Home = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -34,6 +38,11 @@ const Home = () => {
         <span className="home-mes-head">
           Furthermore, please respond to these task requests:
         </span>
+        <span className="text-cloud-center">
+          Stay up-to-date with the most important news of the day from: <br />{" "}
+        </span>
+        <img className="APILogo1" src={BBCLogo}></img>
+        <img className="APILogo2" src={NYTLogo}></img>
         <div className="form-content-left-home">
           {
             <>
@@ -42,7 +51,8 @@ const Home = () => {
           }
         </div>
         <div className="form-content-right-home">
-          <h1>Hello</h1>
+          <BBCAPI />
+          <SecondAPI />
         </div>
       </div>
     </>
