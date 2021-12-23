@@ -11,7 +11,6 @@ import { FaTrash, FaShareAlt } from "react-icons/fa";
 import Parse from "parse";
 import HomeArt from "./HomeArt";
 import HomeMes from "./HomeMes";
-import NewsImplementor from "./NewsImplementer";
 
 const Home = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -44,7 +43,6 @@ const Home = () => {
         </div>
         <div className="form-content-right-home">
           <h1>Hello</h1>
-          {<NewsImplementor />}
         </div>
       </div>
     </>
