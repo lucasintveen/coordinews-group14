@@ -57,7 +57,7 @@ export default function IdeaId(props, { submitForm }) {
     <div className="form-content-right">
       <form className="form">
         <h1>
-          Submit an article by filling the missing pieces!
+          Create an article by filling the missing pieces!
           <span style={{ color: "#D7BADD" }}>
             {" "}
             (Click on the elements to edit){" "}

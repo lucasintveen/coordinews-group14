@@ -19,7 +19,7 @@ export default function SignUp() {
     user.set("Role", role);
     try {
       await user.signUp();
-      navigate("/ideas");
+      navigate("/home");
     } catch (error) {
       alert("Error: " + error.message + "Please go back and try again :)");
     }
