@@ -9,7 +9,8 @@ import News from "../Images/News.png";
 import "../CSS/Form.css";
 import { FaTrash, FaShareAlt } from "react-icons/fa";
 import Parse from "parse";
-import HomeMessages from "./HomeMessages";
+import HomeArt from "./HomeArt";
+import HomeMes from "./HomeMes";
 
 const Home = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -26,10 +27,16 @@ const Home = () => {
     <>
       <div className="form-container-home">
         <span className="Id--expiration">
-          Hey {Parse.User.current().attributes.username}, this is awaiting you
-          today:
+          Hey {Parse.User.current().attributes.username}, these article await
+          you today:
         </span>
-        <div className="form-content-left-home">{<HomeMessages />}</div>
+        <div className="form-content-left-home">
+          {
+            <>
+              <HomeArt /> <HomeMes />
+            </>
+          }
+        </div>
         <div className="form-content-right-home">
           <h1>Hello</h1>
           {/* <HomeCloud /> */}

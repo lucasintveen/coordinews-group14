@@ -109,7 +109,7 @@
 
 .form-mes {
   position: absolute;
-  top: 18%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
@@ -130,7 +130,7 @@
 
 .form-inputs {
   margin-bottom: 0.5rem;
-  width: 80%;
+  width: 100%;
 }
 
 .form-inputs-messages {
@@ -267,10 +267,52 @@
   color: #f5f4f5;
 }
 
+.form-delete-btn-mes {
+  width: 80%;
+  height: 30px;
+  /* margin-top: 10px; */
+  margin-bottom: 15px;
+  border-radius: 10px;
+  background: #538272;
+  outline: none;
+  border: none;
+  color: #f5f4f5;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-delete-btn-mes:hover {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background: #254d3f;
+  color: #f5f4f5;
+}
+
 .form-decline-btn {
   width: 80%;
   height: 50px;
   margin-top: 10px;
+  border-radius: 10px;
+  background: #d1817d;
+  outline: none;
+  border: none;
+  color: #f5f4f5;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-decline-btn:hover {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background: #bd5651;
+  color: #f5f4f5;
+}
+
+.form-decline-btn-mes {
+  width: 80%;
+  height: 30px;
+  /* margin-top: 10px; */
+  margin-bottom: 15px;
   border-radius: 10px;
   background: #f5f4f5;
   outline: none;
@@ -280,7 +322,7 @@
   transition: all 0.2s ease-in-out;
 }
 
-.form-decline-btn:hover {
+.form-decline-btn-mes:hover {
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   background: #5a535c;

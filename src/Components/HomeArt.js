@@ -12,7 +12,7 @@ import "../CSS/Form.css";
 
 import { uploadArticle } from "../DatabaseInteraction/db";
 
-export default function HomeMessages(props) {
+export default function HomeArt(props) {
   const [Articles, setArticles] = useState();
 
   useEffect(() => {
@@ -48,15 +48,24 @@ export default function HomeMessages(props) {
   }
 
   const filteredArticles = Object.values(Articles).filter((article) => {
-    if (Parse.User.current().attributes.Role === "Journalist") {
+    if (
+      Parse.User.current().attributes.Role === "Journalist" &&
+      article.JournalistAcceptance == true
+    ) {
       return article.Journalist.includes(
         Parse.User.current().attributes.username
       );
-    } else if (Parse.User.current().attributes.Role === "Photographer") {
+    } else if (
+      Parse.User.current().attributes.Role === "Photographer" &&
+      article.PhotographerAcceptance == true
+    ) {
       return article.Photographer.includes(
         Parse.User.current().attributes.username
       );
-    } else if (Parse.User.current().attributes.Role === "Assistant") {
+    } else if (
+      Parse.User.current().attributes.Role === "Assistant" &&
+      article.AssistantAcceptance == true
+    ) {
       return article.Assistant.includes(
         Parse.User.current().attributes.username
       );
@@ -103,67 +112,5 @@ export default function HomeMessages(props) {
         ))}
       </tbody>
     </table>
-    // <form className="form-mes">
-
-    //   <div className="form-inputs-messages">
-    //     <div className="form-inputs-messages1">
-    //       <div className="form-inputs-messages">
-    //         <label className="form-label">Title</label>
-    //         <input
-    //           className="form-input-mes"
-    //           type="text"
-    //           defaultValue={filteredArticles[0].Title}
-    //         />
-    //       </div>
-
-    //       <div className="form-inputs-messages">
-    //         <label className="form-label">Section</label>
-    //         <input
-    //           className="form-input-mes1"
-    //           type="text"
-    //           defaultValue={filteredArticles[0].Section}
-    //         />
-    //       </div>
-
-    //       <div className="form-inputs-messages">
-    //         <label className="form-label">State</label>
-    //         <input
-    //           className="form-input-mes1"
-    //           type="text"
-    //           defaultValue={filteredArticles[0].State}
-    //         />
-    //       </div>
-    //     </div>
-    //   </div>
-    //   {filteredArticles.slice(1).map((article) => (
-    //     <div className="form-inputs-messages">
-    //       <div className="form-inputs-messages1">
-    //         <div className="form-inputs-messages">
-    //           <input
-    //             className="form-input-mes"
-    //             type="text"
-    //             defaultValue={article.Title}
-    //           />
-    //         </div>
-
-    //         <div className="form-inputs-messages">
-    //           <input
-    //             className="form-input-mes1"
-    //             type="text"
-    //             defaultValue={article.Section}
-    //           />
-    //         </div>
-
-    //         <div className="form-inputs-messages">
-    //           <input
-    //             className="form-input-mes1"
-    //             type="text"
-    //             defaultValue={article.State}
-    //           />
-    //         </div>
-    //       </div>
-    //     </div>
-    //   ))}
-    // </form>
   );
 }
