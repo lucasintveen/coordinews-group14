@@ -109,7 +109,7 @@
 
 .form-mes {
   position: absolute;
-  top: 55%;
+  top: 75%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
@@ -293,10 +293,10 @@
   height: 50px;
   margin-top: 10px;
   border-radius: 10px;
-  background: #d1817d;
+  background: #f5f4f5;
   outline: none;
   border: none;
-  color: #f5f4f5;
+  color: #5a535c;
   font-size: 1rem;
   transition: all 0.2s ease-in-out;
 }
@@ -304,7 +304,7 @@
 .form-decline-btn:hover {
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  background: #bd5651;
+  background: #5a535c;
   color: #f5f4f5;
 }
 
@@ -314,10 +314,10 @@
   /* margin-top: 10px; */
   margin-bottom: 15px;
   border-radius: 10px;
-  background: #f5f4f5;
+  background: #d1817d;
   outline: none;
   border: none;
-  color: #5a535c;
+  color: #f5f4f5;
   font-size: 1rem;
   transition: all 0.2s ease-in-out;
 }
@@ -325,7 +325,7 @@
 .form-decline-btn-mes:hover {
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  background: #5a535c;
+  background: #bd5651;
   color: #f5f4f5;
 }
 

@@ -40,6 +40,14 @@ export default function HomeMes(props) {
     });
   }, []);
 
+  if (!Articles) {
+    return (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  }
+
   console.log("article messages: ", Articles);
 
   const filteredArticles = Object.values(Articles).filter((article) => {
@@ -74,8 +82,20 @@ export default function HomeMes(props) {
   console.log("Landing Page Messages: ", filteredArticles);
   const iterationCount = 0;
 
+  async function artAccept(id) {
+    const Article = new Parse.Object("Article");
+    Article.set("objectId", id);
+    if (Parse.User.current().attributes.Role === "Journalist") {
+      Article.set("JournalistAcc", true);
+    } else if (Parse.User.current().attributes.Role === "Photographer") {
+      Article.set("PhotoAcc", true);
+    } else if (Parse.User.current().attributes.Role === "Assistant") {
+      Article.set("AssiAcc", true);
+    }
+  }
+
   return (
-    <form className="form">
+    <form className="form-mes">
       <div className="form-inputs">
         <div className="form-inputs1">
           <div className="form-inputs">
@@ -88,11 +108,11 @@ export default function HomeMes(props) {
           </div>
 
           <div className="form-inputs">
-            <label className="form-label">Sector</label>
+            <label className="form-label">Section</label>
             <input
               className="form-input"
               type="text"
-              defaultValue={filteredArticles[0].Sector}
+              defaultValue={filteredArticles[0].Section}
             />
           </div>
 
@@ -116,38 +136,56 @@ export default function HomeMes(props) {
           type="submit"
           //   onClick={handleUpload}
         >
-          Accept the tasks.
+          Accept the task
           <span style={{ color: "#D7BADD" }}>(Dummy)</span>
         </button>
       </div>
+
       {filteredArticles.slice(1).map((article) => (
-        <div className="form-inputs">
-          <div className="form-inputs1">
-            <div className="form-inputs">
-              <input
-                className="form-input"
-                type="text"
-                defaultValue={article.Title}
-              />
-            </div>
+        <>
+          <div className="form-inputs">
+            <div className="form-inputs1">
+              <div className="form-inputs">
+                <input
+                  className="form-input"
+                  type="text"
+                  defaultValue={article.Title}
+                />
+              </div>
 
-            <div className="form-inputs">
-              <input
-                className="form-input"
-                type="text"
-                defaultValue={article.Section}
-              />
-            </div>
+              <div className="form-inputs">
+                <input
+                  className="form-input"
+                  type="text"
+                  defaultValue={article.Section}
+                />
+              </div>
 
-            <div className="form-inputs">
-              <input
-                className="form-input"
-                type="text"
-                defaultValue={article.State}
-              />
+              <div className="form-inputs">
+                <input
+                  className="form-input"
+                  type="text"
+                  defaultValue={article.State}
+                />
+              </div>
             </div>
           </div>
-        </div>
+
+          <div className="form-inputs2">
+            <button className="form-decline-btn-mes" type="submit">
+              Decline!
+              <span style={{ color: "#D7BADD" }}>(Dummy)</span>
+            </button>
+            <button
+              className="form-delete-btn-mes"
+              type="submit"
+              //   onClick={handleUpload}
+            >
+              Accept the task
+              <span style={{ color: "#D7BADD" }}>(Dummy)</span>
+            </button>
+          </div>
+        </>
       ))}
     </form>
   );
