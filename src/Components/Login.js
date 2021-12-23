@@ -14,7 +14,7 @@ export default function Login() {
     user.setPassword(password);
     user.setUsername(username);
     user.logIn().then((loggedInUser) => {
-      navigate("/ideas");
+      navigate("/");
     });
   }
 

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [role, setRole] = useState("");
   const [email, setEmail] = useState("");
 
   const navigate = useNavigate();
@@ -16,12 +16,13 @@ export default function SignUp() {
     user.setPassword(password);
     // user.setName(name);
     user.setEmail(email);
+    user.set("Role", role);
     try {
       await user.signUp();
+      navigate("/ideas");
     } catch (error) {
       alert("Error: " + error.message + "Please go back and try again :)");
     }
-    navigate("/#");
   }
 
   function usernameChange(e) {
@@ -35,11 +36,11 @@ export default function SignUp() {
     setEmail(e.target.value);
   }
 
-  // function positionChange(e) {
-  //   setName(e.target.value);
-  // }
+  function positionChange(e) {
+    setRole(e.target.value);
+  }
 
-  console.log("position: ", name);
+  console.log("position: ", role);
 
   return (
     <div className="background--box">
@@ -71,22 +72,23 @@ export default function SignUp() {
                 placeholder="Enter email"
               />
             </li>
-            {/* <li className="form--row">
+            <li className="form--row">
               <label>Position</label>
               <select
                 placeholder="Select Position"
                 name="position"
-                value={name}
+                value={role}
                 onChange={positionChange}
-              > 
+              >
                 <option value="" selected disabled hidden>
                   Please Select Here
                 </option>
+                <option>Editor</option>
                 <option>Journalist</option>
                 <option>Photographer</option>
-                <option>Editor</option>
+                <option>Assistant</option>
               </select>
-            </li>*/}
+            </li>
           </ul>
 
           <button

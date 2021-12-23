@@ -12,6 +12,7 @@ import AddArticle from "./Components/AddArticle";
 import ArticleId from "./Components/ArticleId";
 import Form from "./Components/Form";
 import IdeaConverter from "./Components/IdeaConverter";
+import Home from "./Components/Home";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="addIdea" element={<AddArticle />} />
 
           <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </HashRouter>
     </div>
