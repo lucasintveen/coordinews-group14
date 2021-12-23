@@ -137,15 +137,6 @@
   color: #5a535c;
 }
 
-/* .search-bar {
-  border-radius: 10px;
-  width: 220px;
-  background: #f5f4f5;
-  color: #5a535c;
-  border: 2px solid #c4c4c4;
-  box-sizing: border-box;
-} */
-
 .actionComponents {
   display: flex;
   flex-direction: row;
@@ -297,12 +288,23 @@ table {
   margin-right: 24px;
 }
 
-tbody td {
-  width: 15%;
+.table-messages {
+  width: 100%;
+  margin-top: 24px;
+  margin-right: 12px;
+  margin-left: 24px;
 }
 
-thead th {
-  width: 15.3%; /* Optional */
+.messages-head {
+  width: 10%;
+}
+
+.tbody-messages {
+  width: 100%;
+}
+
+tbody td {
+  width: 15%;
 }
 
 thead,

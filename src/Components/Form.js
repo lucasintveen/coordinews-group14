@@ -16,6 +16,7 @@ const Form = () => {
   function submitForm() {
     setIsSubmitted(true);
   }
+
   function deleteArticle() {
     setIsDeleted(!isDeleted);
   }
