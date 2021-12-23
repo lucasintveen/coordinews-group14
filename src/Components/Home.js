@@ -11,6 +11,7 @@ import { FaTrash, FaShareAlt } from "react-icons/fa";
 import Parse from "parse";
 import HomeArt from "./HomeArt";
 import HomeMes from "./HomeMes";
+import NewsImplementor from "./NewsImplementer";
 
 const Home = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -30,6 +31,10 @@ const Home = () => {
           Hey {Parse.User.current().attributes.username}, these article await
           you today:
         </span>
+
+        <span className="home-mes-head">
+          Furthermore, please respond to these task requests:
+        </span>
         <div className="form-content-left-home">
           {
             <>
@@ -39,7 +44,7 @@ const Home = () => {
         </div>
         <div className="form-content-right-home">
           <h1>Hello</h1>
-          {/* <HomeCloud /> */}
+          {<NewsImplementor />}
         </div>
       </div>
     </>

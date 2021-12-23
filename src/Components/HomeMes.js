@@ -82,15 +82,18 @@ export default function HomeMes(props) {
   console.log("Landing Page Messages: ", filteredArticles);
   const iterationCount = 0;
 
-  async function artAccept(id) {
+  async function artAccept(i) {
     const Article = new Parse.Object("Article");
-    Article.set("objectId", id);
-    if (Parse.User.current().attributes.Role === "Journalist") {
-      Article.set("JournalistAcc", true);
-    } else if (Parse.User.current().attributes.Role === "Photographer") {
-      Article.set("PhotoAcc", true);
-    } else if (Parse.User.current().attributes.Role === "Assistant") {
-      Article.set("AssiAcc", true);
+    console.log("I format: ", i);
+    if (i === 0) {
+      const articleset = Article[i];
+      if (Parse.User.current().attributes.Role === "Journalist") {
+        articleset.set("JournalistAcc", true);
+      } else if (Parse.User.current().attributes.Role === "Photographer") {
+        articleset.set("PhotoAcc", true);
+      } else if (Parse.User.current().attributes.Role === "Assistant") {
+        articleset.set("AssiAcc", true);
+      }
     }
   }
 
@@ -134,7 +137,7 @@ export default function HomeMes(props) {
         <button
           className="form-delete-btn-mes"
           type="submit"
-          //   onClick={handleUpload}
+          onClick={artAccept(2)}
         >
           Accept the task
           <span style={{ color: "#D7BADD" }}>(Dummy)</span>
@@ -179,7 +182,7 @@ export default function HomeMes(props) {
             <button
               className="form-delete-btn-mes"
               type="submit"
-              //   onClick={handleUpload}
+              onClick={artAccept(3)}
             >
               Accept the task
               <span style={{ color: "#D7BADD" }}>(Dummy)</span>
