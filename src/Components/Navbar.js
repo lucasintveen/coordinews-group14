@@ -23,7 +23,7 @@ export function NavigationBar() {
   return (
     <>
       <Nav activeKey={window.location.pathname}>
-        <NavLink to="/">
+        <NavLink to="/home">
           <img src={NewsLogo} alt="logo" width="100" height="auto" />
         </NavLink>
         <Bars />

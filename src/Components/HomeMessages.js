@@ -71,66 +71,99 @@ export default function HomeMessages(props) {
   const iterationCount = 0;
 
   return (
-    <form className="form-mes">
-      <div className="form-inputs-messages">
-        <div className="form-inputs-messages1">
-          <div className="form-inputs-messages">
-            <label className="form-label">Title</label>
-            <input
-              className="form-input-mes"
-              type="text"
-              defaultValue={filteredArticles[0].Title}
-            />
-          </div>
+    <table class="table-messages table-hover">
+      <thead>
+        <br></br>
+        <tr>
+          {Object.keys(Articles[0])
+            .slice(0, 4)
+            .map((articleHeader) => (
+              <th key={articleHeader} className="th-messages">
+                {articleHeader}{" "}
+              </th>
+            ))}
+        </tr>
+      </thead>
+      <tbody className="tbody-messages">
+        {filteredArticles.map((article) => (
+          <tr>
+            <td as={Link} to="/Add_Article" className="td-messages">
+              <Button
+                variant="light"
+                as={Link}
+                to={"/articles/articleDetails/" + article.Details}
+              >
+                See more{"\uD83D\uDD0D"}
+              </Button>
+            </td>
+            <td className="td-messages">{article.Title}</td>
+            <td className="td-messages">{article.Section}</td>
+            <td className="td-messages">{article.State}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    // <form className="form-mes">
 
-          <div className="form-inputs-messages">
-            <label className="form-label">Section</label>
-            <input
-              className="form-input-mes1"
-              type="text"
-              defaultValue={filteredArticles[0].Section}
-            />
-          </div>
+    //   <div className="form-inputs-messages">
+    //     <div className="form-inputs-messages1">
+    //       <div className="form-inputs-messages">
+    //         <label className="form-label">Title</label>
+    //         <input
+    //           className="form-input-mes"
+    //           type="text"
+    //           defaultValue={filteredArticles[0].Title}
+    //         />
+    //       </div>
 
-          <div className="form-inputs-messages">
-            <label className="form-label">State</label>
-            <input
-              className="form-input-mes1"
-              type="text"
-              defaultValue={filteredArticles[0].State}
-            />
-          </div>
-        </div>
-      </div>
-      {filteredArticles.slice(1).map((article) => (
-        <div className="form-inputs-messages">
-          <div className="form-inputs-messages1">
-            <div className="form-inputs-messages">
-              <input
-                className="form-input-mes"
-                type="text"
-                defaultValue={article.Title}
-              />
-            </div>
+    //       <div className="form-inputs-messages">
+    //         <label className="form-label">Section</label>
+    //         <input
+    //           className="form-input-mes1"
+    //           type="text"
+    //           defaultValue={filteredArticles[0].Section}
+    //         />
+    //       </div>
 
-            <div className="form-inputs-messages">
-              <input
-                className="form-input-mes1"
-                type="text"
-                defaultValue={article.Section}
-              />
-            </div>
+    //       <div className="form-inputs-messages">
+    //         <label className="form-label">State</label>
+    //         <input
+    //           className="form-input-mes1"
+    //           type="text"
+    //           defaultValue={filteredArticles[0].State}
+    //         />
+    //       </div>
+    //     </div>
+    //   </div>
+    //   {filteredArticles.slice(1).map((article) => (
+    //     <div className="form-inputs-messages">
+    //       <div className="form-inputs-messages1">
+    //         <div className="form-inputs-messages">
+    //           <input
+    //             className="form-input-mes"
+    //             type="text"
+    //             defaultValue={article.Title}
+    //           />
+    //         </div>
 
-            <div className="form-inputs-messages">
-              <input
-                className="form-input-mes1"
-                type="text"
-                defaultValue={article.State}
-              />
-            </div>
-          </div>
-        </div>
-      ))}
-    </form>
+    //         <div className="form-inputs-messages">
+    //           <input
+    //             className="form-input-mes1"
+    //             type="text"
+    //             defaultValue={article.Section}
+    //           />
+    //         </div>
+
+    //         <div className="form-inputs-messages">
+    //           <input
+    //             className="form-input-mes1"
+    //             type="text"
+    //             defaultValue={article.State}
+    //           />
+    //         </div>
+    //       </div>
+    //     </div>
+    //   ))}
+    // </form>
   );
 }

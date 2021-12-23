@@ -38,7 +38,7 @@ function App() {
           <Route path="addIdea" element={<AddArticle />} />
 
           <Route path="/" element={<LandingPage />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="home" element={<Home />} />
         </Routes>
       </HashRouter>
     </div>
