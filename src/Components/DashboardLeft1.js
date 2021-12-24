@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "../CSS/Form.css";
 
-export default function DashboardLeft(props) {
+export default function DashboardLeft1(props) {
   const [Articles, setArticles] = useState();
   const pagesNeeded = 6;
   useEffect(() => {

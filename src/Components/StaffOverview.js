@@ -1,19 +1,14 @@
 import React, { useState } from "react";
 import "../CSS/Form.css";
-import { getArticles } from "../DatabaseInteraction/db";
-import AddIdea from "./AddArticle";
-import ArticleId from "./ArticleId";
-import IdeaId from "./IdeaId";
-import FormSuccess from "./FormSuccess";
-import News from "../Images/News.png";
+
 import "../CSS/Form.css";
 import { FaTrash, FaShareAlt } from "react-icons/fa";
 import Parse from "parse";
-import HomeArt from "./HomeArt";
-import HomeMes from "./HomeMes";
-import BBCAPI from "./BBCAPI";
+
 import SecondAPI from "./SecondAPI";
-import DashboardLeft from "./DashboardLeft";
+import DashboardLeft1 from "./DashboardLeft1";
+import DashboardLeft2 from "./DashboardLeft2";
+import StaffArt from "./StaffArt";
 
 const StaffOverview = () => {
   var today = new Date();
@@ -28,11 +23,14 @@ const StaffOverview = () => {
         <div className="form-content-left-editor">
           {
             <>
-              <DashboardLeft Today={dateToday} />
+              <DashboardLeft1 Today={dateToday} />
+              <DashboardLeft2 Today={dateToday} />
             </>
           }
         </div>
-        <div className="form-content-right-editor"></div>
+        <div className="form-content-right-editor">
+          <StaffArt Today={dateToday} />
+        </div>
       </div>
     </>
   );
