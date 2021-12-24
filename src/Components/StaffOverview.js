@@ -10,6 +10,8 @@ import DashboardLeft1 from "./DashboardLeft1";
 import DashboardLeft2 from "./DashboardLeft2";
 import StaffArt from "./StaffArt";
 import JournalistSplit from "./JournalistSplit";
+import PhotographerSplit from "./PhotographerSplit";
+import AssistantSplit from "./AssistantSplit";
 
 const StaffOverview = () => {
   var today = new Date();
@@ -17,25 +19,30 @@ const StaffOverview = () => {
     today.getMonth() + 1 + "-" + today.getDate() + "-" + today.getFullYear();
 
   return (
-    <>
-      <div className="form-container-home">
-        <span className="Id--expiration">Newspaper for the {dateToday}</span>
+    <div className="form-container-home">
+      <span className="Id--expiration">Newspaper for the {dateToday}</span>
 
-        <div className="form-content-left-editor">
-          {
-            <>
-              <DashboardLeft1 Today={dateToday} />
-              <DashboardLeft2 Today={dateToday} />
-            </>
-          }
-        </div>
-        <div className="form-content-right-editor">
-          <StaffArt Today={dateToday} />
-
-          <JournalistSplit Today={dateToday} />
-        </div>
+      <div className="form-content-left-editor">
+        {
+          <>
+            <DashboardLeft1 Today={dateToday} />
+            <DashboardLeft2 Today={dateToday} />
+          </>
+        }
       </div>
-    </>
+      <div className="form-content-right-editor">
+        <StaffArt Today={dateToday} />
+        <form className="form-api2">
+          <div className="form-inputs">
+            <div className="form-inputs1">
+              <JournalistSplit Today={dateToday} />
+              <PhotographerSplit Today={dateToday} />
+              <AssistantSplit Today={dateToday} />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

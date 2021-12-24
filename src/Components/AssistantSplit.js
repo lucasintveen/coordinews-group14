@@ -2,12 +2,9 @@ import { getArticle, getArticles } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import "../App.css";
-import Parse from "parse";
-import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import "../CSS/Form.css";
 
-export default function JournalistSplit(props) {
+export default function AssistantSplit(props) {
   const [Articles, setArticles] = useState();
   const workTimeDay = 7.5;
   useEffect(() => {
@@ -41,7 +38,7 @@ export default function JournalistSplit(props) {
   }
 
   const filteredArticles = Object.values(Articles).filter((article) => {
-    if (article.JournalistAcc == true) {
+    if (article.AssistantAcc == true) {
       return article;
     }
   });
@@ -49,7 +46,7 @@ export default function JournalistSplit(props) {
   function employeesSelector() {
     var employeeSelection = [];
     for (let i = 0; i < filteredArticles.length; i++) {
-      employeeSelection.push(filteredArticles[i].Journalist);
+      employeeSelection.push(filteredArticles[i].Assistant);
     }
     return employeeSelection;
   }
@@ -66,7 +63,7 @@ export default function JournalistSplit(props) {
     var Counter = [];
     for (let j = 0; j < uniqueEmployees.length; j++) {
       for (let i = 0; i < filteredArticles.length; i++) {
-        if (filteredArticles[i].Journalist === uniqueEmployees[j]) {
+        if (filteredArticles[i].Assistant === uniqueEmployees[j]) {
           if (filteredArticles[i].Size === "L") {
             articleWork += 8;
           } else if (filteredArticles[i].Size === "M") {
@@ -90,7 +87,7 @@ export default function JournalistSplit(props) {
         <thead>
           <br></br>
           <tr>
-            <th className="th-messages">Journalist Occupation</th>
+            <th className="th-messages">Assistant Occupation</th>
           </tr>
         </thead>
         <tbody className="tbody-messages">

@@ -317,6 +317,7 @@ table {
 
 .th-messages {
   width: 30.6%;
+  text-align: center;
 }
 
 tbody td {
@@ -425,4 +426,8 @@ header {
 h5 {
   font-size: 1.2rem;
   font-weight: bold;
+}
+
+.spaceUnderCell {
+  padding: 3em;
 }

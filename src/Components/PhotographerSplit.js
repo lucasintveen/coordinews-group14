@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "../CSS/Form.css";
 
-export default function JournalistSplit(props) {
+export default function PhotographerSplit(props) {
   const [Articles, setArticles] = useState();
   const workTimeDay = 7.5;
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function JournalistSplit(props) {
   }
 
   const filteredArticles = Object.values(Articles).filter((article) => {
-    if (article.JournalistAcc == true) {
+    if (article.PhotographerAcc == true) {
       return article;
     }
   });
@@ -49,7 +49,7 @@ export default function JournalistSplit(props) {
   function employeesSelector() {
     var employeeSelection = [];
     for (let i = 0; i < filteredArticles.length; i++) {
-      employeeSelection.push(filteredArticles[i].Journalist);
+      employeeSelection.push(filteredArticles[i].Photographer);
     }
     return employeeSelection;
   }
@@ -66,7 +66,7 @@ export default function JournalistSplit(props) {
     var Counter = [];
     for (let j = 0; j < uniqueEmployees.length; j++) {
       for (let i = 0; i < filteredArticles.length; i++) {
-        if (filteredArticles[i].Journalist === uniqueEmployees[j]) {
+        if (filteredArticles[i].Photographer === uniqueEmployees[j]) {
           if (filteredArticles[i].Size === "L") {
             articleWork += 8;
           } else if (filteredArticles[i].Size === "M") {
@@ -90,7 +90,7 @@ export default function JournalistSplit(props) {
         <thead>
           <br></br>
           <tr>
-            <th className="th-messages">Journalist Occupation</th>
+            <th className="th-messages">Photographer Occupation</th>
           </tr>
         </thead>
         <tbody className="tbody-messages">
