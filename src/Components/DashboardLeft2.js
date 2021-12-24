@@ -51,17 +51,34 @@ export default function DashboardLeft2(props) {
     }
   });
 
-  console.log("Return Statement: ", filteredArticles);
-  function sizeCalculation() {
-    var articleSize = [];
+  function workSizeCalculation() {
+    var articleWork = 0;
     for (let i = 0; i < filteredArticles.length; i++) {
-      articleSize.push(filteredArticles[i].Journalist);
-      articleSize.push(filteredArticles[i].Photographer);
-      articleSize.push(filteredArticles[i].Assistant);
+      if (filteredArticles[i].Size === "L") {
+        articleWork += 8;
+      } else if (filteredArticles[i].Size === "M") {
+        articleWork += 4;
+      } else if (filteredArticles[i].Size === "S") {
+        articleWork += 2;
+      }
     }
-    return articleSize;
+    return articleWork;
   }
-  const employees = sizeCalculation();
+  console.log("Filtered Art: ", filteredArticles);
+  const workSize = workSizeCalculation();
+  console.log("worksize: ", workSize);
+
+  console.log("Return Statement: ", filteredArticles);
+  function employeesSelector() {
+    var employeeSelection = [];
+    for (let i = 0; i < filteredArticles.length; i++) {
+      employeeSelection.push(filteredArticles[i].Journalist);
+      employeeSelection.push(filteredArticles[i].Photographer);
+      employeeSelection.push(filteredArticles[i].Assistant);
+    }
+    return employeeSelection;
+  }
+  const employees = employeesSelector();
 
   function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
@@ -72,12 +89,12 @@ export default function DashboardLeft2(props) {
   console.log("Unique Employees: ", uniqueEmployees);
   console.log("Employee Time: ", employeeTime);
 
-  const completionRate = (employees / pagesNeeded) * 100;
-  const completionRateRounded = Math.round(completionRate * 10) / 10;
+  const occupationRate = (workSize / employeeTime) * 100;
+  const occupationRateRounded = Math.round(occupationRate * 10) / 10;
   return (
     <div>
-      <h1>Pages Needed: {pagesNeeded}</h1>
-      <h1>Completion Rate: {completionRateRounded} %</h1>
+      <h1>This week's available work time: {employeeTime}</h1>
+      <h1>Completion Rate: {occupationRateRounded} %</h1>
     </div>
   );
 }

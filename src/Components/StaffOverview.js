@@ -9,6 +9,7 @@ import SecondAPI from "./SecondAPI";
 import DashboardLeft1 from "./DashboardLeft1";
 import DashboardLeft2 from "./DashboardLeft2";
 import StaffArt from "./StaffArt";
+import JournalistSplit from "./JournalistSplit";
 
 const StaffOverview = () => {
   var today = new Date();
@@ -30,6 +31,8 @@ const StaffOverview = () => {
         </div>
         <div className="form-content-right-editor">
           <StaffArt Today={dateToday} />
+
+          <JournalistSplit Today={dateToday} />
         </div>
       </div>
     </>

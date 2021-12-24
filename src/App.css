@@ -295,6 +295,14 @@ table {
   margin-left: 24px;
 }
 
+.table-staff {
+  width: 100%;
+  margin-top: 48px;
+  margin-right: 12px;
+  margin-left: 24px;
+  top: 18%;
+}
+
 .messages-head {
   width: 10%;
 }
