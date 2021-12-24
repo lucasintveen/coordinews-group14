@@ -94,7 +94,7 @@ export default function DashboardLeft2(props) {
   return (
     <div>
       <h1>This week's available work time: {employeeTime}</h1>
-      <h1>Completion Rate: {occupationRateRounded} %</h1>
+      <h1>Occupation Rate: {occupationRateRounded} %</h1>
     </div>
   );
 }
