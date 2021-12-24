@@ -113,10 +113,10 @@ export default function JournalistSplit(props) {
         <tbody className="tbody-messages">
           {Array.from({ length: uniqueEmployees.length }).map((_, index) => (
             <tr>
-              <td className="td-messages">
+              <Button variant="light">
                 {uniqueEmployees[index]} : {workSizePerEmp[index]} /{" "}
                 {workTimeDay}
-              </td>
+              </Button>
             </tr>
           ))}
           <tr>Hallo</tr>
