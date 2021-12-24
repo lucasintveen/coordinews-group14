@@ -17,16 +17,6 @@ import NYTLogo from "../Images/New York Times.png";
 import SecondAPI from "./SecondAPI";
 
 const Home = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  function submitForm() {
-    setIsSubmitted(true);
-  }
-
-  const [childData, setChildData] = useState("");
-  console.log("Child Data: ", childData);
-  console.log("Id: ", childData[0]);
-
   return (
     <>
       <div className="form-container-home">

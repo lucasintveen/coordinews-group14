@@ -13,6 +13,7 @@ import ArticleId from "./Components/ArticleId";
 import Form from "./Components/Form";
 import IdeaConverter from "./Components/IdeaConverter";
 import Home from "./Components/Home";
+import StaffOverview from "./Components/StaffOverview";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="ideas" element={<Ideas />} />
           <Route path="articles" element={<Articles />} />
-          <Route path="staff" element={<Staff />} />
+          <Route path="staff" element={<StaffOverview />} />
           <Route path="Add_Article" element={<AddArticle />} />
           <Route
             path="/articles/articleDetails/:articleId"

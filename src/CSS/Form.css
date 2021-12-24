@@ -117,6 +117,18 @@
   background: rgb(141, 81, 154);
 }
 
+.form-content-left-editor {
+  background: rgb(223, 220, 224);
+  border-radius: 10px 0 0 10px;
+  position: relative;
+}
+
+.form-content-right-editor {
+  background: rgb(223, 220, 224);
+  border-radius: 10px 0 0 10px;
+  position: relative;
+}
+
 .form-img {
   width: 70%;
   height: 40%;
