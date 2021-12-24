@@ -20,6 +20,12 @@ export default function DashboardLeft2(props) {
           Finished: wrapper.attributes.Finished,
           Deadline: wrapper.attributes.Deadline,
           Size: wrapper.attributes.Size,
+          Journalist: wrapper.attributes.Journalist,
+          Photographer: wrapper.attributes.Photographer,
+          Assistant: wrapper.attributes.Assistant,
+          JournalistAcc: wrapper.attributes.JournalistAcc,
+          PhotographerAcc: wrapper.attributes.PhotoAcc,
+          AssistantAcc: wrapper.attributes.AssiAcc,
         };
 
         return mappedArticle;
@@ -36,30 +42,37 @@ export default function DashboardLeft2(props) {
     );
   }
   const filteredArticles = Object.values(Articles).filter((article) => {
-    if (article.Finished == true) {
-      console.log("The article finisher");
-      console.log(
-        "Return Statement Test: ",
-        article.Deadline.includes(props.Today)
-      );
-      return article.Deadline.includes(props.Today);
+    if (
+      article.JournalistAcc == true &&
+      article.PhotographerAcc == true &&
+      article.AssistantAcc == true
+    ) {
+      return article;
     }
   });
+
+  console.log("Return Statement: ", filteredArticles);
   function sizeCalculation() {
-    var articleSize = 0;
+    var articleSize = [];
     for (let i = 0; i < filteredArticles.length; i++) {
-      if (filteredArticles[i].Size === "L") {
-        articleSize += 2;
-      } else if (filteredArticles[i].Size === "M") {
-        articleSize += 1;
-      } else if (filteredArticles[i].Size === "S") {
-        articleSize += 0.5;
-      }
+      articleSize.push(filteredArticles[i].Journalist);
+      articleSize.push(filteredArticles[i].Photographer);
+      articleSize.push(filteredArticles[i].Assistant);
     }
     return articleSize;
   }
-  const size = sizeCalculation();
-  const completionRate = (size / pagesNeeded) * 100;
+  const employees = sizeCalculation();
+
+  function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+  }
+
+  const uniqueEmployees = employees.filter(onlyUnique);
+  const employeeTime = uniqueEmployees.length * 7.5;
+  console.log("Unique Employees: ", uniqueEmployees);
+  console.log("Employee Time: ", employeeTime);
+
+  const completionRate = (employees / pagesNeeded) * 100;
   const completionRateRounded = Math.round(completionRate * 10) / 10;
   return (
     <div>
