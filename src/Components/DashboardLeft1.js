@@ -73,7 +73,7 @@ export default function DashboardLeft1(props) {
       <form className="form-staff1">
         <div className="form-inputs">
           <div className="form-inputs1">
-            <h4>Pages Needed: </h4>
+            <p style={{ fontSize: "22px", color: "#5a535c" }}>Pages Needed:</p>
             <button variant="light" className="staff--btn1">
               {pagesNeeded}
             </button>

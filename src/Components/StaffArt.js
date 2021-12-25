@@ -49,22 +49,17 @@ export default function StaffArt(props) {
   const rowLength = filteredArticles.length;
   return (
     <table class="table-staff table-hover">
-      <thead>
-        <br></br>
+      <tbody>
         <tr>
           {Object.keys(Articles[0])
             .slice(0, 3)
             .map((articleHeader) => (
-              <th key={articleHeader} className="th-staff">
-                {articleHeader}{" "}
-              </th>
+              <th>{articleHeader} </th>
             ))}
         </tr>
-      </thead>
-      <tbody className="tbody-staff">
         {filteredArticles.map((article) => (
           <tr>
-            <td as={Link} to="/Add_Article" className="td-staff">
+            <td as={Link} to="/Add_Article">
               <Button
                 variant="light"
                 as={Link}
@@ -73,8 +68,8 @@ export default function StaffArt(props) {
                 See more{"\uD83D\uDD0D"}
               </Button>
             </td>
-            <td className="td-staff">{article.Title}</td>
-            <td className="td-staff">{article.Section}</td>
+            <td>{article.Title}</td>
+            <td>{article.Section}</td>
           </tr>
         ))}
       </tbody>

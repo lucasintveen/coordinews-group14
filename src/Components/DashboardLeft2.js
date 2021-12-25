@@ -101,7 +101,9 @@ export default function DashboardLeft2(props) {
       <form className="form-staff2">
         <div className="form-inputs">
           <div className="form-inputs1">
-            <h4>Available time per Week: </h4>
+            <p style={{ fontSize: "22px", color: "#5a535c" }}>
+              Available time per Week:{" "}
+            </p>
             <button variant="light" className="staff--btn2">
               {employeeTime}
             </button>

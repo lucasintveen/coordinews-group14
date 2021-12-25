@@ -95,7 +95,7 @@ export default function Gauge(props) {
 
         <div
           style={{
-            marginTop: "-38px",
+            marginTop: "-44px",
             fontSize: "3em",
             lineHeight: "1em",
             fontWeight: "900",
