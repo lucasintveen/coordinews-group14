@@ -8,6 +8,7 @@ import Parse from "parse";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "../CSS/Form.css";
+import Gauge from "./DashboardTest";
 
 export default function DashboardLeft2(props) {
   const [Articles, setArticles] = useState();
@@ -91,10 +92,20 @@ export default function DashboardLeft2(props) {
 
   const occupationRate = (workSize / employeeTime) * 100;
   const occupationRateRounded = Math.round(occupationRate * 10) / 10;
+  const label = "Occupation Rate";
+  const Min = 100;
+  const Max = 0;
+  const pointerColor = "twisted";
   return (
     <div>
       <h1>This week's available work time: {employeeTime}</h1>
-      <h1>Occupation Rate: {occupationRateRounded} %</h1>
+      <Gauge
+        Label={label}
+        Value={occupationRateRounded}
+        Min={Min}
+        Max={Max}
+        PointerColor={pointerColor}
+      />
     </div>
   );
 }

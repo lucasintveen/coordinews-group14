@@ -8,6 +8,7 @@ import Parse from "parse";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "../CSS/Form.css";
+import Gauge from "./DashboardTest";
 
 export default function DashboardLeft1(props) {
   const [Articles, setArticles] = useState();
@@ -61,10 +62,22 @@ export default function DashboardLeft1(props) {
   const size = sizeCalculation();
   const completionRate = (size / pagesNeeded) * 100;
   const completionRateRounded = Math.round(completionRate * 10) / 10;
+
+  const label = "Completion Rate";
+  const Min = 0;
+  const Max = 100;
+  const pointerColor = "normal";
+
   return (
     <div>
       <h1>Pages Needed: {pagesNeeded}</h1>
-      <h1>Completion Rate: {completionRateRounded} %</h1>
+      <Gauge
+        Label={label}
+        Value={completionRateRounded}
+        Min={Min}
+        Max={Max}
+        PointerColor={pointerColor}
+      />
     </div>
   );
 }

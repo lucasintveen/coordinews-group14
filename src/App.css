@@ -315,8 +315,16 @@ table {
   width: 16%;
 }
 
+.td-staff {
+  width: 110%;
+}
+
 .th-messages {
-  width: 30.6%;
+  width: 30.5%;
+  text-align: center;
+}
+.th-staff {
+  width: 46%;
   text-align: center;
 }
 
@@ -333,6 +341,10 @@ tbody {
   height: 544px;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+.tbody-staff {
+  width: 120%;
 }
 
 ::-webkit-scrollbar {

@@ -12,11 +12,14 @@ import StaffArt from "./StaffArt";
 import JournalistSplit from "./JournalistSplit";
 import PhotographerSplit from "./PhotographerSplit";
 import AssistantSplit from "./AssistantSplit";
+import Gauge from "./DashboardTest";
 
 const StaffOverview = () => {
   var today = new Date();
   var dateToday =
     today.getMonth() + 1 + "-" + today.getDate() + "-" + today.getFullYear();
+
+  const label = "Completion Rate";
 
   return (
     <div className="form-container-home">
