@@ -97,8 +97,17 @@ export default function DashboardLeft2(props) {
   const Max = 0;
   const pointerColor = "twisted";
   return (
-    <div>
-      <h1>This week's available work time: {employeeTime}</h1>
+    <>
+      <form className="form-staff2">
+        <div className="form-inputs">
+          <div className="form-inputs1">
+            <h4>Available time per Week: </h4>
+            <button variant="light" className="staff--btn2">
+              {employeeTime}
+            </button>
+          </div>
+        </div>
+      </form>
       <Gauge
         Label={label}
         Value={occupationRateRounded}
@@ -106,6 +115,6 @@ export default function DashboardLeft2(props) {
         Max={Max}
         PointerColor={pointerColor}
       />
-    </div>
+    </>
   );
 }

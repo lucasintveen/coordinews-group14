@@ -69,8 +69,17 @@ export default function DashboardLeft1(props) {
   const pointerColor = "normal";
 
   return (
-    <div>
-      <h1>Pages Needed: {pagesNeeded}</h1>
+    <>
+      <form className="form-staff1">
+        <div className="form-inputs">
+          <div className="form-inputs1">
+            <h4>Pages Needed: </h4>
+            <button variant="light" className="staff--btn1">
+              {pagesNeeded}
+            </button>
+          </div>
+        </div>
+      </form>
       <Gauge
         Label={label}
         Value={completionRateRounded}
@@ -78,6 +87,6 @@ export default function DashboardLeft1(props) {
         Max={Max}
         PointerColor={pointerColor}
       />
-    </div>
+    </>
   );
 }
