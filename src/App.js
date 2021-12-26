@@ -8,12 +8,12 @@ import Ideas from "./Components/Ideas";
 import Articles from "./Components/Articles";
 import Staff from "./Components/Staff";
 import LandingPage from "./Components/LandingPage";
-import AddArticle from "./Components/AddArticle";
 import ArticleId from "./Components/ArticleId";
 import Form from "./Components/Form";
 import IdeaConverter from "./Components/IdeaConverter";
 import Home from "./Components/Home";
 import StaffOverview from "./Components/StaffOverview";
+import AddIdea from "./Components/AddIdea";
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
           <Route path="ideas" element={<Ideas />} />
           <Route path="articles" element={<Articles />} />
           <Route path="staff" element={<StaffOverview />} />
-          <Route path="Add_Article" element={<AddArticle />} />
+          <Route path="addIdea" element={<AddIdea />} />
           <Route
             path="/articles/articleDetails/:articleId"
             element={<Form />}
@@ -36,7 +36,6 @@ function App() {
             path="/ideas/ideaDetails/:ideaId"
             element={<IdeaConverter />}
           />
-          <Route path="addIdea" element={<AddArticle />} />
 
           <Route path="/" element={<LandingPage />} />
           <Route path="home" element={<Home />} />

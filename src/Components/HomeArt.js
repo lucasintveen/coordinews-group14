@@ -1,16 +1,13 @@
 import { getArticle, getArticles } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+
 import Spinner from "react-bootstrap/Spinner";
-import { useParams } from "react-router-dom";
+
 import "../App.css";
-import Popup from "./Popup";
 import Parse from "parse";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "../CSS/Form.css";
-
-import { uploadArticle } from "../DatabaseInteraction/db";
 
 export default function HomeArt(props) {
   const [Articles, setArticles] = useState();
@@ -77,7 +74,6 @@ export default function HomeArt(props) {
   });
   const rowLength = filteredArticles.length;
   console.log("Landing Page: ", filteredArticles);
-  const iterationCount = 0;
 
   return (
     <table class="table-messages table-hover">

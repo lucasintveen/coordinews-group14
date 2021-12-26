@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import "../CSS/Form.css";
-import { getArticles } from "../DatabaseInteraction/db";
-import AddIdea from "./AddArticle";
 import ArticleId from "./ArticleId";
 import FormSuccess from "./FormSuccess";
-import Idea from "../Images/Bulb.png";
 import { FaTrash, FaShareAlt, FaArrowLeft } from "react-icons/fa";
 import News from "../Images/News.png";
 import FormDeletion from "./FormDeletion";

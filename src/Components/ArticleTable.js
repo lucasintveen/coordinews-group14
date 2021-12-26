@@ -198,7 +198,7 @@ export default function Articletable() {
           {filteredArticles.map((article) => (
             <tr>
               {/* TODO: Ask for help on this one with TA's - My attempts with nested for loops and map functions broke */}
-              <td as={Link} to="/Add_Article">
+              <td>
                 {/* TODO: Link Reference */}
                 {/* <Button variant="light" as={Link} to="/Add_Article">Add Article</Button> */}
                 <Button

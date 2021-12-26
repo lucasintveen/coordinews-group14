@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
 import { uploadArticle } from "../DatabaseInteraction/db";
 import "../App.css";
 import "../CSS/Form.css";
-import Popup from "./Popup";
 
 export default function AddIdea({ submitForm }) {
   const [articles, setArticles] = useState([]);
-
   const [newArticle, setNewArticle] = useState({});
-
-  const [buttonPopup, setButtonPopup] = useState(false);
 
   async function handleUpload(e) {
     e.preventDefault();
@@ -21,7 +16,6 @@ export default function AddIdea({ submitForm }) {
   useEffect(() => {
     if (articles.length > 0) {
       uploadArticle(articles);
-      setButtonPopup(true);
       // navigate("/");
     }
   }, [articles]);
@@ -142,9 +136,6 @@ export default function AddIdea({ submitForm }) {
         <span className="form-input-login">
           Idea not worthy to be noted down? Go <a href="#">back</a>
         </span>
-        {/* <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-          <h5>You have succesfully submitted a new article!</h5>
-        </Popup> */}
       </form>
     </div>
   );
