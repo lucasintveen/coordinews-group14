@@ -63,6 +63,7 @@ export default function ArticleId(props) {
             defaultValue={article.Title}
             value={newArticle.title}
             onChange={handleChange}
+            style={{ fontSize: "22px", fontWeight: "bold" }}
           />
         </div>
 

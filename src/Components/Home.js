@@ -17,26 +17,33 @@ import NYTLogo from "../Images/New York Times.png";
 import SecondAPI from "./SecondAPI";
 
 const Home = () => {
+  var today = new Date();
+  var month = today.getMonth() + 1;
+  var dateToday1 = today.getDate() + "-" + month + "-" + today.getFullYear();
   return (
     <>
       <div className="form-container-home">
-        <span className="Id--expiration">
+        <span className="staff--heading4">
           Hey {Parse.User.current().attributes.username}, these article await
           you today:
         </span>
-
-        <span className="home-mes-head">
+        <span className="staff--heading1">Edition for the: {dateToday1}</span>
+        <span className="staff--heading2">
           Furthermore, please respond to these task requests:
         </span>
+
         <span className="text-cloud-center">
-          Stay up-to-date with the most important news of the day from: <br />{" "}
+          Stay up-to-date with the news of the day:
         </span>
         <img className="APILogo1" src={BBCLogo}></img>
         <img className="APILogo2" src={NYTLogo}></img>
         <div className="form-content-left-home">
           {
             <>
-              <HomeArt /> <HomeMes />
+              <form className="form-table">
+                <HomeArt />
+              </form>
+              <HomeMes />
             </>
           }
         </div>

@@ -22,10 +22,12 @@ export default function Articletable() {
           Title: wrapper.attributes.Title,
           Section: wrapper.attributes.Section,
           Journalist: wrapper.attributes.Journalist,
-          Photographer: wrapper.attributes.Photographer,
+
           State: wrapper.attributes.State,
-          Size: wrapper.attributes.Size,
           Deadline: wrapper.attributes.Deadline,
+          Completion: wrapper.attributes.Completion,
+          Size: wrapper.attributes.Size,
+          Photographer: wrapper.attributes.Photographer,
         };
         /** Add Article is not connected to database anymore .toString().slice(4, 15) */
 
@@ -106,6 +108,9 @@ export default function Articletable() {
     }
   });
 
+  console.log("Article Check: ", Articles);
+  console.log("Completion Check: ", Articles[0].Completion);
+
   const rowLength = filteredArticles.length;
   const rowLengthUnfiltered = Articles.length;
 
@@ -182,15 +187,14 @@ export default function Articletable() {
       </ul>
 
       <table class="table table-hover">
-        <thead>
-          <br></br>
-          <tr>
-            {Object.keys(Articles[0]).map((articleHeader) => (
-              <th key={articleHeader}>{articleHeader}</th>
-            ))}
-          </tr>
-        </thead>
         <tbody>
+          <tr>
+            {Object.keys(Articles[0])
+              .slice(0, 7)
+              .map((articleHeader) => (
+                <th key={articleHeader}>{articleHeader}</th>
+              ))}
+          </tr>
           {filteredArticles.map((article) => (
             <tr>
               {/* TODO: Ask for help on this one with TA's - My attempts with nested for loops and map functions broke */}
@@ -208,10 +212,9 @@ export default function Articletable() {
               <td>{article.Title}</td>
               <td>{article.Section}</td>
               <td>{article.Journalist}</td>
-              <td>{article.Photographer}</td>
               <td>{article.State}</td>
-              <td>{article.Size}</td>
               <td>{article.Deadline}</td>
+              <td>{article.Completion}</td>
             </tr>
           ))}
         </tbody>

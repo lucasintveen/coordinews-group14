@@ -7,18 +7,19 @@ import "../App.css";
 import Popup from "./Popup";
 import { uploadArticle } from "../DatabaseInteraction/db";
 import Articles from "./Ideas";
+import emailjs from "emailjs-com";
 
 export default function IdeaId(props, { submitForm }) {
   const [idea, setIdea] = useState();
   const [articles, setArticles] = useState([]);
   const [newArticle, setNewArticle] = useState({});
-
   const { ideaId } = useParams();
+  var submitter = false;
 
   async function getIdeaFromDb() {
     const idea = await getIdea(ideaId);
     setIdea(idea);
-    props.passChildData([ideaId, idea.Expiration]);
+    props.passChildData([ideaId, idea.Expiration, submitter]);
   }
 
   useEffect(getIdeaFromDb, []);
@@ -26,8 +27,23 @@ export default function IdeaId(props, { submitForm }) {
   async function handleUpload(e) {
     e.preventDefault();
     setArticles((articles) => [...articles, newArticle]);
-    // submitForm;
+    submitter = true;
+    if (newArticle.Journalist != "") {
+      emailjs.send(
+        "service_5flydld",
+        "template_1fkl0ur",
+        {
+          to_name: articles.Journalist,
+          Title: articles.Title,
+          Section: articles.Section,
+          Deadline: articles.Deadline,
+          email: "neumann.lucas8@gmail.com",
+        },
+        "user_0gUfh2qxMOwB9lgArUZI6"
+      );
+    }
   }
+  console.log("Tester of Article: ", newArticle.Journalist != "");
   console.log("Missing Check:", articles);
 
   useEffect(() => {
@@ -72,6 +88,7 @@ export default function IdeaId(props, { submitForm }) {
             defaultValue={idea.Title}
             value={newArticle.title}
             onChange={handleChange}
+            style={{ fontSize: "22px", fontWeight: "bold" }}
           />
         </div>
 

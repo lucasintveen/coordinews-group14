@@ -47,6 +47,7 @@ export default function AddIdea({ submitForm }) {
             name="title"
             value={newArticle.title}
             onChange={handleChange}
+            style={{ fontSize: "22px", fontWeight: "bold" }}
           />
         </div>
         <div className="form-inputs">

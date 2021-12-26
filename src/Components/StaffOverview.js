@@ -12,7 +12,7 @@ import StaffArt from "./StaffArt";
 import JournalistSplit from "./JournalistSplit";
 import PhotographerSplit from "./PhotographerSplit";
 import AssistantSplit from "./AssistantSplit";
-import Gauge from "./DashboardTest";
+import StaffArtMissing from "./StaffArtMissing";
 
 const StaffOverview = () => {
   var today = new Date();
@@ -29,9 +29,10 @@ const StaffOverview = () => {
       <span className="staff--heading2">General Employee Status Overview:</span>
       <span className="staff--heading3">Specific Employee Overview:</span>
       <span className="staff--heading4">Newspaper Status Overview:</span>
-      <span className="staff--heading5">
+      <span className="staff--heading6">
         Finished Article for the Current Edition:
       </span>
+      <span className="staff--heading7">Journalist Acceptance Missing:</span>
 
       <div className="form-content-left-editor">
         {
@@ -44,6 +45,9 @@ const StaffOverview = () => {
       <div className="form-content-right-staff">
         <form className="form-table">
           <StaffArt Today={dateToday} />
+        </form>
+        <form className="form-table2">
+          <StaffArtMissing Today={dateToday} />
         </form>
         <form className="form-split">
           <div className="form-inputs">

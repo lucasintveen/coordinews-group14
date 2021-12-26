@@ -98,6 +98,30 @@
   font-weight: bold;
 }
 
+.staff--heading6 {
+  display: flex;
+  flex-direction: row-reverse;
+  position: absolute;
+  top: 9.5%;
+  left: 52.5%;
+  font-size: 1.5rem;
+  z-index: 1;
+  color: #5a535c;
+  font-size: 20px;
+}
+
+.staff--heading7 {
+  display: flex;
+  flex-direction: row-reverse;
+  position: absolute;
+  top: 30%;
+  left: 52.5%;
+  font-size: 1.5rem;
+  z-index: 1;
+  color: #5a535c;
+  font-size: 20px;
+}
+
 .home-mes-head {
   display: flex;
   flex-direction: row-reverse;
@@ -112,12 +136,12 @@
 }
 .text-cloud-center {
   position: absolute;
-  top: 3%;
+  top: 9%;
   left: 52.5%;
   font-size: 1.5rem;
   z-index: 1;
   color: rgb(223, 220, 224);
-  font-size: 16px;
+  font-size: 22px;
   font-weight: bold;
 }
 
@@ -125,7 +149,7 @@
   display: flex;
   flex-direction: row-reverse;
   position: absolute;
-  top: 9%;
+  top: 14.5%;
   left: 52.5%;
   font-size: 1.5rem;
   z-index: 1;
@@ -137,11 +161,11 @@
   display: flex;
   flex-direction: row-reverse;
   position: absolute;
-  top: 58%;
+  top: 54.2%;
   left: 52.5%;
   font-size: 1.5rem;
   z-index: 1;
-  width: 120px;
+  width: 220px;
   height: auto;
   border-radius: 10px;
 }
@@ -247,7 +271,7 @@
 }
 .form-api1 {
   position: absolute;
-  top: 33%;
+  top: 37.3%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
@@ -260,7 +284,21 @@
 
 .form-table {
   position: absolute;
-  top: 44.5%;
+  top: 45.3%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.form-table2 {
+  position: absolute;
+  top: 66%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -274,7 +312,7 @@
 
 .form-api2 {
   position: absolute;
-  top: 77%;
+  top: 74%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
@@ -483,7 +521,7 @@
 .staff--btn1 {
   width: 120px;
   height: 50px;
-  margin-left: 260px;
+  margin-left: 275px;
   border-radius: 10px;
   background: #d7badd;
   outline: none;
@@ -496,7 +534,7 @@
 .staff--btn2 {
   width: 120px;
   height: 50px;
-  margin-left: 160px;
+  margin-left: 190px;
   border-radius: 10px;
   background: #d7badd;
   outline: none;

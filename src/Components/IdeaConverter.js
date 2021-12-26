@@ -19,6 +19,7 @@ const IdeaConverter = () => {
   const [childData, setChildData] = useState("");
   console.log("Child Data: ", childData);
   console.log("Id: ", childData[0]);
+  const submitter = childData[2];
 
   return (
     <>
@@ -33,11 +34,7 @@ const IdeaConverter = () => {
         <div className="form-content-left">
           <img className="form-img" src={News} alt="news icon" />
         </div>
-        {/* {!isSubmitted ? ( */}
-        <IdeaId submitForm={submitForm} passChildData={setChildData} />
-        {/* ) : (
-          <FormSuccess />
-        )} */}
+        {!submitter ? <IdeaId passChildData={setChildData} /> : <FormSuccess />}
       </div>
     </>
   );
