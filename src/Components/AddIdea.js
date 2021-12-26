@@ -1,28 +1,29 @@
 import { useEffect, useState } from "react";
-import { uploadArticle } from "../DatabaseInteraction/db";
+import { uploadIdea } from "../DatabaseInteraction/db";
 import "../App.css";
 import "../CSS/Form.css";
 
-export default function AddIdea({ submitForm }) {
-  const [articles, setArticles] = useState([]);
-  const [newArticle, setNewArticle] = useState({});
+export default function AddIdea(props) {
+  const [idea, setIdea] = useState([]);
+  const [newIdea, setNewIdea] = useState({});
+  const submitter = true;
 
   async function handleUpload(e) {
     e.preventDefault();
-    setArticles((articles) => [...articles, newArticle]);
-    submitForm();
+    setIdea((idea) => [...idea, newIdea]);
   }
 
   useEffect(() => {
-    if (articles.length > 0) {
-      uploadArticle(articles);
-      // navigate("/");
+    if (idea.length > 0) {
+      uploadIdea(idea);
+      console.log("Check the Idea Upload: ", idea);
+      props.passChildData(submitter);
     }
-  }, [articles]);
+  }, [idea]);
 
   function handleChange(event) {
-    setNewArticle({
-      ...newArticle,
+    setNewIdea({
+      ...newIdea,
       [event.target.name]: event.target.value,
     });
   }
@@ -39,7 +40,7 @@ export default function AddIdea({ submitForm }) {
             type="text"
             placeholder="Enter the idea's title"
             name="title"
-            value={newArticle.title}
+            value={newIdea.title}
             onChange={handleChange}
             style={{ fontSize: "22px", fontWeight: "bold" }}
           />
@@ -51,7 +52,7 @@ export default function AddIdea({ submitForm }) {
             type="text"
             placeholder="Enter some valuable comments"
             name="comment"
-            value={newArticle.comment}
+            value={newIdea.comment}
             onChange={handleChange}
           />
         </div>
@@ -60,21 +61,18 @@ export default function AddIdea({ submitForm }) {
           <label className="form-label">Source</label>
           <select
             className="form-input"
-            name="journalist"
-            value={newArticle.journalist}
+            name="source"
+            value={newIdea.source}
             onChange={handleChange}
           >
             <option value="" selected disabled hidden>
               Please select the journalist's name
             </option>
-            <option>LA</option>
+            <option>LI</option>
             <option>LK</option>
             <option>KA</option>
-            <option>LA</option>
-            <option>JN</option>
-            <option>LP</option>
-            <option>CJ</option>
-            <option>other</option>
+            <option>PW</option>
+            <option>JF</option>
           </select>
         </div>
 
@@ -83,7 +81,7 @@ export default function AddIdea({ submitForm }) {
           <select
             className="form-input"
             name="section"
-            value={newArticle.section}
+            value={newIdea.section}
             onChange={handleChange}
           >
             <option value="" selected disabled hidden>
@@ -95,7 +93,7 @@ export default function AddIdea({ submitForm }) {
             <option>Local</option>
             <option>World</option>
             <option>Business</option>
-            <option>other</option>
+            <option>Financial</option>
           </select>
         </div>
 
@@ -103,8 +101,8 @@ export default function AddIdea({ submitForm }) {
           <label className="form-label">Size</label>
           <select
             className="form-input"
-            name="size"
-            value={newArticle.size}
+            name="potential"
+            value={newIdea.potential}
             onChange={handleChange}
           >
             <option value="" selected disabled hidden>
@@ -119,13 +117,46 @@ export default function AddIdea({ submitForm }) {
         </div>
 
         <div className="form-inputs">
+          <label className="form-label">Idea</label>
+          <select
+            className="form-input"
+            name="visible"
+            value={newIdea.visible}
+            onChange={handleChange}
+          >
+            <option value="" selected disabled hidden>
+              Whom should see your idea?
+            </option>
+            <option>all</option>
+            <option>Editor-in-Chief</option>
+            <option>Only Journalists</option>
+          </select>
+        </div>
+
+        <div className="form-inputs">
+          <label className="form-label">Idea</label>
+          <select
+            className="form-input"
+            name="article"
+            value={newIdea.article}
+            onChange={handleChange}
+          >
+            <option value="" selected disabled hidden>
+              Turn into article immeadiately?
+            </option>
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+        </div>
+
+        <div className="form-inputs">
           <label className="form-label">Expiration Date</label>
           <input
             className="form-input"
             type="date"
             placeholder="Enter the idea's expiration Date"
             name="deadline"
-            value={newArticle.deadline}
+            value={newIdea.deadline}
             onChange={handleChange}
           />
         </div>
@@ -134,7 +165,7 @@ export default function AddIdea({ submitForm }) {
           Submit Idea
         </button>
         <span className="form-input-login">
-          Idea not worthy to be noted down? Go <a href="#">back</a>
+          Idea not worthy to be noted down? Go <a href="#/home">back</a>
         </span>
       </form>
     </div>

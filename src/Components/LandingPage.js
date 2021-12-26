@@ -1,10 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import LandingPageLogo from "../Images/Coordinews.png";
 import "../App.css";
 
 export default function LandingPage() {
   return (
-    <div className="background--box">
+    <div className="form-container1">
       <div className="splitScreenLanding">
         <img
           src={LandingPageLogo}

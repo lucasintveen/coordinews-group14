@@ -1,18 +1,30 @@
 import React from "react";
-import Start from "../Images/Start.png";
 import "../CSS/Form.css";
+import { FaLongArrowAltLeft } from "react-icons/fa";
 
 const FormSuccess = (props) => {
+  const locator = props.state;
+  function submit() {
+    props.submit(false);
+  }
+
   return (
-    <div className="form-content-right">
-      {!props.formTypeArticle ? (
-        <h1 className="form-success">
-          You have successfully deleted the article.
-        </h1>
-      ) : (
-        <h1 className="form-success">TEST 123</h1>
-      )}
-    </div>
+    <>
+      <div className="form-content-right">
+        <a href="/#/ideas">
+          <span className="arrow-btn" href="/">
+            <FaLongArrowAltLeft onClick={submit} />
+          </span>
+        </a>
+        {!props.formTypeArticle ? (
+          <h1 className="form-success">
+            You have successfully deleted the article.
+          </h1>
+        ) : (
+          <h1 className="form-success">TEST 123</h1>
+        )}
+      </div>
+    </>
   );
 };
 

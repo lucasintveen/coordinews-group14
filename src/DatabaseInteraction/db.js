@@ -89,6 +89,29 @@ async function uploadArticle(articles) {
   );
 }
 
+async function uploadIdea(ideas) {
+  return await Promise.all(
+    ideas.map((idea) => {
+      try {
+        const Idea = Parse.Object.extend("Idea");
+        const newIdea = new Idea();
+        newIdea.set("title", idea.title);
+        newIdea.set("section", idea.section);
+        newIdea.set("source", idea.source);
+        newIdea.set("expiration", idea.deadline);
+        newIdea.set("comment", idea.comment);
+        newIdea.set("potential", idea.potential);
+        newIdea.set("article", idea.article);
+
+        return newIdea.save();
+      } catch (error) {
+        alert(error);
+        return Promise.reject("something went wrong");
+      }
+    })
+  );
+}
+
 async function uploadDeletion(object) {
   return await Promise.all(
     object.map((item) => {
@@ -119,4 +142,5 @@ export {
   getJournalist,
   uploadArticle,
   uploadDeletion,
+  uploadIdea,
 };

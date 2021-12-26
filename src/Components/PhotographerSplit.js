@@ -1,10 +1,7 @@
-import { getArticle, getArticles } from "../DatabaseInteraction/db";
+import { getArticles } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import "../App.css";
-import Parse from "parse";
-import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import "../CSS/Form.css";
 
 export default function PhotographerSplit(props) {
@@ -41,7 +38,7 @@ export default function PhotographerSplit(props) {
   }
 
   const filteredArticles = Object.values(Articles).filter((article) => {
-    if (article.PhotographerAcc == true) {
+    if (article.PhotographerAcc === true) {
       return article;
     }
   });
@@ -59,7 +56,6 @@ export default function PhotographerSplit(props) {
   }
   const employees = employeesSelector();
   const uniqueEmployees = employees.filter(onlyUnique);
-  const rowLength = filteredArticles.length;
 
   function workSizeCalculation() {
     var articleWork = 0;
@@ -76,7 +72,6 @@ export default function PhotographerSplit(props) {
           }
         }
       }
-
       Counter.push(articleWork);
       articleWork = 0;
     }

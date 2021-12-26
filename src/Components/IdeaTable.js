@@ -64,37 +64,37 @@ export default function IdeaTable() {
   const filteredIdeas = Object.values(Ideas).filter((idea) => {
     if (
       section.section === undefined &&
-      section.source === undefined &&
+      section.Source === undefined &&
       date === undefined
     ) {
       return idea.Title.includes(search);
-    } else if (section.source === undefined && section.section === undefined) {
+    } else if (section.Source === undefined && section.section === undefined) {
       return idea.Title.includes(search) && idea.Expiration.includes(date);
     } else if (section.section === undefined && date === undefined) {
       return (
-        idea.Title.includes(search) && idea.Source.includes(section.source)
+        idea.Title.includes(search) && idea.Source.includes(section.Source)
       );
-    } else if (section.source === undefined && date === undefined) {
+    } else if (section.Source === undefined && date === undefined) {
       return (
         idea.Title.includes(search) && idea.Section.includes(section.section)
       );
     } else if (section.section === undefined) {
       idea.Title.includes(search) &&
-        idea.Source.includes(section.source) &&
+        idea.Source.includes(section.Source) &&
         idea.Expiration.includes(date);
-    } else if (section.source === undefined) {
+    } else if (section.Source === undefined) {
       idea.Title.includes(search) &&
         idea.Section.includes(section.section) &&
         idea.Expiration.includes(date);
     } else if (
       section.section != undefined &&
-      section.source != undefined &&
+      section.Source != undefined &&
       date != undefined
     ) {
       return (
         idea.Title.includes(search) &&
         idea.Section.includes(section.section) &&
-        idea.source.includes(section.source) &&
+        idea.Source.includes(section.Source) &&
         idea.Expiration.includes(date)
       );
     } else {
@@ -106,12 +106,12 @@ export default function IdeaTable() {
   const rowLengthUnfiltered = Ideas.length;
 
   const Section = [];
-  const source = [];
+  const Source = [];
   const Photographer = [];
 
   for (let i = 0; i < rowLengthUnfiltered; i++) {
     Section.push(Ideas[i].Section);
-    source.push(Ideas[i].source);
+    Source.push(Ideas[i].Source);
     Photographer.push(Ideas[i].Photographer);
   }
 
@@ -120,7 +120,8 @@ export default function IdeaTable() {
   }
 
   var distinctSection = Section.filter(onlyUnique);
-  var distinctsource = source.filter(onlyUnique);
+  var distinctSource = Source.filter(onlyUnique);
+  console.log("Distinct Source: ", distinctSource);
   var distinctPhotographer = Photographer.filter(onlyUnique);
 
   function handleSection(event) {
@@ -149,18 +150,20 @@ export default function IdeaTable() {
               Please Select Here
             </option>
 
-            {Array.from({ length: rowLengthUnfiltered }).map((_, index) => (
+            {Array.from({ length: distinctSection.length }).map((_, index) => (
               <option>{distinctSection[index]}</option>
             ))}
+            <option></option>
           </select>
-          <select name="source" value={section.source} onChange={handleSection}>
+          <select name="Source" value={section.Source} onChange={handleSection}>
             <option value="" selected disabled hidden>
-              Please Select Here
+              Please the Source
             </option>
 
-            {Array.from({ length: rowLengthUnfiltered }).map((_, index) => (
-              <option>{distinctsource[index]}</option>
+            {Array.from({ length: distinctSource.length }).map((_, index) => (
+              <option>{distinctSource[index]}</option>
             ))}
+            <option></option>
           </select>
 
           <button
@@ -174,15 +177,12 @@ export default function IdeaTable() {
       </ul>
 
       <table class="table table-hover">
-        <thead>
-          <br></br>
+        <tbody className="tbody--ideas">
           <tr>
             {Object.keys(Ideas[0]).map((ideaHeader) => (
               <th key={ideaHeader}>{ideaHeader}</th>
             ))}
           </tr>
-        </thead>
-        <tbody>
           {filteredIdeas.map((idea) => (
             <tr>
               <td>

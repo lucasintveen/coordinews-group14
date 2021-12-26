@@ -155,12 +155,13 @@ export default function Articletable() {
             onChange={handleSection}
           >
             <option value="" selected disabled hidden>
-              Please Select Here
+              Select the Section
             </option>
 
-            {Array.from({ length: rowLengthUnfiltered }).map((_, index) => (
+            {Array.from({ length: distinctSection.length }).map((_, index) => (
               <option>{distinctSection[index]}</option>
             ))}
+            <option></option>
           </select>
           <select
             name="journalist"
@@ -168,12 +169,15 @@ export default function Articletable() {
             onChange={handleSection}
           >
             <option value="" selected disabled hidden>
-              Please Select Here
+              Select the Journalist
             </option>
 
-            {Array.from({ length: rowLengthUnfiltered }).map((_, index) => (
-              <option>{distinctJournalist[index]}</option>
-            ))}
+            {Array.from({ length: distinctJournalist.length }).map(
+              (_, index) => (
+                <option>{distinctJournalist[index]}</option>
+              )
+            )}
+            <option></option>
           </select>
 
           <button
@@ -187,7 +191,7 @@ export default function Articletable() {
       </ul>
 
       <table class="table table-hover">
-        <tbody>
+        <tbody className="tbody--articles">
           <tr>
             {Object.keys(Articles[0])
               .slice(0, 7)

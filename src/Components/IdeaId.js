@@ -8,17 +8,17 @@ import { uploadArticle } from "../DatabaseInteraction/db";
 
 import emailjs from "emailjs-com";
 
-export default function IdeaId(props, { submitForm }) {
+export default function IdeaId(props) {
   const [idea, setIdea] = useState();
   const [articles, setArticles] = useState([]);
   const [newArticle, setNewArticle] = useState({});
   const { ideaId } = useParams();
-  var submitter = false;
+  var submitter = true;
 
   async function getIdeaFromDb() {
     const idea = await getIdea(ideaId);
     setIdea(idea);
-    props.passChildData([ideaId, idea.Expiration, submitter]);
+    props.passChildData([ideaId, idea.Expiration]);
   }
 
   useEffect(getIdeaFromDb, []);
@@ -49,6 +49,7 @@ export default function IdeaId(props, { submitForm }) {
     if (articles.length > 0) {
       uploadArticle(articles);
     }
+    props.submit(submitter);
   }, [articles]);
 
   if (!idea) {

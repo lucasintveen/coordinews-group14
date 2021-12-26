@@ -8,12 +8,34 @@
   display: grid;
   grid-template-columns: 0.5fr 1fr;
 }
+.form-container1 {
+  width: 1200px;
+  height: 800px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 100px;
+  margin-bottom: 48px;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background: rgb(223, 220, 224);
+}
 
 .trash-btn {
   display: flex;
   flex-direction: row-reverse;
   position: absolute;
   bottom: 2%;
+  right: 3%;
+  font-size: 1.5rem;
+  z-index: 1;
+  color: #fff;
+  cursor: pointer;
+}
+.arrow-btn {
+  display: flex;
+  flex-direction: row-reverse;
+  position: absolute;
+  top: 3%;
   right: 3%;
   font-size: 1.5rem;
   z-index: 1;

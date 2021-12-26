@@ -1,16 +1,15 @@
 import IdeaTable from "./IdeaTable";
 import "../App.css";
+import "../CSS/Form.css";
 
-export default function Articles() {
+export default function Ideas() {
   return (
     <>
-      <div className="background--box">
-        <p className="overview--header">Article Overview</p>
-
+      <div className="form-container1">
         <br></br>
         <IdeaTable />
         <a href="/#/addIdea">
-          <button type="submit" className="form--button">
+          <button type="submit" className="form--button--idea">
             Add Idea
           </button>
         </a>
