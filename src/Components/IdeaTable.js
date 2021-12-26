@@ -185,10 +185,7 @@ export default function IdeaTable() {
         <tbody>
           {filteredIdeas.map((idea) => (
             <tr>
-              {/* TODO: Ask for help on this one with TA's - My attempts with nested for loops and map functions broke */}
-              <td as={Link} to="/Add_Article">
-                {/* TODO: Link Reference */}
-                {/* <Button variant="light" as={Link} to="/Add_Article">Add Article</Button> */}
+              <td>
                 <Button
                   variant="light"
                   as={Link}

@@ -4,9 +4,8 @@ import { useNavigate } from "react-router";
 import Spinner from "react-bootstrap/Spinner";
 import { useParams } from "react-router-dom";
 import "../App.css";
-import Popup from "./Popup";
 import { uploadArticle } from "../DatabaseInteraction/db";
-import Articles from "./Ideas";
+
 import emailjs from "emailjs-com";
 
 export default function IdeaId(props, { submitForm }) {

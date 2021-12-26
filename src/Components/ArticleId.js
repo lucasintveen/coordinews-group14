@@ -1,4 +1,4 @@
-import { getArticle, getArticles } from "../DatabaseInteraction/db";
+import { getArticle } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { useParams } from "react-router-dom";
@@ -7,10 +7,7 @@ import Parse from "parse";
 
 export default function ArticleId(props) {
   const [article, setArticle] = useState();
-  const [articles, setArticles] = useState([]);
-
   const [newArticle, setNewArticle] = useState({});
-
   const { articleId } = useParams();
   console.log("Check Params: ", articleId);
 

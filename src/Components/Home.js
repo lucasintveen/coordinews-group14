@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import "../CSS/Form.css";
-import { getArticles } from "../DatabaseInteraction/db";
-import AddIdea from "./AddArticle";
-import ArticleId from "./ArticleId";
-import IdeaId from "./IdeaId";
-import FormSuccess from "./FormSuccess";
-import News from "../Images/News.png";
 import "../CSS/Form.css";
-import { FaTrash, FaShareAlt } from "react-icons/fa";
 import Parse from "parse";
 import HomeArt from "./HomeArt";
 import HomeMes from "./HomeMes";

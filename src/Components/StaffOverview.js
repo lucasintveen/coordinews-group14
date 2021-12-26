@@ -1,11 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "../CSS/Form.css";
-
 import "../CSS/Form.css";
-import { FaTrash, FaShareAlt } from "react-icons/fa";
-import Parse from "parse";
-
-import SecondAPI from "./SecondAPI";
 import DashboardLeft1 from "./DashboardLeft1";
 import DashboardLeft2 from "./DashboardLeft2";
 import StaffArt from "./StaffArt";
@@ -18,11 +13,7 @@ const StaffOverview = () => {
   var today = new Date();
   var month = today.getMonth() + 1;
   var dateToday = month + "-" + today.getDate() + "-" + today.getFullYear();
-
   var dateToday1 = today.getDate() + "-" + month + "-" + today.getFullYear();
-
-  const label = "Completion Rate";
-
   return (
     <div className="form-container-home">
       <span className="staff--heading1">Edition for the: {dateToday1}</span>
@@ -62,5 +53,4 @@ const StaffOverview = () => {
     </div>
   );
 };
-
 export default StaffOverview;

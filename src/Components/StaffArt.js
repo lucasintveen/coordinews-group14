@@ -1,15 +1,13 @@
-import { getArticle, getArticles } from "../DatabaseInteraction/db";
+import { getArticles } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import "../App.css";
-import Parse from "parse";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "../CSS/Form.css";
 
 export default function StaffArt(props) {
   const [Articles, setArticles] = useState();
-  const pagesNeeded = 6;
   useEffect(() => {
     getArticles().then((Articles) => {
       const articlesMapped = Articles.map((wrapper) => {
@@ -36,7 +34,7 @@ export default function StaffArt(props) {
     );
   }
   const filteredArticles = Object.values(Articles).filter((article) => {
-    if (article.Finished == true) {
+    if (article.Finished === true) {
       console.log("The article finisher");
       console.log(
         "Return Statement Test: ",
@@ -45,8 +43,6 @@ export default function StaffArt(props) {
       return article.Deadline.includes(props.Today);
     }
   });
-
-  const rowLength = filteredArticles.length;
   return (
     <table class="table-staff table-hover">
       <tbody>

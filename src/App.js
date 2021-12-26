@@ -6,14 +6,12 @@ import Login from "./Components/Login";
 import SignUp from "./Components/Signup";
 import Ideas from "./Components/Ideas";
 import Articles from "./Components/Articles";
-import Staff from "./Components/Staff";
 import LandingPage from "./Components/LandingPage";
-import ArticleId from "./Components/ArticleId";
 import Form from "./Components/Form";
 import IdeaConverter from "./Components/IdeaConverter";
 import Home from "./Components/Home";
 import StaffOverview from "./Components/StaffOverview";
-import AddIdea from "./Components/AddIdea";
+import InitalIdeaAddition from "./Components/InitialIdeaAddition";
 
 function App() {
   return (
@@ -27,7 +25,7 @@ function App() {
           <Route path="ideas" element={<Ideas />} />
           <Route path="articles" element={<Articles />} />
           <Route path="staff" element={<StaffOverview />} />
-          <Route path="addIdea" element={<AddIdea />} />
+          <Route path="addIdea" element={<InitalIdeaAddition />} />
           <Route
             path="/articles/articleDetails/:articleId"
             element={<Form />}

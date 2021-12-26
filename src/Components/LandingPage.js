@@ -1,16 +1,8 @@
-import Parse from "parse";
-// import { getUsers } from "../DatabaseInteraction/db";
 import { useNavigate } from "react-router-dom";
 import LandingPageLogo from "../Images/Coordinews.png";
 import "../App.css";
 
 export default function LandingPage() {
-  const navigate = useNavigate();
-
-  // if (Parse.User.current()) {
-  //   navigate("/");
-  // }
-
   return (
     <div className="background--box">
       <div className="splitScreenLanding">

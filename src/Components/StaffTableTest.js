@@ -1,4 +1,3 @@
-import Table from "react-bootstrap/Table";
 import { getArticles } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
@@ -21,9 +20,7 @@ export default function Stafftable() {
           Photographer: wrapper.attributes.Photographer,
           Busy_Photographer: wrapper.attributes.Busy_Photographer,
           DatePhotographer: wrapper.attributes.DatePhotographer,
-          
         };
-       
 
         console.log(mappedArticle);
 
@@ -51,43 +48,27 @@ export default function Stafftable() {
     <table class="table table-hover">
       <thead>
         <br></br>
-       
+
         <tr>
-          
           {Array.from({ length: columnLength }).map((_, index) => (
             <th key={index}>{columnTitles[index]}</th>
           ))}
         </tr>
-        
       </thead>
       <tbody>
         {Array.from({ length: rowLength }).map((_, index) => (
           <tr>
-            {/* TODO: Ask for help on this one with TA's - My attempts with nested for loops and map functions broke */}
             <td as={Link} to="/Staff">
-              {/* TODO: Link Reference */}
-              {/* <Button variant="light" as={Link} to="/Add_Article">Add Article</Button> */}
               <Button variant="light" as={Link} to="/StaffId">
                 {Articles[index].StaffId}
               </Button>
             </td>
-            
-           
             <td>{Articles[index].Journalist}</td>
             <td>{Articles[index].Busy}</td>
             <td>{Articles[index].Date}</td>
-        
-     
-            <td></td>
             <td>{Articles[index].Photographer}</td>
             <td>{Articles[index].Busy_Photographer}</td>
             <td>{Articles[index].DatePhotographer}</td>
-           
-           
-   
-        
-        
-            
           </tr>
         ))}
       </tbody>
