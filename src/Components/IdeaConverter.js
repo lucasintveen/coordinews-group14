@@ -23,7 +23,7 @@ const IdeaConverter = () => {
     <>
       <div className="form-container">
         <span className="Id--expiration">
-          <span> (expires: {childData[1]})</span> Idea ID: {childData[0]}
+          Idea ID: {childData[0]} <br /> Expires: {childData[1]}
         </span>
         <div className="form-content-left">
           <img className="form-img" src={News} alt="news icon" />
