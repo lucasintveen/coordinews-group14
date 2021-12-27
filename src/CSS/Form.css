@@ -306,7 +306,7 @@
 
 .form-table {
   position: absolute;
-  top: 45.3%;
+  top: 18%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -320,7 +320,7 @@
 
 .form-table2 {
   position: absolute;
-  top: 66%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -347,7 +347,7 @@
 
 .form-split {
   position: absolute;
-  top: 91%;
+  top: 64%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
@@ -385,7 +385,7 @@
 }
 .form-mes {
   position: absolute;
-  top: 73%;
+  top: 66%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;

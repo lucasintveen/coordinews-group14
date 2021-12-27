@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../CSS/Form.css";
-import "../CSS/Form.css";
 import Parse from "parse";
 import HomeArt from "./HomeArt";
 import HomeMes from "./HomeMes";

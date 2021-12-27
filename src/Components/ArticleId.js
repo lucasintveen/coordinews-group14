@@ -4,6 +4,11 @@ import Spinner from "react-bootstrap/Spinner";
 import { useParams } from "react-router-dom";
 import "../App.css";
 import Parse from "parse";
+import JournalistSelection from "./JournalistSelection";
+import StateSelection from "./StateSelection";
+import SectionSelection from "./SectionSelection";
+import SizeSelection from "./SizeSelection";
+import PhotographerSelection from "./PhotographerSelection";
 
 export default function ArticleId(props) {
   const [article, setArticle] = useState();
@@ -12,6 +17,8 @@ export default function ArticleId(props) {
   console.log("Check Params: ", articleId);
 
   async function getArticleFromDb() {
+    console.log("Function Check:", props.isSubmitter);
+
     const article = await getArticle(articleId);
     setArticle(article);
     props.passChildData([articleId, article.Deadline]);
@@ -41,6 +48,10 @@ export default function ArticleId(props) {
       [event.target.name]: event.target.value,
     });
     console.log("Change ID: ", event.target.value);
+  }
+
+  function handleDelete() {
+    props.isDeleter(true);
   }
 
   return (
@@ -84,18 +95,7 @@ export default function ArticleId(props) {
                 value={newArticle.journalist}
                 onChange={handleChange}
               >
-                {/* TODO: Exchange with database values from journalist class */}
-                <option value="" selected disabled hidden>
-                  Please Select
-                </option>
-                <option>LA</option>
-                <option>LK</option>
-                <option>KA</option>
-                <option>LA</option>
-                <option>JN</option>
-                <option>LP</option>
-                <option>CJ</option>
-                <option>other</option>
+                <JournalistSelection />
               </select>
             </div>
 
@@ -109,16 +109,7 @@ export default function ArticleId(props) {
                 defaultValue={article.Photographer}
                 onChange={handleChange}
               >
-                <option value="" selected disabled hidden>
-                  Please Select
-                </option>
-                <option>LI</option>
-                <option>PL</option>
-                <option>AJ</option>
-                <option>MA</option>
-                <option>JH</option>
-                <option>JN</option>
-                <option>other</option>
+                <PhotographerSelection />
               </select>
             </div>
           </div>
@@ -135,16 +126,7 @@ export default function ArticleId(props) {
                 defaultValue={article.section}
                 onChange={handleChange}
               >
-                <option value="" selected disabled hidden>
-                  Section:
-                </option>
-                <option>News</option>
-                <option>Sport</option>
-                <option>Politics</option>
-                <option>Local</option>
-                <option>World</option>
-                <option>Business</option>
-                <option>other</option>
+                <SectionSelection />
               </select>
             </div>
 
@@ -158,12 +140,7 @@ export default function ArticleId(props) {
                 defaultValue={article.Size}
                 onChange={handleChange}
               >
-                <option value="" selected disabled hidden>
-                  Please select the work amount:
-                </option>
-                <option>Small</option>
-                <option>Medium</option>
-                <option>Large</option>
+                <SizeSelection />
               </select>
             </div>
           </div>
@@ -179,13 +156,7 @@ export default function ArticleId(props) {
             defaultValue={article.State}
             onChange={handleChange}
           >
-            <option value="" selected disabled hidden>
-              Please select the current state of work:
-            </option>
-            <option>0.25</option>
-            <option>0.5</option>
-            <option>0.75</option>
-            <option>1</option>
+            <StateSelection />
           </select>
         </div>
 
@@ -210,7 +181,7 @@ export default function ArticleId(props) {
           <button
             className="form-input-btn"
             type="submit"
-            onClick={props.deleteArticle()}
+            onClick={handleDelete}
           >
             Delete Article<span style={{ color: "#D7BADD" }}>(Dummy)</span>
           </button>

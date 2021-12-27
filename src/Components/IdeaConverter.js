@@ -19,6 +19,8 @@ const IdeaConverter = () => {
   const [submitter, setSubmitter] = useState(submit);
   const idea = "idea";
 
+  console.log("Submitter: ", submitter);
+
   return (
     <>
       <div className="form-container">
@@ -29,7 +31,7 @@ const IdeaConverter = () => {
           <img className="form-img" src={News} alt="news icon" />
         </div>
         {!submitter ? (
-          <IdeaId passChildData={setChildData} submit={setSubmit} />
+          <IdeaId passChildData={setChildData} submit={setSubmitter} />
         ) : (
           <FormSuccess state={idea} submit={setSubmitter} />
         )}

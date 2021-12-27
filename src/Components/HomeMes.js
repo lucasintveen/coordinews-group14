@@ -130,7 +130,9 @@ export default function HomeMes(props) {
           className="form-delete-btn-mes"
           type="submit"
           onClick={artAccept(2)}
-        ></button>
+        >
+          Accept the task
+        </button>
       </div>
 
       {filteredArticles.slice(1).map((article) => (

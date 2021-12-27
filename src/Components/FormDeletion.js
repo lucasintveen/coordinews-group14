@@ -5,6 +5,7 @@ import { uploadDeletion } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Parse from "parse";
 import { useNavigate } from "react-router-dom";
+import { FaLongArrowAltLeft } from "react-icons/fa";
 
 const FormDeletion = (props) => {
   const navigate = useNavigate();
@@ -13,16 +14,11 @@ const FormDeletion = (props) => {
   const [newCommunication, setNewCommunication] = useState({});
 
   async function handleUpload(e) {
+    props.isDeleter(false);
+    props.isSubmitter(true);
     e.preventDefault();
     setNewDeletion((newDeletion) => [...newDeletion, newCommunication]);
-    props.submitForm();
     deleteArticle();
-    props.deleteArticle();
-  }
-
-  function backHandle() {
-    navigate("/articles");
-    console.log("Triggered");
   }
 
   useEffect(() => {
@@ -52,6 +48,14 @@ const FormDeletion = (props) => {
       // Error can be caused by lack of Internet connection
     }
   }
+  function handleDelete() {
+    props.isDeleter(false);
+  }
+
+  function handleSubmission() {
+    props.isDeleter(false);
+    props.isSubmitter(true);
+  }
 
   return (
     <div className="form-content-right">
@@ -75,18 +79,18 @@ const FormDeletion = (props) => {
           <button
             className="form-decline-btn"
             type="submit"
-            onClick={backHandle}
+            onClick={handleDelete}
           >
             No, please take me back!
             <span style={{ color: "#D7BADD" }}>(Dummy)</span>
           </button>
+
           <button
-            className="form-delete-btn"
             type="submit"
             onClick={handleUpload}
+            className="form-delete-btn"
           >
-            Yes, delete the article
-            <span style={{ color: "#D7BADD" }}>(Dummy)</span>
+            Yes, delete the Article
           </button>
         </div>
       </form>

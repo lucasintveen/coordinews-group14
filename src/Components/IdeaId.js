@@ -5,13 +5,18 @@ import Spinner from "react-bootstrap/Spinner";
 import { useParams } from "react-router-dom";
 import "../App.css";
 import { uploadArticle } from "../DatabaseInteraction/db";
-
+import JournalistSelection from "./JournalistSelection";
 import emailjs from "emailjs-com";
+import StateSelection from "./StateSelection";
+import PhotographerSelection from "./PhotographerSelection";
+import SectionSelection from "./SectionSelection";
+import SizeSelection from "./SizeSelection";
 
 export default function IdeaId(props) {
   const [idea, setIdea] = useState();
-  const [articles, setArticles] = useState([]);
   const [newArticle, setNewArticle] = useState({});
+  const [emailData, setEmailData] = useState();
+  const [articles, setArticles] = useState([]);
   const { ideaId } = useParams();
   var submitter = true;
 
@@ -19,37 +24,42 @@ export default function IdeaId(props) {
     const idea = await getIdea(ideaId);
     setIdea(idea);
     props.passChildData([ideaId, idea.Expiration]);
+    setNewArticle({
+      title: idea.Title,
+      comment: idea.Comment,
+    });
   }
 
   useEffect(getIdeaFromDb, []);
+  console.log("Idea: ", idea, "Article: ", newArticle);
 
   async function handleUpload(e) {
     e.preventDefault();
+    console.log("Check Article Setting: ", newArticle);
     setArticles((articles) => [...articles, newArticle]);
-    submitter = true;
-    if (newArticle.Journalist != "") {
-      emailjs.send(
-        "service_5flydld",
-        "template_1fkl0ur",
-        {
-          to_name: articles.Journalist,
-          Title: articles.Title,
-          Section: articles.Section,
-          Deadline: articles.Deadline,
-          email: "neumann.lucas8@gmail.com",
-        },
-        "user_0gUfh2qxMOwB9lgArUZI6"
-      );
-    }
   }
-  console.log("Tester of Article: ", newArticle.Journalist != "");
-  console.log("Missing Check:", articles);
 
   useEffect(() => {
     if (articles.length > 0) {
       uploadArticle(articles);
+      console.log("Upload Check");
+      props.submit(submitter);
+
+      var emailData = {
+        service_id: "service_5flydld",
+        template_id: "template_1fkl0ur",
+        user_id: "user_0gUfh2qxMOwB9lgArUZI6",
+        template_params: {
+          to_name: articles.journalist,
+          Title: articles.title,
+          Section: articles.section,
+          Deadline: articles.deadline,
+          email: "neumann.lucas8@gmail.com",
+        },
+      };
+      // console.log(emailData);
+      emailjs.send(emailData);
     }
-    props.submit(submitter);
   }, [articles]);
 
   if (!idea) {
@@ -125,18 +135,7 @@ export default function IdeaId(props) {
                 value={newArticle.journalist}
                 onChange={handleChange}
               >
-                {/* TODO: Exchange with database values from journalist class */}
-                <option value="" selected disabled hidden>
-                  Please Select
-                </option>
-                <option>LA</option>
-                <option>LK</option>
-                <option>KA</option>
-                <option>LA</option>
-                <option>JN</option>
-                <option>LP</option>
-                <option>CJ</option>
-                <option>other</option>
+                <JournalistSelection />
               </select>
             </div>
 
@@ -149,16 +148,7 @@ export default function IdeaId(props) {
                 value={newArticle.photographer}
                 onChange={handleChange}
               >
-                <option value="" selected disabled hidden>
-                  Please Select
-                </option>
-                <option>LI</option>
-                <option>PL</option>
-                <option>AJ</option>
-                <option>MA</option>
-                <option>JH</option>
-                <option>JN</option>
-                <option>other</option>
+                <PhotographerSelection />
               </select>
             </div>
           </div>
@@ -174,16 +164,7 @@ export default function IdeaId(props) {
                 value={newArticle.section}
                 onChange={handleChange}
               >
-                <option value="" selected disabled hidden>
-                  Confirm the section: {idea.Section}
-                </option>
-                <option>News</option>
-                <option>Sport</option>
-                <option>Politics</option>
-                <option>Local</option>
-                <option>World</option>
-                <option>Business</option>
-                <option>other</option>
+                <SectionSelection />
               </select>
             </div>
 
@@ -196,12 +177,7 @@ export default function IdeaId(props) {
                 value={newArticle.size}
                 onChange={handleChange}
               >
-                <option value="" selected disabled hidden>
-                  Please select the work amount:
-                </option>
-                <option>Small</option>
-                <option>Medium</option>
-                <option>Large</option>
+                <SizeSelection />
               </select>
             </div>
           </div>
@@ -216,13 +192,7 @@ export default function IdeaId(props) {
             value={newArticle.state}
             onChange={handleChange}
           >
-            <option value="" selected disabled hidden>
-              Please select the current state of work:
-            </option>
-            <option>0.25</option>
-            <option>0.5</option>
-            <option>0.75</option>
-            <option>1</option>
+            <StateSelection />
           </select>
         </div>
 

@@ -12,7 +12,7 @@ import StaffArtMissing from "./StaffArtMissing";
 const StaffOverview = () => {
   var today = new Date();
   var month = today.getMonth() + 1;
-  var dateToday = month + "-" + today.getDate() + "-" + today.getFullYear();
+  var dateToday = today.getFullYear() + "-" + month + "-" + today.getDate();
   var dateToday1 = today.getDate() + "-" + month + "-" + today.getFullYear();
   return (
     <div className="form-container-home">

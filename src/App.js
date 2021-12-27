@@ -12,6 +12,7 @@ import IdeaConverter from "./Components/IdeaConverter";
 import Home from "./Components/Home";
 import StaffOverview from "./Components/StaffOverview";
 import InitalIdeaAddition from "./Components/InitialIdeaAddition";
+import FormSuccess from "./Components/FormSuccess";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
 
           <Route path="/" element={<LandingPage />} />
           <Route path="home" element={<Home />} />
+          <Route path="deleted" element={<FormSuccess />} />
         </Routes>
       </HashRouter>
     </div>

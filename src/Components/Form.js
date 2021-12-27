@@ -7,24 +7,18 @@ import News from "../Images/News.png";
 import FormDeletion from "./FormDeletion";
 
 const Form = () => {
-  const [isDeleted, setIsDeleted] = useState(false);
+  const [isDeleter, setIsDeleter] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  function submitForm() {
-    setIsSubmitted(true);
-  }
-
-  function deleteArticle() {
-    setIsDeleted(!isDeleted);
-  }
-
+  const [submit, setSubmit] = useState("");
+  const [submitter, setSubmitter] = useState(false);
   const formTypeArticle = true;
+  const submission = true;
 
   const [childData, setChildData] = useState("");
   const passedArticleId = childData[0];
 
-  console.log("Deletion State:", isDeleted);
-  console.log("Submission State: ", isSubmitted);
+  console.log("Deletion State:", isDeleter);
+  console.log("Submission State: ", submitter);
 
   return (
     <>
@@ -44,20 +38,24 @@ const Form = () => {
         <div className="form-content-left">
           <img className="form-img" src={News} alt="idea icon" />
         </div>
-        {isDeleted ? (
+        {isDeleter ? (
           <FormDeletion
             formType={formTypeArticle}
-            submitForm={submitForm}
+            isSubmitter={setSubmitter}
             articleId={passedArticleId}
-            deleteArticle={deleteArticle}
+            isDeleter={setIsDeleter}
           />
-        ) : !isSubmitted ? (
+        ) : submitter ? (
+          <>
+            <FormSuccess formType={formTypeArticle} isDeleter={setIsDeleter} />
+            <ArticleId isSubmitter={submission} />
+          </>
+        ) : (
           <ArticleId
             passChildData={setChildData}
-            deleteArticle={deleteArticle}
+            isDeleter={setIsDeleter}
+            isSubmitter={submitter}
           />
-        ) : (
-          <FormSuccess formType={formTypeArticle} />
         )}
       </div>
     </>
