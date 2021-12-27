@@ -36,8 +36,8 @@ function App() {
             element={<IdeaConverter />}
           />
 
-          <Route path="/Landing" element={<LandingPage />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="landing" element={<LandingPage />} />
+          <Route path="home" element={<Home />} />
           <Route path="deleted" element={<FormSuccess />} />
         </Routes>
       </HashRouter>

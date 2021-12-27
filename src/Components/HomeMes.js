@@ -45,27 +45,31 @@ export default function HomeMes(props) {
 
   const filteredArticles = Object.values(Articles).filter((article) => {
     if (
-      Parse.User.current().attributes.Role === "Journalist" &&
+      Parse.User.current().attributes.role === "Journalist" &&
       article.JournalistAcceptance == false
     ) {
+      console.log(
+        "break1: ",
+        article.Journalist.includes(Parse.User.current().attributes.username)
+      );
       return article.Journalist.includes(
         Parse.User.current().attributes.username
       );
     } else if (
-      Parse.User.current().attributes.Role === "Photographer" &&
+      Parse.User.current().attributes.role === "Photographer" &&
       article.PhotographerAcceptance == false
     ) {
       return article.Photographer.includes(
         Parse.User.current().attributes.username
       );
     } else if (
-      Parse.User.current().attributes.Role === "Assistant" &&
+      Parse.User.current().attributes.role === "Assistant" &&
       article.AssistanceAcceptance == false
     ) {
       return article.Assistant.includes(
         Parse.User.current().attributes.username
       );
-    } else if (Parse.User.current().attributes.Role === "Editor") {
+    } else if (Parse.User.current().attributes.role === "Editor") {
       return article.Assistant.includes(
         Parse.User.current().attributes.username
       );

@@ -1,28 +1,36 @@
 import { useState } from "react";
 import Parse from "parse";
 import { useNavigate } from "react-router-dom";
-
+import { restCreateUser } from "../DatabaseInteraction/RestAPI";
+import { getArticle } from "../DatabaseInteraction/RestAPI";
 export default function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const [email, setEmail] = useState("");
-
   const navigate = useNavigate();
 
   async function createAccount() {
     const user = new Parse.User();
     user.setUsername(username);
     user.setPassword(password);
-    // user.setName(name);
     user.setEmail(email);
     user.set("Role", role);
     try {
       await user.signUp();
-      navigate("/home");
+      navigate("/#/home");
     } catch (error) {
       alert("Error: " + error.message + "Please go back and try again :)");
     }
+  }
+
+  function takeUserData() {
+    const postUserData = {
+      username: username,
+      password: password,
+      email: email,
+    };
+    restCreateUser(postUserData);
   }
 
   function usernameChange(e) {
