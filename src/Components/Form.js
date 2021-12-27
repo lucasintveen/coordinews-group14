@@ -23,12 +23,7 @@ const Form = () => {
   return (
     <>
       <div className="form-container">
-        {!isSubmitted ? (
-          <span className="trash-btn">
-            <FaTrash />
-            <FaShareAlt />
-          </span>
-        ) : (
+        {!isSubmitted ? null : (
           <span className="trash-btn">
             <FaArrowLeft />
           </span>

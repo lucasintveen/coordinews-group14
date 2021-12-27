@@ -49,7 +49,7 @@ export default function StaffArt(props) {
   filteredArticles.map((article) => console.log("mapping: ", article.Title));
   console.log("Filtered Art: ", filteredArticles);
   return (
-    <table class="table-hover">
+    <table class="table-staff table-hover">
       <tbody>
         <tr>
           {Object.keys(Articles[0])

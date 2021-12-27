@@ -45,20 +45,18 @@ export default function IdeaId(props) {
       console.log("Upload Check");
       props.submit(submitter);
 
-      var emailData = {
-        service_id: "service_5flydld",
-        template_id: "template_1fkl0ur",
-        user_id: "user_0gUfh2qxMOwB9lgArUZI6",
-        template_params: {
-          to_name: articles.journalist,
-          Title: articles.title,
-          Section: articles.section,
-          Deadline: articles.deadline,
+      emailjs.send(
+        "service_5flydld",
+        "template_1fkl0ur",
+        {
+          to_name: "LI",
+          Title: "ABCDE",
+          Section: "Sport",
+          Deadline: "27-01-2021",
           email: "neumann.lucas8@gmail.com",
         },
-      };
-      // console.log(emailData);
-      emailjs.send(emailData);
+        "user_0gUfh2qxMOwB9lgArUZI6"
+      );
     }
   }, [articles]);
 

@@ -57,7 +57,7 @@ export default function ArticleId(props) {
   return (
     <div className="form-content-right">
       <form className="form">
-        <h1>Edit or Submit the article!</h1>
+        <h1>Edit, Delete or Submit the Article! </h1>
         <div className="form-inputs">
           <label className="form-label">Title</label>
           <input
@@ -183,10 +183,10 @@ export default function ArticleId(props) {
             type="submit"
             onClick={handleDelete}
           >
-            Delete Article<span style={{ color: "#D7BADD" }}>(Dummy)</span>
+            Delete Article
           </button>
           <button className="form-input-btn" type="submit">
-            Submit Article<span style={{ color: "#D7BADD" }}>(Dummy)</span>
+            Submit Article
           </button>
         </div>
         <span className="form-input-login">
