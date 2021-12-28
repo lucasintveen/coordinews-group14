@@ -1,4 +1,4 @@
-import { getArticles } from "../DatabaseInteraction/db";
+import { getArticles, getArticleExport } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { Link } from "react-router-dom";
@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 
 export default function Articletable() {
   const [Articles, setArticles] = useState();
+  const [ArticlesTest, setArticlesTest] = useState();
   const [search, setSearch] = useState("");
   const [section, setSection] = useState({});
   const [date, setDate] = useState();
@@ -13,6 +14,10 @@ export default function Articletable() {
   const searchOperator = (event) => {
     setSearch(event.target.value);
   };
+  async function getArticlesFromDb() {
+    const Articles = await getArticleExport();
+    setArticlesTest(Articles);
+  }
 
   useEffect(() => {
     getArticles().then((Articles) => {
@@ -22,21 +27,21 @@ export default function Articletable() {
           Title: wrapper.attributes.Title,
           Section: wrapper.attributes.Section,
           Journalist: wrapper.attributes.Journalist,
-
           State: wrapper.attributes.State,
           Deadline: wrapper.attributes.Deadline,
           Completion: wrapper.attributes.Completion,
           Size: wrapper.attributes.Size,
           Photographer: wrapper.attributes.Photographer,
         };
-        /** Add Article is not connected to database anymore .toString().slice(4, 15) */
-
         return mappedArticle;
       });
-
       setArticles(articlesMapped);
     });
+    getArticlesFromDb;
   }, []);
+
+  console.log("Articles New Function:", ArticlesTest);
+  console.log("Articles Old Function:", Articles);
 
   if (!Articles) {
     return (
@@ -57,10 +62,6 @@ export default function Articletable() {
       setDate();
     }
   }
-  console.log("Check Type of Date: ", typeof date);
-  console.log("Check Adjusted of Date: ", date);
-
-  console.log("Set Date : ", date);
 
   const filteredArticles = Object.values(Articles).filter((article) => {
     if (
@@ -108,9 +109,6 @@ export default function Articletable() {
     }
   });
 
-  console.log("Article Check: ", Articles);
-  console.log("Completion Check: ", Articles[0].Completion);
-
   const rowLength = filteredArticles.length;
   const rowLengthUnfiltered = Articles.length;
 
@@ -138,7 +136,6 @@ export default function Articletable() {
     });
   }
 
-  // TODO: Adjust Dropdown for empty
   return (
     <>
       <ul className="form--list">
@@ -201,10 +198,7 @@ export default function Articletable() {
           </tr>
           {filteredArticles.map((article) => (
             <tr>
-              {/* TODO: Ask for help on this one with TA's - My attempts with nested for loops and map functions broke */}
               <td>
-                {/* TODO: Link Reference */}
-                {/* <Button variant="light" as={Link} to="/Add_Article">Add Article</Button> */}
                 <Button
                   variant="light"
                   as={Link}

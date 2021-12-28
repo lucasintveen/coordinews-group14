@@ -1,18 +1,15 @@
-import { getArticle, getArticles } from "../DatabaseInteraction/db";
+import { getArticles } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
-
 import Spinner from "react-bootstrap/Spinner";
-
 import "../App.css";
-import Parse from "parse";
-import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import "../CSS/Form.css";
-import Gauge from "./DashboardTest";
+import StaffDashboardGauge from "./StaffDashboardGauge";
 
-export default function DashboardLeft2(props) {
+/*Chose to use a seperate component for the second dashboard, as the calculations differ significantly. 
+Hence using one dashboard component wouldn't have simplified the implementation necessarily. 
+Further simplification might be possible through factoring the calculations out*/
+export default function StaffDashboardBottom(props) {
   const [Articles, setArticles] = useState();
-  const pagesNeeded = 6;
   useEffect(() => {
     getArticles().then((Articles) => {
       const articlesMapped = Articles.map((wrapper) => {
@@ -91,7 +88,9 @@ export default function DashboardLeft2(props) {
   console.log("Employee Time: ", employeeTime);
 
   const occupationRate = (workSize / employeeTime) * 100;
-  const occupationRateRounded = Math.round(occupationRate * 10) / 10;
+  const occupationRateRounded = Math.round(occupationRate * 10) / 10; // Rounding to one decimal
+
+  //Information for Gauge
   const label = "Occupation Rate";
   const Min = 100;
   const Max = 0;
@@ -110,7 +109,7 @@ export default function DashboardLeft2(props) {
           </div>
         </div>
       </form>
-      <Gauge
+      <StaffDashboardGauge
         Label={label}
         Value={occupationRateRounded}
         Min={Min}

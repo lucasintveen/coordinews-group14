@@ -3,9 +3,9 @@ import "../CSS/Form.css";
 import FormSuccess from "./FormSuccess";
 import News from "../Images/News.png";
 import "../CSS/Form.css";
-import AddIdea from "./AddIdea";
+import IdeaAddition from "./IdeaAddition";
 
-const InitalIdeaAddition = () => {
+export default function IdeaAdditionForm() {
   const [childData, setChildData] = useState("");
   const submitter = childData;
 
@@ -16,13 +16,11 @@ const InitalIdeaAddition = () => {
           <img className="form-img" src={News} alt="news icon" />
         </div>
         {!submitter ? (
-          <AddIdea passChildData={setChildData} />
+          <IdeaAddition passChildData={setChildData} />
         ) : (
           <FormSuccess />
         )}
       </div>
     </>
   );
-};
-
-export default InitalIdeaAddition;
+}

@@ -1,13 +1,11 @@
 import React from "react";
-import Start from "../Images/Start.png";
 import "../CSS/Form.css";
 import { uploadDeletion } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Parse from "parse";
 import { useNavigate } from "react-router-dom";
-import { FaLongArrowAltLeft } from "react-icons/fa";
 
-const FormDeletion = (props) => {
+export default function FormDeletion(props) {
   const navigate = useNavigate();
   const [newDeletion, setNewDeletion] = useState([]);
 
@@ -15,7 +13,7 @@ const FormDeletion = (props) => {
 
   async function handleUpload(e) {
     props.isDeleter(false);
-    props.isSubmitter(true);
+    props.submitter(true);
     e.preventDefault();
     setNewDeletion((newDeletion) => [...newDeletion, newCommunication]);
     deleteArticle();
@@ -54,7 +52,7 @@ const FormDeletion = (props) => {
 
   function handleSubmission() {
     props.isDeleter(false);
-    props.isSubmitter(true);
+    props.submitter(true);
   }
 
   return (
@@ -96,6 +94,4 @@ const FormDeletion = (props) => {
       </form>
     </div>
   );
-};
-
-export default FormDeletion;
+}

@@ -3,7 +3,7 @@ import { arc } from "d3-shape";
 import { scaleLinear } from "d3-scale";
 import { format } from "d3-format";
 
-export default function Gauge(props) {
+export default function StaffDashboardGauge(props) {
   const label = props.Label;
   const value = props.Value;
   const pointerColor = props.PointerColor;

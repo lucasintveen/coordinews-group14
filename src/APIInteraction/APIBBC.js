@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 
 class News extends Component {
   constructor(props) {
@@ -24,6 +24,7 @@ class News extends Component {
   }
 
   renderItem() {
+    // Top 5 Articles are rendered only, as the objective is to provide only a short overview
     return this.state.news.slice(0, 5).map((item) => (
       <div className="form-inputs">
         <a href={item.url}>

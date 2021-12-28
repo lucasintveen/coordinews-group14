@@ -14,6 +14,24 @@ async function getArticles() {
   return await queryArticle.findAll();
 }
 
+async function getArticleExport() {
+  const Article = Parse.Object.extend("Article");
+  const queryArticle = new Parse.Query(Article);
+  const allArticles = await queryArticle.findAll();
+
+  return {
+    ArticleId: allArticles.get("objectId"),
+    Comment: allArticles.get("Comment"),
+    Title: allArticles.get("Title"),
+    Section: allArticles.get("Section"),
+    Journalist: allArticles.get("Journalist"),
+    Photographer: allArticles.get("Photographer"),
+    State: allArticles.get("State"),
+    Size: allArticles.get("Size"),
+    Deadline: allArticles.get("Deadline"),
+  };
+}
+
 async function getArticle(articleId) {
   const query = new Parse.Query("Article");
   const article = await query.get(articleId);
@@ -102,6 +120,7 @@ async function uploadIdea(ideas) {
         newIdea.set("comment", idea.comment);
         newIdea.set("potential", idea.potential);
         newIdea.set("article", idea.article);
+        newIdea.set("visible", idea.visible);
 
         return newIdea.save();
       } catch (error) {
@@ -143,4 +162,5 @@ export {
   uploadArticle,
   uploadDeletion,
   uploadIdea,
+  getArticleExport,
 };

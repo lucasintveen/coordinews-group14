@@ -2,8 +2,7 @@ import React from "react";
 import "../CSS/Form.css";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 
-const FormSuccess = (props) => {
-  const locator = props.state;
+export default FormSuccess(props) {
   function submit() {
     props.submit(false);
   }
@@ -27,5 +26,3 @@ const FormSuccess = (props) => {
     </>
   );
 };
-
-export default FormSuccess;

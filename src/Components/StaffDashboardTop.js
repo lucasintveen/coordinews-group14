@@ -1,18 +1,13 @@
-import { getArticle, getArticles } from "../DatabaseInteraction/db";
+import { getArticles } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
-
 import Spinner from "react-bootstrap/Spinner";
-
 import "../App.css";
-import Parse from "parse";
-import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import "../CSS/Form.css";
-import Gauge from "./DashboardTest";
+import StaffDashboardGauge from "./StaffDashboardGauge";
 
-export default function DashboardLeft1(props) {
+export default function StaffDashboardTop(props) {
   const [Articles, setArticles] = useState();
-  const pagesNeeded = 6;
+  const pagesToFillNeeded = 6; //Self-determinated as no further information was given
   useEffect(() => {
     getArticles().then((Articles) => {
       const articlesMapped = Articles.map((wrapper) => {
@@ -60,9 +55,10 @@ export default function DashboardLeft1(props) {
     return articleSize;
   }
   const size = sizeCalculation();
-  const completionRate = (size / pagesNeeded) * 100;
-  const completionRateRounded = Math.round(completionRate * 10) / 10;
+  const completionRate = (size / pagesToFillNeeded) * 100;
+  const completionRateRounded = Math.round(completionRate * 10) / 10; //Rounding to once decimal
 
+  // Information for Gauge
   const label = "Completion Rate";
   const Min = 0;
   const Max = 100;
@@ -74,13 +70,11 @@ export default function DashboardLeft1(props) {
         <div className="form-inputs">
           <div className="form-inputs1">
             <p style={{ fontSize: "20px", color: "#5a535c" }}>Pages Needed:</p>
-            <button variant="light" className="staff--btn1">
-              {pagesNeeded}
-            </button>
+            <button className="staff--btn1">{pagesToFillNeeded}</button>
           </div>
         </div>
       </form>
-      <Gauge
+      <StaffDashboardGauge
         Label={label}
         Value={completionRateRounded}
         Min={Min}

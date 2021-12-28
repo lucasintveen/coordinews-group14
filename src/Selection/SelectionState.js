@@ -1,4 +1,4 @@
-export default function StateSelection() {
+export default function SelectionState() {
   return (
     <>
       <option value="" selected disabled hidden>

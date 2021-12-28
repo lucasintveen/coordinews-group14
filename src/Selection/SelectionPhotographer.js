@@ -1,4 +1,4 @@
-export default function PhotographerSelection() {
+export default function SelectionPhotographer() {
   return (
     <>
       <option value="" selected disabled hidden>
@@ -6,6 +6,7 @@ export default function PhotographerSelection() {
       </option>
       <option>LS</option>
       <option>VZ</option>
+      <option>PW</option>
     </>
   );
 }

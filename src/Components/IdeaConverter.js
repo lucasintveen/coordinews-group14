@@ -1,25 +1,15 @@
 import React, { useState } from "react";
-import "../CSS/Form.css";
-import { getArticles } from "../DatabaseInteraction/db";
-import AddIdea from "./AddIdea";
-import ArticleId from "./ArticleId";
 import IdeaId from "./IdeaId";
 import FormSuccess from "./FormSuccess";
 import News from "../Images/News.png";
 import "../CSS/Form.css";
-import { FaTrash, FaShareAlt } from "react-icons/fa";
 
-import { FaLongArrowAltLeft } from "react-icons/fa";
-
-const IdeaConverter = () => {
+export default function IdeaConverter() {
   const [childData, setChildData] = useState("");
-  const [submit, setSubmit] = useState("");
   console.log("Child Data: ", childData);
   console.log("Id: ", childData[0]);
-  const [submitter, setSubmitter] = useState(submit);
+  const [submitter, setSubmitter] = useState();
   const idea = "idea";
-
-  console.log("Submitter: ", submitter);
 
   return (
     <>
@@ -38,6 +28,4 @@ const IdeaConverter = () => {
       </div>
     </>
   );
-};
-
-export default IdeaConverter;
+}

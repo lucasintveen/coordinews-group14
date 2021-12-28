@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import "../CSS/Form.css";
 import Parse from "parse";
-import HomeArt from "./HomeArt";
-import HomeMes from "./HomeMes";
-import BBCAPI from "./BBCAPI";
+import HomeArt from "../Components/HomeTodaysArticles";
+import HomeMes from "../Components/HomeMes";
+import NewsBBC from "../APIInteraction/APIBBC";
+import NewsNYT from "../APIInteraction/APINewYorkTimes";
 import BBCLogo from "../Images/BBC_News.svg.png";
 import NYTLogo from "../Images/New York Times.png";
-import SecondAPI from "./SecondAPI";
 
-const Home = () => {
+export default function Home() {
   var today = new Date();
   var month = today.getMonth() + 1;
   var dateToday1 = today.getDate() + "-" + month + "-" + today.getFullYear();
@@ -40,12 +40,10 @@ const Home = () => {
           }
         </div>
         <div className="form-content-right-home">
-          <BBCAPI />
-          <SecondAPI />
+          <NewsBBC />
+          <NewsNYT />
         </div>
       </div>
     </>
   );
-};
-
-export default Home;
+}

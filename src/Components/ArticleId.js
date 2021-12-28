@@ -4,36 +4,30 @@ import Spinner from "react-bootstrap/Spinner";
 import { useParams } from "react-router-dom";
 import "../App.css";
 import Parse from "parse";
-import JournalistSelection from "./JournalistSelection";
-import StateSelection from "./StateSelection";
-import SectionSelection from "./SectionSelection";
-import SizeSelection from "./SizeSelection";
-import PhotographerSelection from "./PhotographerSelection";
+import SelectionPhotographer from "../Selection/SelectionPhotographer";
+import SelectionState from "../Selection/SelectionState";
+import SelectionSize from "../Selection/SelectionSize";
 
-export default function ArticleId(props) {
+export default function ArticleID(props) {
   const [article, setArticle] = useState();
   const [newArticle, setNewArticle] = useState({});
   const { articleId } = useParams();
-  console.log("Check Params: ", articleId);
-
   async function getArticleFromDb() {
-    console.log("Function Check:", props.isSubmitter);
-
     const article = await getArticle(articleId);
     setArticle(article);
     props.passChildData([articleId, article.Deadline]);
-    console.log(await getArticle(articleId));
     const Article = new Parse.Object("Article");
     Article.set("objectId", articleId);
-    console.log("objectID: ", Article);
   }
-
-  useEffect(getArticleFromDb, []);
-
-  useEffect(() => {
-    console.log("Use Effect Article:", article);
-  }, [article]);
-
+  function handleChange(event) {
+    setNewArticle({
+      ...newArticle,
+      [event.target.name]: event.target.value,
+    });
+  }
+  function handleDelete() {
+    props.isDeleter(true);
+  }
   if (!article) {
     return (
       <Spinner animation="border" role="status">
@@ -41,18 +35,7 @@ export default function ArticleId(props) {
       </Spinner>
     );
   }
-
-  function handleChange(event) {
-    setNewArticle({
-      ...newArticle,
-      [event.target.name]: event.target.value,
-    });
-    console.log("Change ID: ", event.target.value);
-  }
-
-  function handleDelete() {
-    props.isDeleter(true);
-  }
+  useEffect(getArticleFromDb, []);
 
   return (
     <div className="form-content-right">
@@ -67,7 +50,7 @@ export default function ArticleId(props) {
             defaultValue={article.Title}
             value={newArticle.title}
             onChange={handleChange}
-            style={{ fontSize: "22px", fontWeight: "bold" }}
+            style={{ fontSize: "22px", fontWeight: "bold" }} //Let input appear as a h1
           />
         </div>
 
@@ -87,18 +70,13 @@ export default function ArticleId(props) {
           <div className="form-inputs1">
             <div className="form-inputs">
               <label className="form-label">Journalist</label>
-              <select
+              <input
                 className="form-input1"
                 type="text"
                 name="journalist"
-                defaultValue={article.Journalist}
-                value={newArticle.journalist}
-                onChange={handleChange}
-              >
-                <JournalistSelection />
-              </select>
+                defaultValue={article.Journalist} // Cannot be changed as assigned by Editor in Chief
+              ></input>
             </div>
-
             <div className="form-inputs">
               <label className="form-label">Photographer</label>
               <select
@@ -109,7 +87,7 @@ export default function ArticleId(props) {
                 defaultValue={article.Photographer}
                 onChange={handleChange}
               >
-                <PhotographerSelection />
+                <SelectionPhotographer />
               </select>
             </div>
           </div>
@@ -118,16 +96,12 @@ export default function ArticleId(props) {
           <div className="form-inputs1">
             <div className="form-inputs">
               <label className="form-label">Section</label>
-              <select
+              <input
                 className="form-input"
                 type="text"
                 name="section"
-                value={newArticle.section}
                 defaultValue={article.section}
-                onChange={handleChange}
-              >
-                <SectionSelection />
-              </select>
+              ></input>
             </div>
 
             <div className="form-inputs">
@@ -140,7 +114,7 @@ export default function ArticleId(props) {
                 defaultValue={article.Size}
                 onChange={handleChange}
               >
-                <SizeSelection />
+                <SelectionSize />
               </select>
             </div>
           </div>
@@ -156,25 +130,8 @@ export default function ArticleId(props) {
             defaultValue={article.State}
             onChange={handleChange}
           >
-            <StateSelection />
+            <SelectionState />
           </select>
-        </div>
-
-        <div className="form-inputs">
-          <label className="form-label">
-            New Deadline Date
-            <span style={{ color: "#D7BADD" }}>
-              {" "}
-              (Previously {article.Deadline}){" "}
-            </span>
-          </label>
-          <input
-            className="form-input"
-            type="date"
-            name="deadline"
-            value={newArticle.deadline}
-            onChange={handleChange}
-          />
         </div>
 
         <div className="form-inputs2">

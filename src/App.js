@@ -4,15 +4,15 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { NavigationBar } from "./Components/Navbar";
 import Login from "./Components/Login";
 import SignUp from "./Components/Signup";
-import Ideas from "./Components/Ideas";
-import Articles from "./Components/Articles";
+import Ideas from "./Components/IdeaOverview";
+import ArticleOverview from "./Pages/ArticleOverview";
 import LandingPage from "./Components/LandingPage";
 import Form from "./Components/Form";
 import IdeaConverter from "./Components/IdeaConverter";
 import Home from "./Components/Home";
 import StaffOverview from "./Components/StaffOverview";
-import InitalIdeaAddition from "./Components/InitialIdeaAddition";
 import FormSuccess from "./Components/FormSuccess";
+import IdeaAdditionForm from "./Components/IdeaAdditionForm";
 
 function App() {
   return (
@@ -24,9 +24,9 @@ function App() {
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login />} />
           <Route path="ideas" element={<Ideas />} />
-          <Route path="articles" element={<Articles />} />
+          <Route path="articles" element={<ArticleOverview />} />
           <Route path="staff" element={<StaffOverview />} />
-          <Route path="addIdea" element={<InitalIdeaAddition />} />
+          <Route path="addIdea" element={<IdeaAdditionForm />} />
           <Route
             path="/articles/articleDetails/:articleId"
             element={<Form />}

@@ -1,4 +1,4 @@
-export default function SizeSelection() {
+export default function SelectionSize() {
   return (
     <>
       <option value="" selected disabled hidden>

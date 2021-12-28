@@ -1,15 +1,13 @@
-import { getArticle, getArticles } from "../DatabaseInteraction/db";
+import { getArticles } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
-
 import Spinner from "react-bootstrap/Spinner";
-
 import "../App.css";
 import Parse from "parse";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "../CSS/Form.css";
 
-export default function HomeArt(props) {
+export default function HomeTodaysArticles(props) {
   const [Articles, setArticles] = useState();
 
   useEffect(() => {
@@ -44,6 +42,7 @@ export default function HomeArt(props) {
     );
   }
 
+  //filtering relevant articles for the specific user logged in
   const filteredArticles = Object.values(Articles).filter((article) => {
     if (
       Parse.User.current().attributes.Role === "Journalist" &&
@@ -72,8 +71,6 @@ export default function HomeArt(props) {
       );
     }
   });
-  const rowLength = filteredArticles.length;
-  console.log("Landing Page: ", filteredArticles);
 
   return (
     <table class="table-messages table-hover">

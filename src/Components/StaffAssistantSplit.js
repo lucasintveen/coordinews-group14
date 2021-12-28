@@ -1,10 +1,10 @@
-import { getArticle, getArticles } from "../DatabaseInteraction/db";
+import { getArticles } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import "../App.css";
 import "../CSS/Form.css";
 
-export default function AssistantSplit(props) {
+export default function StaffAssistantSplit(props) {
   const [Articles, setArticles] = useState();
   const workTimeDay = 7.5;
   useEffect(() => {
@@ -73,7 +73,6 @@ export default function AssistantSplit(props) {
           }
         }
       }
-
       Counter.push(articleWork);
       articleWork = 0;
     }

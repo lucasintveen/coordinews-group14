@@ -2,34 +2,35 @@ import { useEffect, useState } from "react";
 import { uploadIdea } from "../DatabaseInteraction/db";
 import "../App.css";
 import "../CSS/Form.css";
+import SelectionJournalist from "../Selection/SelectionJournalist";
+import SelectionSection from "../Selection/SelectionSection";
+import SelectionArticleConversion from "../Selection/SelectionArticleConversion";
+import SelectionVisibility from "../Selection/SelectionVisibility";
 
-export default function AddIdea(props) {
+export default function IdeaAddition(props) {
   const [idea, setIdea] = useState([]);
-  const [newIdea, setNewIdea] = useState({});
+  const [newIdea, setNewIdea] = useState({}); // Used to handle changes of inputs
   const submitter = true;
-
   async function handleUpload(e) {
     e.preventDefault();
     setIdea((idea) => [...idea, newIdea]);
   }
-
-  useEffect(() => {
-    if (idea.length > 0) {
-      uploadIdea(idea);
-      console.log("Check the Idea Upload: ", idea);
-      props.passChildData(submitter);
-    }
-  }, [idea]);
-
   function handleChange(event) {
     setNewIdea({
       ...newIdea,
       [event.target.name]: event.target.value,
     });
   }
+  useEffect(() => {
+    if (idea.length > 0) {
+      uploadIdea(idea);
+      props.passChildData(submitter);
+    }
+  }, [idea]);
 
   return (
-    //TODO: take component out and add information via prop
+    /* No component used for various forms, as these are too distinct from each other. Moving it out too 
+    components and using props to pass information would not have necessarily simplified implementation*/
     <div className="form-content-right">
       <form className="form">
         <h1>Add a new idea by filling out the information below!</h1>
@@ -42,7 +43,7 @@ export default function AddIdea(props) {
             name="title"
             value={newIdea.title}
             onChange={handleChange}
-            style={{ fontSize: "22px", fontWeight: "bold" }}
+            style={{ fontSize: "22px", fontWeight: "bold" }} //Let input appear as a h1
           />
         </div>
         <div className="form-inputs">
@@ -65,14 +66,7 @@ export default function AddIdea(props) {
             value={newIdea.source}
             onChange={handleChange}
           >
-            <option value="" selected disabled hidden>
-              Please select the journalist's name
-            </option>
-            <option>LI</option>
-            <option>LK</option>
-            <option>KA</option>
-            <option>PW</option>
-            <option>JF</option>
+            <SelectionJournalist />
           </select>
         </div>
 
@@ -84,68 +78,32 @@ export default function AddIdea(props) {
             value={newIdea.section}
             onChange={handleChange}
           >
-            <option value="" selected disabled hidden>
-              Please select the section
-            </option>
-            <option>News</option>
-            <option>Sport</option>
-            <option>Politics</option>
-            <option>Local</option>
-            <option>World</option>
-            <option>Business</option>
-            <option>Financial</option>
+            <SelectionSection />
           </select>
         </div>
 
         <div className="form-inputs">
-          <label className="form-label">Size</label>
-          <select
-            className="form-input"
-            name="potential"
-            value={newIdea.potential}
-            onChange={handleChange}
-          >
-            <option value="" selected disabled hidden>
-              Please select choose the potential of the idea
-            </option>
-            <option>Low</option>
-            <option>Medium</option>
-            <option>Big</option>
-            <option>Headline</option>
-            <option>Sensation</option>
-          </select>
-        </div>
-
-        <div className="form-inputs">
-          <label className="form-label">Idea</label>
+          <label className="form-label">Visibility</label>
           <select
             className="form-input"
             name="visible"
             value={newIdea.visible}
             onChange={handleChange}
           >
-            <option value="" selected disabled hidden>
-              Whom should see your idea?
-            </option>
-            <option>all</option>
-            <option>Editor-in-Chief</option>
-            <option>Only Journalists</option>
+            <SelectionVisibility />{" "}
+            {/* Information is not used in the current implementation*/}
           </select>
         </div>
 
         <div className="form-inputs">
-          <label className="form-label">Idea</label>
+          <label className="form-label">Conversion into Article</label>
           <select
             className="form-input"
             name="article"
             value={newIdea.article}
             onChange={handleChange}
           >
-            <option value="" selected disabled hidden>
-              Turn into article immeadiately?
-            </option>
-            <option>Yes</option>
-            <option>No</option>
+            <SelectionArticleConversion />
           </select>
         </div>
 
