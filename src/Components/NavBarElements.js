@@ -1,8 +1,7 @@
-import { FaBars } from "react-icons/fa";
 import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const Nav = styled.nav`
+export const Navigation = styled.nav`
   background: #8d519a;
   height: 128px;
   display: flex;
@@ -13,7 +12,7 @@ export const Nav = styled.nav`
   font-size: 18px;
 `;
 
-export const NavLink = styled(Link)`
+export const NavigationLink = styled(Link)`
   color: #f5f4f5;
   display: flex;
   align-items: center;
@@ -33,35 +32,16 @@ export const NavLink = styled(Link)`
   }
 `;
 
-export const Bars = styled(FaBars)`
-  display: none;
-  color: #978f99;
-  @media screen and (max-width: 768px) {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(-100%, 75%);
-    font-size: 1.8rem;
-    cursor: pointer;
-  }
-`;
-
-export const NavMenu = styled.div`
+export const NavigationMenu = styled.div`
   display: flex;
   align-items: center;
   margin-right: -24px;
-  /* Second Nav */
-  /* margin-right: 24px; */
-  /* Third Nav */
-  /* width: 100vw;
-  white-space: nowrap; */
   @media screen and (max-width: 768px) {
     display: none;
   }
 `;
 
-export const NavBtn = styled.nav`
+export const NavigationBtn = styled.nav`
   display: flex;
   align-items: center;
   margin-right: 24px;
@@ -70,7 +50,7 @@ export const NavBtn = styled.nav`
   }
 `;
 
-export const ContainerLogOut = styled.nav`
+export const LogOutContainer = styled.nav`
   display: flex;
   align-items: center;
   margin-right: 24px;
@@ -78,7 +58,7 @@ export const ContainerLogOut = styled.nav`
   width: 100vw;
 `;
 
-export const NavBtnLink = styled(Link)`
+export const NavigationBtnLink1 = styled(Link)`
   border-radius: 10px;
   background: #f5f4f5;
   padding: 10px 22px;
@@ -96,7 +76,7 @@ export const NavBtnLink = styled(Link)`
   }
 `;
 
-export const NavBtnLink2 = styled(Link)`
+export const NavigationBtnLink2 = styled(Link)`
   border-radius: 4px;
   background: #4a1256;
   padding: 10px 22px;

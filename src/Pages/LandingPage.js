@@ -1,5 +1,5 @@
 import LandingPageLogo from "../Images/Coordinews.png";
-import "../App.css";
+import "../CSS/App.css";
 
 export default function LandingPage() {
   return (

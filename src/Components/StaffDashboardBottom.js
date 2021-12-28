@@ -1,7 +1,7 @@
 import { getArticles } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import "../App.css";
+import "../CSS/App.css";
 import "../CSS/Form.css";
 import StaffDashboardGauge from "./StaffDashboardGauge";
 

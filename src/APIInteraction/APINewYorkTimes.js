@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 
 class News extends Component {
   constructor(props) {
@@ -16,7 +16,6 @@ class News extends Component {
         return response.json();
       })
       .then((data) => {
-        console.log("NY Data: ", data.results);
         this.setState({
           news: data.results,
         });

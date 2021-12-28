@@ -1,21 +1,19 @@
-import { getIdea, getideas } from "../DatabaseInteraction/db";
+import { getIdea } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
 import Spinner from "react-bootstrap/Spinner";
 import { useParams } from "react-router-dom";
-import "../App.css";
+import "../CSS/App.css";
 import { uploadArticle } from "../DatabaseInteraction/db";
-import JournalistSelection from "./JournalistSelection";
-import emailjs from "emailjs-com";
-import StateSelection from "./StateSelection";
-import PhotographerSelection from "./PhotographerSelection";
-import SectionSelection from "./SectionSelection";
-import SizeSelection from "./SizeSelection";
+import sendEmail from "./IdeaAssignmentEmail";
+import SelectionJournalist from "../Selection/SelectionJournalist";
+import SelectionPhotographer from "../Selection/SelectionPhotographer";
+import SelectionSection from "../Selection/SelectionSection";
+import SelectionSize from "../Selection/SelectionSize";
+import SelectionState from "../Selection/SelectionState";
 
-export default function IdeaId(props) {
+export default function IdeaID(props) {
   const [idea, setIdea] = useState();
   const [newArticle, setNewArticle] = useState({});
-  const [emailData, setEmailData] = useState();
   const [articles, setArticles] = useState([]);
   const { ideaId } = useParams();
   var submitter = true;
@@ -29,34 +27,17 @@ export default function IdeaId(props) {
       comment: idea.Comment,
     });
   }
-
   useEffect(getIdeaFromDb, []);
-  console.log("Idea: ", idea, "Article: ", newArticle);
-
   async function handleUpload(e) {
     e.preventDefault();
-    console.log("Check Article Setting: ", newArticle);
     setArticles((articles) => [...articles, newArticle]);
   }
 
   useEffect(() => {
     if (articles.length > 0) {
       uploadArticle(articles);
-      console.log("Upload Check");
       props.submit(submitter);
-
-      emailjs.send(
-        "service_5flydld",
-        "template_1fkl0ur",
-        {
-          to_name: "LI",
-          Title: "ABCDE",
-          Section: "Sport",
-          Deadline: "27-01-2021",
-          email: "neumann.lucas8@gmail.com",
-        },
-        "user_0gUfh2qxMOwB9lgArUZI6"
-      );
+      sendEmail();
     }
   }, [articles]);
 
@@ -73,20 +54,12 @@ export default function IdeaId(props) {
       ...newArticle,
       [event.target.name]: event.target.value,
     });
-    console.log("Changer: ", event.target.value);
-    console.log("new: ", newArticle);
   }
 
   return (
     <div className="form-content-right">
       <form className="form">
-        <h1>
-          Create an article by filling the missing pieces!
-          <span style={{ color: "#D7BADD" }}>
-            {" "}
-            (Click on the elements to edit){" "}
-          </span>
-        </h1>
+        <h1>Create an article by filling the missing pieces! Click to edit</h1>
         <div className="form-inputs">
           <label className="form-label">Title</label>
           <input
@@ -133,7 +106,7 @@ export default function IdeaId(props) {
                 value={newArticle.journalist}
                 onChange={handleChange}
               >
-                <JournalistSelection />
+                <SelectionJournalist />
               </select>
             </div>
 
@@ -146,7 +119,7 @@ export default function IdeaId(props) {
                 value={newArticle.photographer}
                 onChange={handleChange}
               >
-                <PhotographerSelection />
+                <SelectionPhotographer />
               </select>
             </div>
           </div>
@@ -162,7 +135,7 @@ export default function IdeaId(props) {
                 value={newArticle.section}
                 onChange={handleChange}
               >
-                <SectionSelection />
+                <SelectionSection />
               </select>
             </div>
 
@@ -175,7 +148,7 @@ export default function IdeaId(props) {
                 value={newArticle.size}
                 onChange={handleChange}
               >
-                <SizeSelection />
+                <SelectionSize />
               </select>
             </div>
           </div>
@@ -190,7 +163,7 @@ export default function IdeaId(props) {
             value={newArticle.state}
             onChange={handleChange}
           >
-            <StateSelection />
+            <SelectionState />
           </select>
         </div>
 

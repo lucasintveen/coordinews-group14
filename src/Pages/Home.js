@@ -2,11 +2,11 @@ import React from "react";
 import "../CSS/Form.css";
 import Parse from "parse";
 import HomeArt from "../Components/HomeTodaysArticles";
-import HomeMes from "../Components/HomeMes";
 import NewsBBC from "../APIInteraction/APIBBC";
 import NewsNYT from "../APIInteraction/APINewYorkTimes";
 import BBCLogo from "../Images/BBC_News.svg.png";
 import NYTLogo from "../Images/New York Times.png";
+import HomeUserMessages from "../Components/HomeUserMessages";
 
 export default function Home() {
   var today = new Date();
@@ -35,7 +35,7 @@ export default function Home() {
               <form className="form-table">
                 <HomeArt />
               </form>
-              <HomeMes />
+              <HomeUserMessages />
             </>
           }
         </div>

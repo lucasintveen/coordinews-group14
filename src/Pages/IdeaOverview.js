@@ -1,5 +1,5 @@
-import IdeaTable from "./IdeaTable";
-import "../App.css";
+import IdeaTable from "../Components/IdeaTable";
+import "../CSS/App.css";
 import "../CSS/Form.css";
 
 export default function IdeaOverview() {

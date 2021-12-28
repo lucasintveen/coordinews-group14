@@ -37,7 +37,7 @@ export default function Articletable() {
       });
       setArticles(articlesMapped);
     });
-    getArticlesFromDb;
+    getArticlesFromDb();
   }, []);
 
   console.log("Articles New Function:", ArticlesTest);
@@ -155,7 +155,7 @@ export default function Articletable() {
               Select the Section
             </option>
 
-            {Array.from({ length: distinctSection.length }).map((_, index) => (
+            {Array.from({ length: distinctSection.length }).map((index) => (
               <option>{distinctSection[index]}</option>
             ))}
             <option></option>
@@ -169,11 +169,9 @@ export default function Articletable() {
               Select the Journalist
             </option>
 
-            {Array.from({ length: distinctJournalist.length }).map(
-              (_, index) => (
-                <option>{distinctJournalist[index]}</option>
-              )
-            )}
+            {Array.from({ length: distinctJournalist.length }).map((index) => (
+              <option>{distinctJournalist[index]}</option>
+            ))}
             <option></option>
           </select>
 

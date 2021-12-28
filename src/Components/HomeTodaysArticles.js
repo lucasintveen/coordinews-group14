@@ -1,7 +1,7 @@
 import { getArticles } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import "../App.css";
+import "../CSS/App.css";
 import Parse from "parse";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
@@ -42,7 +42,7 @@ export default function HomeTodaysArticles(props) {
     );
   }
 
-  //filtering relevant articles for the specific user logged in
+  //filtering relevant and already accepted articles for the specific user logged in
   const filteredArticles = Object.values(Articles).filter((article) => {
     if (
       Parse.User.current().attributes.Role === "Journalist" &&
@@ -89,15 +89,13 @@ export default function HomeTodaysArticles(props) {
       <tbody className="tbody-messages">
         {filteredArticles.map((article) => (
           <tr>
-            <td as={Link} to="/Add_Article" className="td-messages">
-              <Button
-                variant="light"
-                as={Link}
-                to={"/articles/articleDetails/" + article.Details}
-              >
-                See more{"\uD83D\uDD0D"}
-              </Button>
-            </td>
+            <Button
+              variant="light"
+              as={Link}
+              to={"/articles/articleDetails/" + article.Details}
+            >
+              See more{"\uD83D\uDD0D"}
+            </Button>
             <td className="td-messages">{article.Title}</td>
             <td className="td-messages">{article.Section}</td>
             <td className="td-messages">{article.State}</td>

@@ -2,7 +2,7 @@ import { getArticle } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { useParams } from "react-router-dom";
-import "../App.css";
+import "../CSS/App.css";
 import Parse from "parse";
 import SelectionPhotographer from "../Selection/SelectionPhotographer";
 import SelectionState from "../Selection/SelectionState";
@@ -19,6 +19,7 @@ export default function ArticleID(props) {
     const Article = new Parse.Object("Article");
     Article.set("objectId", articleId);
   }
+  useEffect(getArticleFromDb, []);
   function handleChange(event) {
     setNewArticle({
       ...newArticle,
@@ -35,7 +36,6 @@ export default function ArticleID(props) {
       </Spinner>
     );
   }
-  useEffect(getArticleFromDb, []);
 
   return (
     <div className="form-content-right">

@@ -1,16 +1,16 @@
-import "./App.css";
+import "./CSS/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { HashRouter, Routes, Route } from "react-router-dom";
-import { NavigationBar } from "./Components/Navbar";
+import { NavigationBar } from "./Components/NavigationBar";
 import Login from "./Components/Login";
 import SignUp from "./Components/Signup";
-import Ideas from "./Components/IdeaOverview";
+import Ideas from "./Pages/IdeaOverview";
 import ArticleOverview from "./Pages/ArticleOverview";
-import LandingPage from "./Components/LandingPage";
-import Form from "./Components/Form";
-import IdeaConverter from "./Components/IdeaConverter";
-import Home from "./Components/Home";
-import StaffOverview from "./Components/StaffOverview";
+import LandingPage from "./Pages/LandingPage";
+import Form from "./Components/ArticleForm";
+import IdeaConverter from "./Components/IdeaToArticleConversion";
+import Home from "./Pages/Home";
+import StaffOverview from "./Pages/StaffOverview";
 import FormSuccess from "./Components/FormSuccess";
 import IdeaAdditionForm from "./Components/IdeaAdditionForm";
 

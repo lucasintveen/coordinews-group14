@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import IdeaId from "./IdeaId";
+import IdeaId from "./IdeaID";
 import FormSuccess from "./FormSuccess";
 import News from "../Images/News.png";
 import "../CSS/Form.css";
 
-export default function IdeaConverter() {
+export default function IdeaToArticleConversion() {
   const [childData, setChildData] = useState("");
   console.log("Child Data: ", childData);
   console.log("Id: ", childData[0]);

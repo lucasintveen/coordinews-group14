@@ -1,15 +1,14 @@
 import React from "react";
 import "../CSS/Form.css";
-import "../CSS/Form.css";
-import DashboardLeft1 from "./DashboardLeft1";
-import DashboardLeft2 from "./DashboardLeft2";
-import StaffArt from "./StaffArt";
-import JournalistSplit from "./JournalistSplit";
-import PhotographerSplit from "./PhotographerSplit";
-import AssistantSplit from "./AssistantSplit";
-import StaffArtMissing from "./StaffArtMissing";
+import DashboardLeft1 from "../Components/StaffDashboardTop";
+import DashboardLeft2 from "../Components/StaffDashboardBottom";
+import StaffArt from "../Components/StaffFinishedArticles";
+import JournalistSplit from "../Components/StaffJournalistSplit";
+import PhotographerSplit from "../Components/StaffPhotographerSplit";
+import AssistantSplit from "../Components/StaffAssistantSplit";
+import StaffArtMissing from "../Components/StaffArticleAcceptanceMissing";
 
-const StaffOverview = () => {
+export default function StaffOverview() {
   var today = new Date();
   var month = today.getMonth() + 1;
   var dateToday = today.getFullYear() + "-" + month + "-" + today.getDate();
@@ -52,5 +51,4 @@ const StaffOverview = () => {
       </div>
     </div>
   );
-};
-export default StaffOverview;
+}

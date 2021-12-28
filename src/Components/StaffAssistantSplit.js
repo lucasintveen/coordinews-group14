@@ -1,7 +1,7 @@
 import { getArticles } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import "../App.css";
+import "../CSS/App.css";
 import "../CSS/Form.css";
 
 export default function StaffAssistantSplit(props) {
@@ -56,7 +56,6 @@ export default function StaffAssistantSplit(props) {
   }
   const employees = employeesSelector();
   const uniqueEmployees = employees.filter(onlyUnique);
-  const rowLength = filteredArticles.length;
 
   function workSizeCalculation() {
     var articleWork = 0;

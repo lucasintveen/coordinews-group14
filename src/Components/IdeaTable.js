@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import ideaSearch from "./IdeaSearch";
 
 export default function IdeaTable() {
   const [Ideas, setIdeas] = useState();
@@ -17,7 +18,6 @@ export default function IdeaTable() {
   useEffect(() => {
     getIdeas().then((Ideas) => {
       const ideasMapped = Ideas.map((wrapper) => {
-        console.log("wrapper: ", wrapper);
         const mappedIdeas = {
           Details: wrapper.id,
           Title: wrapper.attributes.title,
@@ -26,16 +26,12 @@ export default function IdeaTable() {
           Potential: wrapper.attributes.potential,
           Expiration: wrapper.attributes.expiration,
         };
-        /** Add Article is not connected to database anymore .toString().slice(4, 15) */
-        console.log("mappedIdeas: ", mappedIdeas);
         return mappedIdeas;
       });
 
       setIdeas(ideasMapped);
     });
   }, []);
-
-  console.log("Idea: ", Ideas);
 
   if (!Ideas) {
     return (
@@ -48,7 +44,6 @@ export default function IdeaTable() {
   var today = new Date();
   var dateToday =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-
   function currentNewspaper() {
     if (date === undefined) {
       setDate(dateToday);
@@ -56,11 +51,8 @@ export default function IdeaTable() {
       setDate();
     }
   }
-  console.log("Check Type of Date: ", typeof date);
-  console.log("Check Adjusted of Date: ", date);
-
-  console.log("Set Date : ", date);
-
+  const filteredIdeasTest = ideaSearch(Ideas, search, section, date);
+  console.log("Test of Exported Search: ", filteredIdeasTest);
   const filteredIdeas = Object.values(Ideas).filter((idea) => {
     if (
       section.section === undefined &&
@@ -102,35 +94,26 @@ export default function IdeaTable() {
     }
   });
 
-  const rowLength = filteredIdeas.length;
   const rowLengthUnfiltered = Ideas.length;
-
   const Section = [];
   const Source = [];
   const Photographer = [];
-
   for (let i = 0; i < rowLengthUnfiltered; i++) {
     Section.push(Ideas[i].Section);
     Source.push(Ideas[i].Source);
     Photographer.push(Ideas[i].Photographer);
   }
-
   function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
   }
-
-  var distinctSection = Section.filter(onlyUnique);
-  var distinctSource = Source.filter(onlyUnique);
-  console.log("Distinct Source: ", distinctSource);
-  var distinctPhotographer = Photographer.filter(onlyUnique);
-
   function handleSection(event) {
     setSection({
       [event.target.name]: event.target.value,
     });
   }
+  var distinctSection = Section.filter(onlyUnique);
+  var distinctSource = Source.filter(onlyUnique);
 
-  // TODO: Adjust Dropdown for empty
   return (
     <>
       <ul className="form--list">

@@ -2,8 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import "./App.css";
-
+import "./CSS/App.css";
 import Parse from "parse";
 
 Parse.initialize(

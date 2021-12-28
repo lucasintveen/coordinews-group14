@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { uploadIdea } from "../DatabaseInteraction/db";
-import "../App.css";
 import "../CSS/Form.css";
 import SelectionJournalist from "../Selection/SelectionJournalist";
 import SelectionSection from "../Selection/SelectionSection";
 import SelectionArticleConversion from "../Selection/SelectionArticleConversion";
 import SelectionVisibility from "../Selection/SelectionVisibility";
+import "../CSS/App.css";
 
 export default function IdeaAddition(props) {
   const [idea, setIdea] = useState([]);
@@ -30,7 +30,7 @@ export default function IdeaAddition(props) {
 
   return (
     /* No component used for various forms, as these are too distinct from each other. Moving it out too 
-    components and using props to pass information would not have necessarily simplified implementation*/
+    components and using props to pass information would not have necessarily simplified the implementation*/
     <div className="form-content-right">
       <form className="form">
         <h1>Add a new idea by filling out the information below!</h1>

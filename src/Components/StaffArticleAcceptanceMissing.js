@@ -1,12 +1,12 @@
 import { getArticles } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import "../App.css";
+import "../CSS/App.css";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "../CSS/Form.css";
 
-export default function StaffArtMissing(props) {
+export default function StaffArticleAcceptanceMissing(props) {
   const [Articles, setArticles] = useState();
   useEffect(() => {
     getArticles().then((Articles) => {
