@@ -1,4 +1,4 @@
-import { getArticles } from "../DatabaseInteraction/db";
+import { getArticleExport } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import "../CSS/App.css";
@@ -8,27 +8,12 @@ import "../CSS/Form.css";
 export default function HomeUserMessages(props) {
   const [Articles, setArticles] = useState();
 
+  async function getArticlesFromDb() {
+    const Articles = await getArticleExport();
+    setArticles(Articles.articlesMapped);
+  }
   useEffect(() => {
-    getArticles().then((Articles) => {
-      const articlesMapped = Articles.map((wrapper) => {
-        const mappedArticle = {
-          Details: wrapper.id,
-          Title: wrapper.attributes.Title,
-          Section: wrapper.attributes.Section,
-          Journalist: wrapper.attributes.Journalist,
-          Photographer: wrapper.attributes.Photographer,
-          State: wrapper.attributes.State,
-          Size: wrapper.attributes.Size,
-          Deadline: wrapper.attributes.Deadline,
-          JournalistAcceptance: wrapper.attributes.JournalistAcc,
-          PhotograpberAcceptance: wrapper.attributes.PhotoAcc,
-          AssistantAcceptance: wrapper.attributes.AssiAcc,
-        };
-        return mappedArticle;
-      });
-
-      setArticles(articlesMapped);
-    });
+    getArticlesFromDb();
   }, []);
 
   if (!Articles) {

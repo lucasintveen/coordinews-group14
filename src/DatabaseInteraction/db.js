@@ -19,16 +19,62 @@ async function getArticleExport() {
   const queryArticle = new Parse.Query(Article);
   const allArticles = await queryArticle.findAll();
 
+  const articlesMapped = allArticles.map((article) => {
+    const mappedArticle = {
+      Details: article.id,
+      Title: article.attributes.Title,
+      Section: article.attributes.Section,
+      State: article.attributes.State,
+      Deadline: article.attributes.Deadline,
+      Completion: article.attributes.Completion,
+      Size: article.attributes.Size,
+      Photographer: article.attributes.Photographer,
+      Finished: article.attributes.Finished,
+      Journalist: article.attributes.Journalist,
+      Photographer: article.attributes.Photographer,
+      Assistant: article.attributes.Assistant,
+      JournalistAcc: article.attributes.JournalistAcc,
+      PhotographerAcc: article.attributes.PhotoAcc,
+      AssistantAcc: article.attributes.AssiAcc,
+    };
+    return mappedArticle;
+  });
+
+  console.log("Mapped Articles Database: ", articlesMapped);
+
   return {
-    ArticleId: allArticles.get("objectId"),
-    Comment: allArticles.get("Comment"),
-    Title: allArticles.get("Title"),
-    Section: allArticles.get("Section"),
-    Journalist: allArticles.get("Journalist"),
-    Photographer: allArticles.get("Photographer"),
-    State: allArticles.get("State"),
-    Size: allArticles.get("Size"),
-    Deadline: allArticles.get("Deadline"),
+    articlesMapped,
+  };
+}
+
+async function getIdeas() {
+  const Idea = Parse.Object.extend("Idea");
+  const queryIdea = new Parse.Query(Idea);
+
+  return await queryIdea.findAll();
+}
+
+async function getIdeasRefactored() {
+  const Idea = Parse.Object.extend("Idea");
+  const queryIdea = new Parse.Query(Idea);
+  const allIdeas = await queryIdea.findAll();
+
+  const ideasMapped = allIdeas.map((idea) => {
+    const mappedIdea = {
+      Details: idea.id,
+      Title: idea.attributes.title,
+      Section: idea.attributes.section,
+      Source: idea.attributes.source,
+      Potential: idea.attributes.potential,
+      Expiration: idea.attributes.expiration,
+    };
+    return mappedIdea;
+  });
+
+  console.log("Mapped Articles Database: ", ideasMapped);
+
+  return {
+    ideasMapped,
   };
 }
 
@@ -46,13 +92,6 @@ async function getArticle(articleId) {
     Size: article.get("Size"),
     Deadline: article.get("Deadline"),
   };
-}
-
-async function getIdeas() {
-  const Idea = Parse.Object.extend("Idea");
-  const queryIdea = new Parse.Query(Idea);
-
-  return await queryIdea.findAll();
 }
 
 async function getIdea(ideaId) {
@@ -163,4 +202,5 @@ export {
   uploadDeletion,
   uploadIdea,
   getArticleExport,
+  getIdeasRefactored,
 };

@@ -6,7 +6,6 @@ import Button from "react-bootstrap/Button";
 
 export default function Articletable() {
   const [Articles, setArticles] = useState();
-  const [ArticlesTest, setArticlesTest] = useState();
   const [search, setSearch] = useState("");
   const [section, setSection] = useState({});
   const [date, setDate] = useState();
@@ -16,32 +15,11 @@ export default function Articletable() {
   };
   async function getArticlesFromDb() {
     const Articles = await getArticleExport();
-    setArticlesTest(Articles);
+    setArticles(Articles.articlesMapped);
   }
-
   useEffect(() => {
-    getArticles().then((Articles) => {
-      const articlesMapped = Articles.map((wrapper) => {
-        const mappedArticle = {
-          Details: wrapper.id,
-          Title: wrapper.attributes.Title,
-          Section: wrapper.attributes.Section,
-          Journalist: wrapper.attributes.Journalist,
-          State: wrapper.attributes.State,
-          Deadline: wrapper.attributes.Deadline,
-          Completion: wrapper.attributes.Completion,
-          Size: wrapper.attributes.Size,
-          Photographer: wrapper.attributes.Photographer,
-        };
-        return mappedArticle;
-      });
-      setArticles(articlesMapped);
-    });
     getArticlesFromDb();
   }, []);
-
-  console.log("Articles New Function:", ArticlesTest);
-  console.log("Articles Old Function:", Articles);
 
   if (!Articles) {
     return (

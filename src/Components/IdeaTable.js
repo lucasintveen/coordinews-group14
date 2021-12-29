@@ -1,4 +1,4 @@
-import { getIdeas } from "../DatabaseInteraction/db";
+import { getIdeas, getIdeasRefactored } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { Link } from "react-router-dom";
@@ -15,22 +15,12 @@ export default function IdeaTable() {
     setSearch(event.target.value);
   };
 
+  async function getIdeasFromDb() {
+    const Ideas = await getIdeasRefactored();
+    setIdeas(Ideas.ideasMapped);
+  }
   useEffect(() => {
-    getIdeas().then((Ideas) => {
-      const ideasMapped = Ideas.map((wrapper) => {
-        const mappedIdeas = {
-          Details: wrapper.id,
-          Title: wrapper.attributes.title,
-          Section: wrapper.attributes.section,
-          Source: wrapper.attributes.source,
-          Potential: wrapper.attributes.potential,
-          Expiration: wrapper.attributes.expiration,
-        };
-        return mappedIdeas;
-      });
-
-      setIdeas(ideasMapped);
-    });
+    getIdeasFromDb();
   }, []);
 
   if (!Ideas) {

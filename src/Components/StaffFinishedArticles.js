@@ -1,4 +1,4 @@
-import { getArticles } from "../DatabaseInteraction/db";
+import { getArticleExport } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import "../CSS/App.css";
@@ -8,23 +8,12 @@ import "../CSS/Form.css";
 
 export default function StaffFinishedArticles(props) {
   const [Articles, setArticles] = useState();
+  async function getArticlesFromDb() {
+    const Articles = await getArticleExport();
+    setArticles(Articles.articlesMapped);
+  }
   useEffect(() => {
-    getArticles().then((Articles) => {
-      const articlesMapped = Articles.map((wrapper) => {
-        const mappedArticle = {
-          Details: wrapper.id,
-          Title: wrapper.attributes.Title,
-          Section: wrapper.attributes.Section,
-          Finished: wrapper.attributes.Finished,
-          Deadline: wrapper.attributes.Deadline,
-          Size: wrapper.attributes.Size,
-        };
-
-        return mappedArticle;
-      });
-
-      setArticles(articlesMapped);
-    });
+    getArticlesFromDb();
   }, []);
   if (!Articles) {
     return (

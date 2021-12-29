@@ -1,4 +1,4 @@
-import { getArticles } from "../DatabaseInteraction/db";
+import { getArticleExport } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import "../CSS/App.css";
@@ -10,27 +10,12 @@ Hence using one dashboard component wouldn't have simplified the implementation 
 Further simplification might be possible through factoring the calculations out*/
 export default function StaffDashboardBottom(props) {
   const [Articles, setArticles] = useState();
+  async function getArticlesFromDb() {
+    const Articles = await getArticleExport();
+    setArticles(Articles.articlesMapped);
+  }
   useEffect(() => {
-    getArticles().then((Articles) => {
-      const articlesMapped = Articles.map((wrapper) => {
-        const mappedArticle = {
-          Details: wrapper.id,
-          Finished: wrapper.attributes.Finished,
-          Deadline: wrapper.attributes.Deadline,
-          Size: wrapper.attributes.Size,
-          Journalist: wrapper.attributes.Journalist,
-          Photographer: wrapper.attributes.Photographer,
-          Assistant: wrapper.attributes.Assistant,
-          JournalistAcc: wrapper.attributes.JournalistAcc,
-          PhotographerAcc: wrapper.attributes.PhotoAcc,
-          AssistantAcc: wrapper.attributes.AssiAcc,
-        };
-
-        return mappedArticle;
-      });
-
-      setArticles(articlesMapped);
-    });
+    getArticlesFromDb();
   }, []);
   if (!Articles) {
     return (

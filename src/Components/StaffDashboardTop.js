@@ -1,4 +1,4 @@
-import { getArticles } from "../DatabaseInteraction/db";
+import { getArticleExport } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import "../CSS/App.css";
@@ -8,21 +8,12 @@ import StaffDashboardGauge from "./StaffDashboardGauge";
 export default function StaffDashboardTop(props) {
   const [Articles, setArticles] = useState();
   const pagesToFillNeeded = 6; //Self-determinated as no further information was given
+  async function getArticlesFromDb() {
+    const Articles = await getArticleExport();
+    setArticles(Articles.articlesMapped);
+  }
   useEffect(() => {
-    getArticles().then((Articles) => {
-      const articlesMapped = Articles.map((wrapper) => {
-        const mappedArticle = {
-          Details: wrapper.id,
-          Finished: wrapper.attributes.Finished,
-          Deadline: wrapper.attributes.Deadline,
-          Size: wrapper.attributes.Size,
-        };
-
-        return mappedArticle;
-      });
-
-      setArticles(articlesMapped);
-    });
+    getArticlesFromDb();
   }, []);
   if (!Articles) {
     return (
