@@ -1,4 +1,5 @@
 async function restCreateUser(postUserData) {
+  var userToken;
   try {
     const response = await fetch("https://parseapi.back4app.com/users", {
       method: "POST",
@@ -15,40 +16,36 @@ async function restCreateUser(postUserData) {
     }
 
     const responseData = await response.json();
+    userToken = responseData.sessionToken;
     console.log("Response Data: ", responseData);
-    return true;
   } catch (error) {
     console.log("Error: " + error);
   }
+  return userToken;
 }
 
-async function createNewUser() {
-  const postData = {
-    username: "mir3",
-    password: "secret",
-    email: "mir3@itu.dk",
-  };
-
+async function restGetCurrrentUser(X) {
+  var responseData;
   try {
-    const response = await fetch("https://parseapi.back4app.com/users/", {
-      method: "POST",
+    const response = await fetch("https://parseapi.back4app.com/users/me", {
+      method: "GET",
       headers: {
         "X-Parse-Application-Id": "KqoIYLreqOxM9D4hI1VyukJBa7yj03D1dTd75CzR",
-        "X-Parse-REST-API-Key": "vylMcMtNhHFcfFH4ROGrcWys4wi34V1mrILj0gmL",
+        "X-Parse-REST-API-Key": "vylMcMtNhHFcfFH4ROGrcWys4wi34V1mrILj0gmL ",
+        "X-Parse-Session-Token": X, // E.g. is returned in the function above}
       },
-      body: JSON.stringify(postData),
     });
 
     if (!response.ok) {
-      const message = "Error with Status Code: " + response.status;
-      throw new Error(message);
+      const errorMessage = "Error with Status Code: " + response.status;
+      throw new Error(errorMessage);
     }
 
-    const data = await response.json();
-    console.log(data);
+    responseData = await response.json();
   } catch (error) {
     console.log("Error: " + error);
   }
+  return responseData;
 }
 
-export { restCreateUser, createNewUser };
+export { restCreateUser, restGetCurrrentUser };

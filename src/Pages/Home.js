@@ -12,6 +12,7 @@ export default function Home() {
   var today = new Date();
   var month = today.getMonth() + 1;
   var dateToday1 = today.getDate() + "-" + month + "-" + today.getFullYear();
+  console.log(Parse.User.current());
   return (
     <>
       <div className="form-container-home">

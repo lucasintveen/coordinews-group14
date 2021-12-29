@@ -10,6 +10,8 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
+  // both of the following functions work well, and post the user data via the API
+  // I decided to use the Parse functionality, as it turned out to be very simple, whenever needing the current user
   async function createAccount() {
     const user = new Parse.User();
     user.setUsername(username);
@@ -18,19 +20,26 @@ export default function SignUp() {
     user.set("Role", role);
     try {
       await user.signUp();
-      navigate("/#/home");
+      navigate("/home");
     } catch (error) {
       alert("Error: " + error.message + "Please go back and try again :)");
     }
   }
 
-  function takeUserData() {
+  async function createAccountRest() {
+    var user;
     const postUserData = {
       username: username,
       password: password,
       email: email,
+      role: role,
     };
-    restCreateUser(postUserData);
+    try {
+      user = restCreateUser(postUserData);
+      navigate("/home");
+    } catch (error) {
+      alert("Error: " + error.message + " Please go back and try again :)");
+    }
   }
 
   function usernameChange(e) {
@@ -47,8 +56,6 @@ export default function SignUp() {
   function positionChange(e) {
     setRole(e.target.value);
   }
-
-  console.log("position: ", role);
 
   return (
     <div className="background--box">

@@ -28,16 +28,18 @@ export default function IdeaID(props) {
     });
   }
   useEffect(getIdeaFromDb, []);
+
   async function handleUpload(e) {
     e.preventDefault();
     setArticles((articles) => [...articles, newArticle]);
+    sendEmail(idea.Source, idea.Title, idea.Section, idea.Expiration);
   }
 
   useEffect(() => {
     if (articles.length > 0) {
       uploadArticle(articles);
       props.submit(submitter);
-      sendEmail(articleData);
+      //sendEmail(articleData);
     }
   }, [articles]);
 
@@ -55,8 +57,6 @@ export default function IdeaID(props) {
       [event.target.name]: event.target.value,
     });
   }
-  const articleData = idea;
-  console.log("Test", articleData);
 
   return (
     <div className="form-content-right">
