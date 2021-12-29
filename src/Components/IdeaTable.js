@@ -10,27 +10,9 @@ export default function IdeaTable() {
   const [search, setSearch] = useState("");
   const [section, setSection] = useState({});
   const [date, setDate] = useState();
-
   const searchOperator = (event) => {
     setSearch(event.target.value);
   };
-
-  async function getIdeasFromDb() {
-    const Ideas = await getIdeasRefactored();
-    setIdeas(Ideas.ideasMapped);
-  }
-  useEffect(() => {
-    getIdeasFromDb();
-  }, []);
-
-  if (!Ideas) {
-    return (
-      <Spinner animation="border" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
-    );
-  }
-
   var today = new Date();
   var dateToday =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
@@ -41,49 +23,23 @@ export default function IdeaTable() {
       setDate();
     }
   }
-  const filteredIdeasTest = ideaSearch(Ideas, search, section, date);
-  console.log("Test of Exported Search: ", filteredIdeasTest);
-  const filteredIdeas = Object.values(Ideas).filter((idea) => {
-    if (
-      section.section === undefined &&
-      section.Source === undefined &&
-      date === undefined
-    ) {
-      return idea.Title.includes(search);
-    } else if (section.Source === undefined && section.section === undefined) {
-      return idea.Title.includes(search) && idea.Expiration.includes(date);
-    } else if (section.section === undefined && date === undefined) {
-      return (
-        idea.Title.includes(search) && idea.Source.includes(section.Source)
-      );
-    } else if (section.Source === undefined && date === undefined) {
-      return (
-        idea.Title.includes(search) && idea.Section.includes(section.section)
-      );
-    } else if (section.section === undefined) {
-      idea.Title.includes(search) &&
-        idea.Source.includes(section.Source) &&
-        idea.Expiration.includes(date);
-    } else if (section.Source === undefined) {
-      idea.Title.includes(search) &&
-        idea.Section.includes(section.section) &&
-        idea.Expiration.includes(date);
-    } else if (
-      section.section != undefined &&
-      section.Source != undefined &&
-      date != undefined
-    ) {
-      return (
-        idea.Title.includes(search) &&
-        idea.Section.includes(section.section) &&
-        idea.Source.includes(section.Source) &&
-        idea.Expiration.includes(date)
-      );
-    } else {
-      return [];
-    }
-  });
 
+  async function getIdeasFromDb() {
+    const Ideas = await getIdeasRefactored();
+    setIdeas(Ideas.ideasMapped);
+  }
+  useEffect(() => {
+    getIdeasFromDb();
+  }, []);
+  if (!Ideas) {
+    return (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  }
+
+  const filteredIdeas = ideaSearch(Ideas, search, section, date);
   const rowLengthUnfiltered = Ideas.length;
   const Section = [];
   const Source = [];

@@ -1,5 +1,5 @@
 export default function ideaSearch(ideas, search, section, date) {
-  Object.values(ideas).filter((idea) => {
+  const filteredIdeas = Object.values(ideas).filter((idea) => {
     if (
       section.section === undefined &&
       section.Source === undefined &&
@@ -39,4 +39,5 @@ export default function ideaSearch(ideas, search, section, date) {
       return [];
     }
   });
+  return filteredIdeas;
 }
