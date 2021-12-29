@@ -13,7 +13,9 @@ export default function Login() {
     const user = new Parse.User();
     user.setPassword(password);
     user.setUsername(username);
-    user.logIn().then(navigate("/home"));
+    user.logIn().then((loggedInUser) => {
+      navigate("/home");
+    });
   }
 
   return (

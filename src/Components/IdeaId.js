@@ -39,7 +39,6 @@ export default function IdeaID(props) {
     if (articles.length > 0) {
       uploadArticle(articles);
       props.submit(submitter);
-      //sendEmail(articleData);
     }
   }, [articles]);
 

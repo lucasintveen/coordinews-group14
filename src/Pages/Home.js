@@ -1,5 +1,6 @@
 import React from "react";
 import "../CSS/Form.css";
+import { useEffect, useState } from "react";
 import Parse from "parse";
 import HomeArt from "../Components/HomeTodaysArticles";
 import NewsBBC from "../APIInteraction/APIBBC";
@@ -7,12 +8,23 @@ import NewsNYT from "../APIInteraction/APINewYorkTimes";
 import BBCLogo from "../Images/BBC_News.svg.png";
 import NYTLogo from "../Images/New York Times.png";
 import HomeUserMessages from "../Components/HomeUserMessages";
+import Spinner from "react-bootstrap/Spinner";
 
 export default function Home() {
   var today = new Date();
   var month = today.getMonth() + 1;
   var dateToday1 = today.getDate() + "-" + month + "-" + today.getFullYear();
-  console.log(Parse.User.current());
+  console.log("User:", Parse.User.current());
+  var User = Parse.User.current();
+
+  if (User === null) {
+    return (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  }
+
   return (
     <>
       <div className="form-container-home">

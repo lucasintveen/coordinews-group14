@@ -170,9 +170,10 @@ async function uploadIdea(ideas) {
   );
 }
 
-async function uploadDeletion(object) {
+async function uploadDeletion(deletion) {
+  console.log("Deletion Object: ", deletion);
   return await Promise.all(
-    object.map((item) => {
+    deletion.map((item) => {
       try {
         const EditorCommunication = Parse.Object.extend("EditorCommunication");
         const newDeletion = new EditorCommunication();

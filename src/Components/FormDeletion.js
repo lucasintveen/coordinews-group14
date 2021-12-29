@@ -8,32 +8,32 @@ import { useNavigate } from "react-router-dom";
 export default function FormDeletion(props) {
   const navigate = useNavigate();
   const [newDeletion, setNewDeletion] = useState([]);
-
   const [newCommunication, setNewCommunication] = useState({});
 
   async function handleUpload(e) {
-    props.isDeleter(false);
-    props.submitter(true);
     e.preventDefault();
-    setNewDeletion((newDeletion) => [...newDeletion, newCommunication]);
-    deleteArticle();
+    console.log("Click");
+    setNewDeletion((deletion) => [...deletion, newCommunication]);
   }
-
-  useEffect(() => {
-    if (newDeletion.length > 0) {
-      uploadDeletion(newDeletion);
-    }
-  }, [newDeletion]);
 
   function handleChange(event) {
     setNewCommunication({
       ...newCommunication,
       [event.target.name]: event.target.value,
+      type: "Article Deletion",
+      articleId: props.articleId,
     });
   }
 
-  console.log("Comment Value: ", newDeletion.comment);
-  console.log("Change Value: ", newCommunication.comment);
+  useEffect(() => {
+    if (newDeletion.length > 0) {
+      console.log(newDeletion);
+      deleteArticle();
+      props.isDeleter(false);
+      props.submitter(true);
+      uploadDeletion(newDeletion);
+    }
+  }, [newDeletion]);
 
   async function deleteArticle() {
     const Article = new Parse.Object("Article");
@@ -41,11 +41,9 @@ export default function FormDeletion(props) {
     try {
       const deleteArtTest = await Article.destroy();
       console.log("Delete Test: ", deleteArtTest);
-      // window.location.reload();
       return true;
-    } catch (error) {
-      // Error can be caused by lack of Internet connection
-    }
+    } catch (error) {}
+    console.log("Jawoll");
   }
   function handleDelete() {
     props.isDeleter(false);
@@ -70,7 +68,7 @@ export default function FormDeletion(props) {
             type="text"
             placeholder="Enter a short comment to explain the deletion"
             name="comment"
-            value={newDeletion.comment}
+            value={newCommunication.comment}
             onChange={handleChange}
           />
         </div>
