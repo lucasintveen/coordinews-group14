@@ -3,12 +3,16 @@ import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import articleSearch from "./ArticleSearch";
 
 export default function Articletable() {
   const [Articles, setArticles] = useState();
   const [search, setSearch] = useState("");
   const [section, setSection] = useState({});
   const [date, setDate] = useState();
+  var today = new Date();
+  var dateToday =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
 
   const searchOperator = (event) => {
     setSearch(event.target.value);
@@ -29,10 +33,6 @@ export default function Articletable() {
     );
   }
 
-  var today = new Date();
-  var dateToday =
-    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-
   function currentNewspaper() {
     if (date === undefined) {
       setDate(dateToday);
@@ -41,73 +41,23 @@ export default function Articletable() {
     }
   }
 
-  const filteredArticles = Object.values(Articles).filter((article) => {
-    if (
-      section.section === undefined &&
-      section.journalist === undefined &&
-      date === undefined
-    ) {
-      return article.Title.includes(search);
-    } else if (
-      section.journalist === undefined &&
-      section.section === undefined
-    ) {
-      return article.Title.includes(search) && article.Deadline.includes(date);
-    } else if (section.section === undefined && date === undefined) {
-      return (
-        article.Title.includes(search) &&
-        article.Journalist.includes(section.journalist)
-      );
-    } else if (section.journalist === undefined && date === undefined) {
-      return (
-        article.Title.includes(search) &&
-        article.Section.includes(section.section)
-      );
-    } else if (section.section === undefined) {
-      article.Title.includes(search) &&
-        article.Journalist.includes(section.journalist) &&
-        article.Deadline.includes(date);
-    } else if (section.journalist === undefined) {
-      article.Title.includes(search) &&
-        article.Section.includes(section.section) &&
-        article.Deadline.includes(date);
-    } else if (
-      section.section != undefined &&
-      section.journalist != undefined &&
-      date != undefined
-    ) {
-      return (
-        article.Title.includes(search) &&
-        article.Section.includes(section.section) &&
-        article.Journalist.includes(section.journalist) &&
-        article.Deadline.includes(date)
-      );
-    } else {
-      return [];
-    }
-  });
-
+  const filteredArticles = articleSearch(Articles, search, section, date);
   const rowLength = filteredArticles.length;
   const rowLengthUnfiltered = Articles.length;
-
   const Section = [];
   const Journalist = [];
   const Photographer = [];
-
   for (let i = 0; i < rowLengthUnfiltered; i++) {
     Section.push(Articles[i].Section);
     Journalist.push(Articles[i].Journalist);
     Photographer.push(Articles[i].Photographer);
   }
-
   function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
   }
-
   var distinctSection = Section.filter(onlyUnique);
   var distinctJournalist = Journalist.filter(onlyUnique);
   var distinctPhotographer = Photographer.filter(onlyUnique);
-
   function handleSection(event) {
     setSection({
       [event.target.name]: event.target.value,
