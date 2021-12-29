@@ -1,6 +1,6 @@
 import emailjs from "emailjs-com";
 
-export default function sendEmail() {
+export default function sendEmail(X) {
   emailjs.send(
     "service_5flydld",
     "template_1fkl0ur",
@@ -9,7 +9,7 @@ export default function sendEmail() {
       Title: "ABCDE",
       Section: "Sport",
       Deadline: "27-01-2021",
-      email: "neumann.lucas8@gmail.com",
+      email: X,
     },
     "user_0gUfh2qxMOwB9lgArUZI6"
   );

@@ -37,7 +37,7 @@ export default function ArticleForm() {
         ) : submitter ? (
           <>
             <FormSuccess formType={formTypeArticle} isDeleter={setIsDeleter} />
-            <ArticleId submission={submission} />
+            {/* <ArticleId submission={submission} /> */}
           </>
         ) : (
           <ArticleId

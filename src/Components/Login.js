@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Parse from "parse";
 import { useNavigate } from "react-router";
+import { createNewUser, restCreateUser } from "../DatabaseInteraction/RestAPI";
 
 export default function Login() {
   const [username, setUsername] = useState();
@@ -15,6 +16,14 @@ export default function Login() {
     user.setUsername(username);
     user.logIn().then(navigate("/home"));
   }
+
+  const postUserData = {
+    username: "mir3",
+    password: "secret",
+    email: "mir3@itu.dk",
+  };
+  const userData = restCreateUser(postUserData);
+  console.log("User Data: ", userData);
 
   return (
     <div className="background--box">

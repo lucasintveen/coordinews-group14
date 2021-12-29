@@ -39,8 +39,9 @@ export default function FormDeletion(props) {
     const Article = new Parse.Object("Article");
     Article.set("objectId", props.articleId);
     try {
-      await Article.destroy();
-      window.location.reload();
+      const deleteArtTest = await Article.destroy();
+      console.log("Delete Test: ", deleteArtTest);
+      // window.location.reload();
       return true;
     } catch (error) {
       // Error can be caused by lack of Internet connection
