@@ -70,7 +70,7 @@ export default function StaffPhotographerSplit(props) {
         <thead>
           <br></br>
           <tr>
-            <th className="th-messages">Photographer Occupation</th>
+            <th className="th-messages">Photogr. Occupation</th>
           </tr>
         </thead>
         <tbody className="tbody-messages">

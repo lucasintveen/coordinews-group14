@@ -22,21 +22,12 @@ export default function StaffFinishedArticles(props) {
       </Spinner>
     );
   }
-  console.log("Article Check: ", Articles);
   const filteredArticles = Object.values(Articles).filter((article) => {
     if (article.Finished === true) {
-      console.log("The article finisher");
-      console.log(
-        "Return Statement Test: ",
-        props.Today,
-        article.Deadline.includes(props.Today)
-      );
       return article.Deadline.includes(props.Today);
     }
   });
 
-  filteredArticles.map((article) => console.log("mapping: ", article.Title));
-  console.log("Filtered Art: ", filteredArticles);
   return (
     <table class="table-staff table-hover">
       <tbody className="tbody--staff">

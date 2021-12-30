@@ -33,10 +33,12 @@ export default function StaffOverview() {
         }
       </div>
       <div className="form-content-right-staff">
-        <form className="form-table">
+        <form>
+          {/* className="form-table" */}
           <StaffArt Today={dateToday} />
         </form>
-        <form className="form-table3">
+        <form>
+          {/* className="form-table3" */}
           <StaffArtMissing Today={dateToday} />
         </form>
         <form className="form-split1">

@@ -301,17 +301,11 @@
 
 .table-staff {
   width: 100%;
-  margin-top: 48px;
-  margin-right: 12px;
-  margin-left: 24px;
-  top: 18%;
+  margin-top: 108px;
 }
 .table-staff1 {
   width: 100%;
   margin-top: 48px;
-  margin-right: 12px;
-  margin-left: 24px;
-  top: 40%;
 }
 
 .messages-head {
@@ -363,10 +357,6 @@ tbody {
   height: 120px;
   overflow-y: auto;
   overflow-x: hidden;
-}
-
-.tbody-staff {
-  width: 120%;
 }
 
 ::-webkit-scrollbar {

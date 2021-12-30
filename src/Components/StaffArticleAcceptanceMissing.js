@@ -1,4 +1,4 @@
-import { getArticles } from "../DatabaseInteraction/db";
+import { getArticles, getArticleExport } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import "../CSS/App.css";
@@ -8,25 +8,16 @@ import "../CSS/Form.css";
 
 export default function StaffArticleAcceptanceMissing(props) {
   const [Articles, setArticles] = useState();
+
+  async function getArticlesFromDb() {
+    const Articles = await getArticleExport();
+    setArticles(Articles.articlesMapped);
+  }
   useEffect(() => {
-    getArticles().then((Articles) => {
-      const articlesMapped = Articles.map((wrapper) => {
-        const mappedArticle = {
-          Details: wrapper.id,
-          Title: wrapper.attributes.Title,
-          Section: wrapper.attributes.Section,
-          Finished: wrapper.attributes.Finished,
-          Deadline: wrapper.attributes.Deadline,
-          Size: wrapper.attributes.Size,
-          JournalistAccepted: wrapper.attributes.JournalistAcc,
-        };
-
-        return mappedArticle;
-      });
-
-      setArticles(articlesMapped);
-    });
+    getArticlesFromDb();
   }, []);
+  console.log("Articles: ", Articles);
+
   if (!Articles) {
     return (
       <Spinner animation="border" role="status">
@@ -35,14 +26,16 @@ export default function StaffArticleAcceptanceMissing(props) {
     );
   }
   const filteredArticles = Object.values(Articles).filter((article) => {
-    if (article.JournalistAccepted === false) {
-      console.log("The article finisher");
-      console.log("Return Statement Test: ", article);
+    if (article.JournalistAcc === false) {
       return article;
     }
   });
+  console.log("Filtered: ", filteredArticles);
+  filteredArticles.map((article) =>
+    console.log("/articles/articleDetails/" + article.Details)
+  );
   return (
-    <table class="table-staff table-hover">
+    <table class="table-staff1 table-hover">
       <tbody className="tbody--staff">
         <tr>
           {Object.keys(Articles[0])
