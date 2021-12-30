@@ -82,7 +82,7 @@ async function getArticle(articleId) {
   const query = new Parse.Query("Article");
   const article = await query.get(articleId);
   return {
-    ArticleId: article.get("objectId"),
+    ArticleId: article.id,
     Comment: article.get("Comment"),
     Title: article.get("Title"),
     Section: article.get("Section"),
@@ -97,8 +97,9 @@ async function getArticle(articleId) {
 async function getIdea(ideaId) {
   const query = new Parse.Query("Idea");
   const idea = await query.get(ideaId);
+  console.log("Get Idea function: ", idea);
   return {
-    IdeaId: idea.get("objectId"),
+    IdeaId: idea.id,
     Title: idea.get("title"),
     Comment: idea.get("comment"),
     Section: idea.get("section"),
@@ -132,10 +133,12 @@ async function uploadArticle(articles) {
         newArticle.set("Section", article.section);
         newArticle.set("Journalist", article.journalist);
         newArticle.set("Photographer", article.photographer);
+        newArticle.set("Assistant", article.assistant);
         newArticle.set("State", article.state);
         newArticle.set("Size", article.size);
         newArticle.set("Deadline", article.deadline);
         newArticle.set("Comment", article.comment);
+        newArticle.set("IdeaId", article.ideaId);
 
         return newArticle.save();
       } catch (error) {

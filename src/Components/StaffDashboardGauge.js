@@ -17,11 +17,11 @@ export default function StaffDashboardGauge(props) {
 
   if (pointerColor === "normal") {
     array = [0, 25, 50, 75];
-    console.log(true);
+    console.log("Array True: ", array);
   }
   if (pointerColor === "twisted") {
     array = [75, 50, 25, 0];
-    console.log(false);
+    console.log("Array False: ", array);
   }
 
   const angleScale = scaleLinear()
@@ -65,10 +65,17 @@ export default function StaffDashboardGauge(props) {
     .cornerRadius(2)();
 
   const getBlobColor = (value) => {
-    if (value >= array[0] && value <= array[1]) return "#A6506D";
-    if (value > array[1] && value <= array[2]) return "#D1817D";
-    if (value > array[2] && value <= array[3]) return "#EDE0C0";
-    if (value >= array[3]) return "#6EB89E";
+    if (pointerColor === "normal") {
+      if (value >= array[0] && value <= array[1]) return "#A6506D";
+      if (value > array[1] && value <= array[2]) return "#D1817D";
+      if (value > array[2] && value <= array[3]) return "#EDE0C0";
+      if (value >= array[3]) return "#6EB89E";
+    } else if (pointerColor === "twisted") {
+      if (value <= array[0] && value >= array[1]) return "#6EB89E";
+      if (value < array[1] && value >= array[2]) return "#EDE0C0";
+      if (value < array[2] && value >= array[3]) return "#D1817D";
+      if (value <= array[3]) return "#A6506D";
+    }
   };
 
   return (

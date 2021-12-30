@@ -24,6 +24,7 @@ export default function StaffDashboardBottom(props) {
       </Spinner>
     );
   }
+
   const filteredArticles = Object.values(Articles).filter((article) => {
     if (
       article.JournalistAcc == true &&
@@ -47,17 +48,14 @@ export default function StaffDashboardBottom(props) {
     }
     return articleWork;
   }
-  console.log("Filtered Art: ", filteredArticles);
   const workSize = workSizeCalculation();
-  console.log("worksize: ", workSize);
 
-  console.log("Return Statement: ", filteredArticles);
   function employeesSelector() {
     var employeeSelection = [];
-    for (let i = 0; i < filteredArticles.length; i++) {
-      employeeSelection.push(filteredArticles[i].Journalist);
-      employeeSelection.push(filteredArticles[i].Photographer);
-      employeeSelection.push(filteredArticles[i].Assistant);
+    for (let i = 0; i < Articles.length; i++) {
+      employeeSelection.push(Articles[i].Journalist);
+      employeeSelection.push(Articles[i].Photographer);
+      employeeSelection.push(Articles[i].Assistant);
     }
     return employeeSelection;
   }
@@ -69,9 +67,6 @@ export default function StaffDashboardBottom(props) {
 
   const uniqueEmployees = employees.filter(onlyUnique);
   const employeeTime = uniqueEmployees.length * 7.5;
-  console.log("Unique Employees: ", uniqueEmployees);
-  console.log("Employee Time: ", employeeTime);
-
   const occupationRate = (workSize / employeeTime) * 100;
   const occupationRateRounded = Math.round(occupationRate * 10) / 10; // Rounding to one decimal
 

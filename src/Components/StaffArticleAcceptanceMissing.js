@@ -43,7 +43,7 @@ export default function StaffArticleAcceptanceMissing(props) {
   });
   return (
     <table class="table-staff table-hover">
-      <tbody>
+      <tbody className="tbody--staff">
         <tr>
           {Object.keys(Articles[0])
             .slice(0, 3)
@@ -53,7 +53,7 @@ export default function StaffArticleAcceptanceMissing(props) {
         </tr>
         {filteredArticles.map((article) => (
           <tr>
-            <td as={Link} to="/Add_Article">
+            <td>
               <Button
                 variant="light"
                 as={Link}

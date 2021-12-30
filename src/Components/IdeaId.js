@@ -25,8 +25,11 @@ export default function IdeaID(props) {
     setNewArticle({
       title: idea.Title,
       comment: idea.Comment,
+      ideaId: idea.IdeaId,
     });
   }
+  console.log("Idea: ", idea);
+  console.log("New Article: ", newArticle);
   useEffect(getIdeaFromDb, []);
 
   async function handleUpload(e) {
@@ -39,6 +42,7 @@ export default function IdeaID(props) {
     if (articles.length > 0) {
       uploadArticle(articles);
       props.submit(submitter);
+      console.log("Articles: ", articles);
     }
   }, [articles]);
 

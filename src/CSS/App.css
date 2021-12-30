@@ -306,6 +306,13 @@
   margin-left: 24px;
   top: 18%;
 }
+.table-staff1 {
+  width: 100%;
+  margin-top: 48px;
+  margin-right: 12px;
+  margin-left: 24px;
+  top: 40%;
+}
 
 .messages-head {
   width: 10%;
@@ -348,6 +355,12 @@ tbody {
 }
 .tbody--ideas {
   height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.tbody--staff {
+  height: 120px;
   overflow-y: auto;
   overflow-x: hidden;
 }

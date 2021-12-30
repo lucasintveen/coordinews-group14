@@ -36,10 +36,10 @@ export default function StaffOverview() {
         <form className="form-table">
           <StaffArt Today={dateToday} />
         </form>
-        <form className="form-table2">
+        <form className="form-table3">
           <StaffArtMissing Today={dateToday} />
         </form>
-        <form className="form-split">
+        <form className="form-split1">
           <div className="form-inputs">
             <div className="form-inputs1">
               <JournalistSplit Today={dateToday} />

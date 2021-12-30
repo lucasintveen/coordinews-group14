@@ -46,7 +46,9 @@ export default function StaffAssistantSplit(props) {
   function employeesSelector() {
     var employeeSelection = [];
     for (let i = 0; i < filteredArticles.length; i++) {
-      employeeSelection.push(filteredArticles[i].Assistant);
+      if (filteredArticles[i].Assistant != undefined) {
+        employeeSelection.push(filteredArticles[i].Assistant);
+      }
     }
     return employeeSelection;
   }
@@ -89,14 +91,16 @@ export default function StaffAssistantSplit(props) {
           </tr>
         </thead>
         <tbody className="tbody-messages">
-          {Array.from({ length: uniqueEmployees.length }).map((_, index) => (
-            <tr>
-              <button variant="light" className="staff--btn">
-                {uniqueEmployees[index]} : {workSizePerEmp[index]} /{" "}
-                {workTimeDay}
-              </button>
-            </tr>
-          ))}
+          {Array.from({ length: uniqueEmployees.slice(0, 3).length }).map(
+            (_, index) => (
+              <tr>
+                <button variant="light" className="staff--btn">
+                  {uniqueEmployees[index]} : {workSizePerEmp[index]} /{" "}
+                  {workTimeDay}
+                </button>
+              </tr>
+            )
+          )}
         </tbody>
       </table>
     </>

@@ -37,6 +37,8 @@ export default function ArticleID(props) {
     );
   }
 
+  console.log("Article Test", article);
+
   return (
     <div className="form-content-right">
       <form className="form">
