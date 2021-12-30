@@ -35,31 +35,46 @@ export default function StaffArticleAcceptanceMissing(props) {
     console.log("/articles/articleDetails/" + article.Details)
   );
   return (
-    <table class="table-staff1 table-hover">
-      <tbody className="tbody--staff">
-        <tr>
-          {Object.keys(Articles[0])
-            .slice(0, 3)
-            .map((articleHeader) => (
-              <th>{articleHeader} </th>
-            ))}
-        </tr>
-        {filteredArticles.map((article) => (
+    <>
+      {/* <table class="table-staff table-hover">
+        <tbody className="tbody-messages">
+          {filteredArticles.slice(0, 2).map((article) => (
+            <tr>
+              <a href={"/#/articles/articleDetails/" + article.Details}>
+                <button className="staff--btn">
+                  {"\uD83D\uDD0D"} {article.Title}
+                </button>
+              </a>
+            </tr>
+          ))}
+        </tbody>
+      </table> */}
+      <table class="table-staff1 table-hover">
+        <tbody className="tbody--staff">
           <tr>
-            <td>
-              <Button
-                variant="light"
-                as={Link}
-                to={"/articles/articleDetails/" + article.Details}
-              >
-                See more{"\uD83D\uDD0D"}
-              </Button>
-            </td>
-            <td>{article.Title}</td>
-            <td>{article.Section}</td>
+            {Object.keys(Articles[0])
+              .slice(0, 3)
+              .map((articleHeader) => (
+                <th>{articleHeader} </th>
+              ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+          {filteredArticles.map((article) => (
+            <tr>
+              <td>
+                <Button
+                  variant="light"
+                  as={Link}
+                  to={"/articles/articleDetails/" + article.Details}
+                >
+                  See more{"\uD83D\uDD0D"}
+                </Button>
+              </td>
+              <td>{article.Title}</td>
+              <td>{article.Section}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 }

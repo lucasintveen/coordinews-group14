@@ -29,31 +29,33 @@ export default function StaffFinishedArticles(props) {
   });
 
   return (
-    <table class="table-staff table-hover">
-      <tbody className="tbody--staff">
-        <tr>
-          {Object.keys(Articles[0])
-            .slice(0, 3)
-            .map((articleHeader) => (
-              <th>{articleHeader} </th>
-            ))}
-        </tr>
-        {filteredArticles.map((article) => (
+    <>
+      <table class="table-staff table-hover">
+        <tbody className="tbody--staff">
           <tr>
-            <td>
-              <Button
-                variant="light"
-                as={Link}
-                to={"/articles/articleDetails/" + article.Details}
-              >
-                See more{"\uD83D\uDD0D"}
-              </Button>
-            </td>
-            <td>{article.Title}</td>
-            <td>{article.Section}</td>
+            {Object.keys(Articles[0])
+              .slice(0, 3)
+              .map((articleHeader) => (
+                <th>{articleHeader} </th>
+              ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+          {filteredArticles.map((article) => (
+            <tr>
+              <td>
+                <Button
+                  variant="light"
+                  as={Link}
+                  to={"/articles/articleDetails/" + article.Details}
+                >
+                  See more{"\uD83D\uDD0D"}
+                </Button>
+              </td>
+              <td>{article.Title}</td>
+              <td>{article.Section}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 }

@@ -8,7 +8,7 @@ export default function IdeaOverview() {
       <div className="form-container1">
         <br></br>
         <IdeaTable />
-        <a href="/#/ideaAddition">
+        <a href="/#/addIdea">
           <button type="submit" className="form--button--idea">
             Add Idea
           </button>

@@ -23,26 +23,19 @@ export default function StaffOverview() {
         Finished Article for the Current Edition:
       </span>
       <span className="staff--heading7">Journalist Acceptance Missing:</span>
+      <span className="staff--heading7">Journalist Acceptance Missing:</span>
 
       <div className="form-content-left-editor">
-        {
-          <>
-            <DashboardLeft1 Today={dateToday} />
-            <DashboardLeft2 Today={dateToday} />
-          </>
-        }
+        <>
+          <DashboardLeft1 Today={dateToday} />
+          <DashboardLeft2 Today={dateToday} />
+        </>
       </div>
       <div className="form-content-right-staff">
-        <form>
-          {/* className="form-table" */}
-          <StaffArt Today={dateToday} />
-        </form>
-        <form>
-          {/* className="form-table3" */}
-          <StaffArtMissing Today={dateToday} />
-        </form>
         <form className="form-split1">
-          <div className="form-inputs">
+          <StaffArt Today={dateToday} />
+          <StaffArtMissing Today={dateToday} />
+          <div className="form-inputs10">
             <div className="form-inputs1">
               <JournalistSplit Today={dateToday} />
               <PhotographerSplit Today={dateToday} />

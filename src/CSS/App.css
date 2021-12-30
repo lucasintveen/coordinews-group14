@@ -115,6 +115,25 @@
   color: #8d519a;
 }
 
+.form--button--table {
+  border-radius: 10px;
+  background: #4a1256;
+  padding: 4px 14px;
+  color: #f5f4f5;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.form--button--table:hover {
+  transition: all 0.2s ease-in-out;
+  background: #4a1256;
+  background: #f5f4f5;
+  color: #8d519a;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -301,11 +320,11 @@
 
 .table-staff {
   width: 100%;
-  margin-top: 108px;
+  margin-bottom: 48px;
 }
 .table-staff1 {
   width: 100%;
-  margin-top: 48px;
+  margin-bottom: 34px;
 }
 
 .messages-head {
@@ -326,6 +345,10 @@
 
 .th-messages {
   width: 30.5%;
+  text-align: center;
+}
+.th-messages1 {
+  width: 100%;
   text-align: center;
 }
 .th-staff {
