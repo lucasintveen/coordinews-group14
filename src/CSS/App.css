@@ -321,10 +321,12 @@
 .table-staff {
   width: 100%;
   margin-bottom: 48px;
+  text-align: center;
 }
 .table-staff1 {
   width: 100%;
   margin-bottom: 34px;
+  text-align: center;
 }
 
 .messages-head {
@@ -378,6 +380,12 @@ tbody {
 
 .tbody--staff {
   height: 120px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.tbody--home {
+  height: 360px;
   overflow-y: auto;
   overflow-x: hidden;
 }

@@ -8,6 +8,7 @@ import IdeaAddition from "./IdeaAddition";
 export default function IdeaAdditionForm() {
   const [childData, setChildData] = useState("");
   const submitter = childData;
+  const typeIdea = true;
 
   return (
     <>
@@ -18,7 +19,7 @@ export default function IdeaAdditionForm() {
         {!submitter ? (
           <IdeaAddition passChildData={setChildData} />
         ) : (
-          <FormSuccess />
+          <FormSuccess submit={setChildData} formTypeIdea={typeIdea} />
         )}
       </div>
     </>

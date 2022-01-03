@@ -6,6 +6,12 @@ export default function FormSuccess(props) {
   function submit() {
     props.submit(false);
   }
+  console.log("Props", props);
+  console.log("Type:", props.formTypeIdea);
+  var idea;
+  if (props.state === "idea") {
+    idea = true;
+  }
 
   return (
     <>
@@ -15,9 +21,9 @@ export default function FormSuccess(props) {
             <FaLongArrowAltLeft onClick={submit} />
           </span>
         </a>
-        {!props.formTypeArticle ? (
+        {idea ? (
           <h1 className="form-success">
-            You have successfully deleted the article.
+            You have successfully added the idea.
           </h1>
         ) : (
           <h1 className="form-success">TEST 123</h1>

@@ -28,23 +28,32 @@ export default function HomeTodaysArticles(props) {
 
   //filtering relevant and already accepted articles for the specific user logged in
   const filteredArticles = Object.values(Articles).filter((article) => {
+    console.log("Test 0:", Parse.User.current().attributes);
+    console.log(
+      "Test 1:",
+      Parse.User.current().attributes.role === "Journalist"
+    );
+    console.log("Test 2:", article.JournalistAcc === true);
+    console.log("Test 3: ", article.Completion === "No");
     if (
-      Parse.User.current().attributes.Role === "Journalist" &&
-      article.JournalistAcceptance == true
+      Parse.User.current().attributes.role === "Journalist" &&
+      article.JournalistAcc === true &&
+      article.Completion === "No"
     ) {
+      console.log("Test fulfilled");
       return article.Journalist.includes(
         Parse.User.current().attributes.username
       );
     } else if (
-      Parse.User.current().attributes.Role === "Photographer" &&
-      article.PhotographerAcceptance == true
+      Parse.User.current().attributes.role === "Photographer" &&
+      article.PhotographerAcc === true
     ) {
       return article.Photographer.includes(
         Parse.User.current().attributes.username
       );
     } else if (
-      Parse.User.current().attributes.Role === "Assistant" &&
-      article.AssistantAcceptance == true
+      Parse.User.current().attributes.role === "Assistant" &&
+      article.AssistantAcc === true
     ) {
       return article.Assistant.includes(
         Parse.User.current().attributes.username
@@ -55,37 +64,39 @@ export default function HomeTodaysArticles(props) {
       );
     }
   });
+  console.log("Article", Articles);
+  console.log("filtered", filteredArticles);
+  console.log("User: ", Parse.User.current().attributes.role);
 
   return (
-    <table class="table-messages table-hover">
-      <thead>
-        <br></br>
-        <tr>
-          {Object.keys(Articles[0])
-            .slice(0, 4)
-            .map((articleHeader) => (
-              <th key={articleHeader} className="th-messages">
-                {articleHeader}{" "}
-              </th>
-            ))}
-        </tr>
-      </thead>
-      <tbody className="tbody-messages">
-        {filteredArticles.map((article) => (
+    <>
+      <table class="table-staff1 table-hover">
+        <tbody className="tbody--home">
           <tr>
-            <Button
-              variant="light"
-              as={Link}
-              to={"/articles/articleDetails/" + article.Details}
-            >
-              See more{"\uD83D\uDD0D"}
-            </Button>
-            <td className="td-messages">{article.Title}</td>
-            <td className="td-messages">{article.Section}</td>
-            <td className="td-messages">{article.State}</td>
+            {Object.keys(Articles[0])
+              .slice(0, 4)
+              .map((articleHeader) => (
+                <th key={articleHeader} className="th-messages">
+                  {articleHeader}{" "}
+                </th>
+              ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+          {filteredArticles.map((article) => (
+            <tr>
+              <Button
+                variant="light"
+                as={Link}
+                to={"/articles/articleDetails/" + article.Details}
+              >
+                See more{"\uD83D\uDD0D"}
+              </Button>
+              <td className="td-messages">{article.Title}</td>
+              <td className="td-messages">{article.Section}</td>
+              <td className="td-messages">{article.State}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 }

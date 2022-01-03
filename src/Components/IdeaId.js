@@ -1,9 +1,8 @@
-import { getIdea } from "../DatabaseInteraction/db";
+import { getIdea, uploadArticle } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { useParams } from "react-router-dom";
 import "../CSS/App.css";
-import { uploadArticle } from "../DatabaseInteraction/db";
 import sendEmail from "./IdeaAssignmentEmail";
 import SelectionJournalist from "../Selection/SelectionJournalist";
 import SelectionPhotographer from "../Selection/SelectionPhotographer";

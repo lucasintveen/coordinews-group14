@@ -36,19 +36,6 @@ export default function StaffArticleAcceptanceMissing(props) {
   );
   return (
     <>
-      {/* <table class="table-staff table-hover">
-        <tbody className="tbody-messages">
-          {filteredArticles.slice(0, 2).map((article) => (
-            <tr>
-              <a href={"/#/articles/articleDetails/" + article.Details}>
-                <button className="staff--btn">
-                  {"\uD83D\uDD0D"} {article.Title}
-                </button>
-              </a>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
       <table class="table-staff1 table-hover">
         <tbody className="tbody--staff">
           <tr>

@@ -97,9 +97,11 @@ export default function Articletable() {
               Select the Journalist
             </option>
 
-            {Array.from({ length: distinctJournalist.length }).map((index) => (
-              <option>{distinctJournalist[index]}</option>
-            ))}
+            {Array.from({ length: distinctJournalist.length }).map(
+              (_, index) => (
+                <option>{distinctJournalist[index]}</option>
+              )
+            )}
             <option></option>
           </select>
 

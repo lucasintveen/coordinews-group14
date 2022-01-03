@@ -6,6 +6,7 @@ import SelectionSection from "../Selection/SelectionSection";
 import SelectionArticleConversion from "../Selection/SelectionArticleConversion";
 import SelectionVisibility from "../Selection/SelectionVisibility";
 import "../CSS/App.css";
+import SelectionPotential from "../Selection/SelectionPotential";
 
 export default function IdeaAddition(props) {
   const [idea, setIdea] = useState([]);
@@ -59,15 +60,31 @@ export default function IdeaAddition(props) {
         </div>
 
         <div className="form-inputs">
-          <label className="form-label">Source</label>
-          <select
-            className="form-input"
-            name="source"
-            value={newIdea.source}
-            onChange={handleChange}
-          >
-            <SelectionJournalist />
-          </select>
+          <div className="form-inputs1">
+            <div className="form-inputs">
+              <label className="form-label">Sourcing Person</label>
+              <select
+                className="form-input"
+                name="source"
+                value={newIdea.source}
+                onChange={handleChange}
+              >
+                <SelectionJournalist />
+              </select>
+            </div>
+
+            <div className="form-inputs">
+              <label className="form-label">Source</label>
+              <input
+                className="form-input"
+                type="text"
+                placeholder="Enter some valuable comments"
+                name="sourcecomment"
+                value={newIdea.sourcecomment}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
         </div>
 
         <div className="form-inputs">
@@ -83,16 +100,33 @@ export default function IdeaAddition(props) {
         </div>
 
         <div className="form-inputs">
-          <label className="form-label">Visibility</label>
-          <select
-            className="form-input"
-            name="visible"
-            value={newIdea.visible}
-            onChange={handleChange}
-          >
-            <SelectionVisibility />{" "}
-            {/* Information is not used in the current implementation*/}
-          </select>
+          <div className="form-inputs1">
+            <div className="form-inputs">
+              <label className="form-label">Visibility</label>
+              <select
+                className="form-input"
+                name="visible"
+                value={newIdea.visible}
+                onChange={handleChange}
+              >
+                <SelectionVisibility />{" "}
+                {/* Information is not used in the current implementation*/}
+              </select>
+            </div>
+
+            <div className="form-inputs">
+              <label className="form-label">Potential</label>
+              <select
+                className="form-input"
+                name="potential"
+                value={newIdea.potential}
+                onChange={handleChange}
+              >
+                <SelectionPotential />{" "}
+                {/* Information is not used in the current implementation*/}
+              </select>
+            </div>
+          </div>
         </div>
 
         <div className="form-inputs">

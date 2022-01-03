@@ -71,10 +71,11 @@ export default function StaffDashboardGauge(props) {
       if (value > array[2] && value <= array[3]) return "#EDE0C0";
       if (value >= array[3]) return "#6EB89E";
     } else if (pointerColor === "twisted") {
-      if (value <= array[0] && value >= array[1]) return "#6EB89E";
-      if (value < array[1] && value >= array[2]) return "#EDE0C0";
-      if (value < array[2] && value >= array[3]) return "#D1817D";
-      if (value <= array[3]) return "#A6506D";
+      // if (value <= array[0]) return "#A6506D";
+      // if (value < array[1] && value >= array[2]) return "#EDE0C0";
+      // // if (value < array[2] && value >= array[3]) return "#D1817D";
+      // if (value <= array[2]) return "#6EB89E";
+      return "#6EB89E";
     }
   };
 

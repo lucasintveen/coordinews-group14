@@ -7,6 +7,7 @@ import JournalistSplit from "../Components/StaffJournalistSplit";
 import PhotographerSplit from "../Components/StaffPhotographerSplit";
 import AssistantSplit from "../Components/StaffAssistantSplit";
 import StaffArtMissing from "../Components/StaffArticleAcceptanceMissing";
+import HomeArt from "../Components/HomeTodaysArticles";
 
 export default function StaffOverview() {
   var today = new Date();

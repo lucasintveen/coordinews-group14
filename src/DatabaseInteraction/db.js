@@ -149,6 +149,54 @@ async function uploadArticle(articles) {
   );
 }
 
+async function editArticle(articles) {
+  console.log("DB Articles:", articles);
+  return await Promise.all(
+    articles.map((article) => {
+      try {
+        const Article = new Parse.Object("Article");
+        Article.set("objectId", article.ArticleId);
+        Article.set("Title", article.Title);
+        Article.set("Section", article.Section);
+        Article.set("Journalist", article.Journalist);
+        Article.set("Photographer", article.Photographer);
+        Article.set("Assistant", article.Assistant);
+        Article.set("State", article.State);
+        Article.set("Size", article.Size);
+        Article.set("Deadline", article.Deadline);
+        Article.set("Comment", article.Comment);
+        Article.set("IdeaId", article.IdeaId);
+
+        return Article.save();
+      } catch (error) {
+        alert(error);
+        return Promise.reject("something went wrong");
+      }
+    })
+  );
+}
+
+async function submitArticle(article) {
+  return await Promise.all(
+    article.map((article) => {
+      try {
+        const Article = new Parse.Object("Article");
+        Article.set("objectId", article.ArticleId);
+        Article.set("Title", article.Title);
+        Article.set("Completion", article.Completion);
+        Article.set("Section", article.Section);
+        Article.set("Journalist", article.Journalist);
+        Article.set("Photographer", article.Photographer);
+        Article.set("Deadline", article.Deadline);
+        return Article.save();
+      } catch (error) {
+        alert(error);
+        return Promise.reject("something went wrong");
+      }
+    })
+  );
+}
+
 async function uploadIdea(ideas) {
   return await Promise.all(
     ideas.map((idea) => {
@@ -163,6 +211,7 @@ async function uploadIdea(ideas) {
         newIdea.set("potential", idea.potential);
         newIdea.set("article", idea.article);
         newIdea.set("visible", idea.visible);
+        newIdea.set("sourcecomment", idea.sourcecomment);
 
         return newIdea.save();
       } catch (error) {
@@ -207,4 +256,6 @@ export {
   uploadIdea,
   getArticleExport,
   getIdeasRefactored,
+  editArticle,
+  submitArticle,
 };

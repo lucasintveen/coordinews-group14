@@ -394,6 +394,32 @@
   align-items: center;
 }
 
+.form-split4 {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-split5 {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .form-staff1 {
   position: absolute;
   top: 18%;
@@ -609,11 +635,70 @@
   transition: all 0.2s ease-in-out;
 }
 
+.art-submit-btn {
+  width: 80%;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background: #538272;
+  outline: none;
+  border: none;
+  color: #f5f4f5;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.art-submit-btn:hover {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background: #254d3f;
+  color: #f5f4f5;
+}
+
+.art-delete-btn {
+  width: 80%;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background: #d1817d;
+  outline: none;
+  border: none;
+  color: #f5f4f5;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.art-delete-btn:hover {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background: #bd5651;
+  color: #f5f4f5;
+}
+
+.art-edit-btn {
+  width: 80%;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background: #f5f4f5;
+  outline: none;
+  border: none;
+  color: #4a1256;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.art-edit-btn:hover {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background: #4a1256;
+  color: #f5f4f5;
+}
+
 .form-input-btn:hover {
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   background: #4a1256;
-  background: #f5f4f5;
   color: #8d519a;
 }
 

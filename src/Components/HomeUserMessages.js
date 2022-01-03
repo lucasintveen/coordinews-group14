@@ -27,7 +27,7 @@ export default function HomeUserMessages(props) {
   const filteredArticles = Object.values(Articles).filter((article) => {
     if (
       Parse.User.current().attributes.role === "Journalist" &&
-      article.JournalistAcceptance == false
+      article.JournalistAcc == false
     ) {
       console.log(
         "break1: ",
@@ -56,6 +56,11 @@ export default function HomeUserMessages(props) {
       );
     }
   });
+  console.log("Filtered: ", filteredArticles);
+  console.log("Error: ", filteredArticles[0].Title);
+  Array.from({ length: filteredArticles.length }).map((dummy, index) =>
+    console.log(index)
+  );
 
   async function articleAcception(i) {
     const Article = new Parse.Object("Article");
@@ -68,11 +73,15 @@ export default function HomeUserMessages(props) {
       articleset.set("AssiAcc", true);
     }
   }
+  var filteredLength = filteredArticles.length;
+  if (filteredLength > 3) {
+    filteredLength = 3;
+  }
 
   return (
-    <form className="form-mes">
+    <>
       {/*Using this form of mapping over the object as I am using the index in the onClick functionality to accept the task */}
-      {Array.from({ length: filteredArticles.length }).map((index) => (
+      {Array.from({ length: filteredLength }).map((dummy, index) => (
         <>
           <div className="form-inputs">
             <div className="form-inputs1">
@@ -116,6 +125,6 @@ export default function HomeUserMessages(props) {
           </div>
         </>
       ))}
-    </form>
+    </>
   );
 }
