@@ -1,20 +1,32 @@
-import { getArticleExport } from "../DatabaseInteraction/db";
+import {
+  getArticleExport,
+  getUserInformation,
+} from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import "../CSS/App.css";
 import "../CSS/Form.css";
 
 export default function StaffPhotographerSplit(props) {
-  const [Articles, setArticles] = useState();
+  const [articles, setArticles] = useState();
+  const [users, setUsers] = useState();
   const workTimeDay = 7.5;
+  var filteredUsersID = [];
   async function getArticlesFromDb() {
     const Articles = await getArticleExport();
     setArticles(Articles.articlesMapped);
   }
+  async function getUsersFromDb() {
+    const Users = await getUserInformation();
+    console.log("Users: ", Users);
+    setUsers(Users.usersMapped);
+  }
+
   useEffect(() => {
     getArticlesFromDb();
+    getUsersFromDb();
   }, []);
-  if (!Articles) {
+  if (!articles || !users) {
     return (
       <Spinner animation="border" role="status">
         <span className="visually-hidden">Loading...</span>
@@ -22,7 +34,7 @@ export default function StaffPhotographerSplit(props) {
     );
   }
 
-  const filteredArticles = Object.values(Articles).filter((article) => {
+  const filteredArticles = Object.values(articles).filter((article) => {
     if (article.PhotographerAcc === true) {
       return article;
     }
@@ -64,6 +76,19 @@ export default function StaffPhotographerSplit(props) {
   }
   const workSizePerEmp = workSizeCalculation();
 
+  console.log("Unique Employees:", uniqueEmployees);
+  function filterUsers() {
+    for (let i = 0; i < uniqueEmployees.length; i++) {
+      for (let j = 0; j < users.length; j++) {
+        if (uniqueEmployees[i] === users[j].Title) {
+          filteredUsersID.push(users[j].Details);
+        }
+      }
+    }
+    return filteredUsersID;
+  }
+  console.log("User filter:", filterUsers());
+
   return (
     <>
       <table class="table-staff table-hover">
@@ -76,10 +101,12 @@ export default function StaffPhotographerSplit(props) {
         <tbody className="tbody-messages">
           {Array.from({ length: uniqueEmployees.length }).map((_, index) => (
             <tr>
-              <button variant="light" className="staff--btn">
-                {uniqueEmployees[index]} : {workSizePerEmp[index]} /{" "}
-                {workTimeDay}
-              </button>
+              <a href={"/#/staff/staffDetails/" + filteredUsersID[index]}>
+                <button variant="light" className="staff--btn">
+                  {uniqueEmployees[index]} : {workSizePerEmp[index]} /{" "}
+                  {workTimeDay}
+                </button>
+              </a>
             </tr>
           ))}
         </tbody>

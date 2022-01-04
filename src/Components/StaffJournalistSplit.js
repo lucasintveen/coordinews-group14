@@ -14,6 +14,7 @@ export default function StaffJournalistSplit(props) {
   const [articles, setArticles] = useState();
   const [users, setUsers] = useState();
   const workTimeDay = 7.5;
+  var filteredUsersID = [];
   async function getArticlesFromDb() {
     const Articles = await getArticleExport();
     setArticles(Articles.articlesMapped);
@@ -36,7 +37,6 @@ export default function StaffJournalistSplit(props) {
     );
   }
 
-  // console.log("Staff:", users[10].Details);
   const filteredArticles = Object.values(articles).filter((article) => {
     if (article.JournalistAcc == true) {
       return article;
@@ -56,6 +56,7 @@ export default function StaffJournalistSplit(props) {
   }
   const employees = employeesSelector();
   const uniqueEmployees = employees.filter(onlyUnique);
+  console.log("Unique Employees:", uniqueEmployees);
 
   function workSizeCalculation() {
     var articleWork = 0;
@@ -79,6 +80,17 @@ export default function StaffJournalistSplit(props) {
   }
   const workSizePerEmp = workSizeCalculation();
 
+  function filterUsers() {
+    for (let i = 0; i < uniqueEmployees.length; i++) {
+      for (let j = 0; j < users.length; j++) {
+        if (uniqueEmployees[i] === users[j].Title) {
+          filteredUsersID.push(users[j].Details);
+        }
+      }
+    }
+    return filteredUsersID;
+  }
+  console.log("User filter:", filterUsers());
   return (
     <>
       <table class="table-staff table-hover">
@@ -92,20 +104,12 @@ export default function StaffJournalistSplit(props) {
           {Array.from({ length: uniqueEmployees.slice(0, 3).length }).map(
             (_, index) => (
               <tr>
-                <a href="/#/addIdea">
+                <a href={"/#/staff/staffDetails/" + filteredUsersID[index]}>
                   <button className="staff--btn">
                     {uniqueEmployees[index]} : {workSizePerEmp[index]} /{" "}
                     {workTimeDay}
                   </button>
                 </a>
-                <Button
-                  variant="light"
-                  as={Link}
-                  to={"/staff/staffDetails/" + users[index].Details}
-                >
-                  {uniqueEmployees[index]} : {workSizePerEmp[index]} /{" "}
-                  {workTimeDay}
-                </Button>
               </tr>
             )
           )}

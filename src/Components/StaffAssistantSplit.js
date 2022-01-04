@@ -1,35 +1,32 @@
-import { getArticles } from "../DatabaseInteraction/db";
+import {
+  getArticleExport,
+  getUserInformation,
+} from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import "../CSS/App.css";
 import "../CSS/Form.css";
 
 export default function StaffAssistantSplit(props) {
-  const [Articles, setArticles] = useState();
+  const [articles, setArticles] = useState();
+  const [users, setUsers] = useState();
   const workTimeDay = 7.5;
+  var filteredUsersID = [];
+  async function getArticlesFromDb() {
+    const Articles = await getArticleExport();
+    setArticles(Articles.articlesMapped);
+  }
+  async function getUsersFromDb() {
+    const Users = await getUserInformation();
+    console.log("Users: ", Users);
+    setUsers(Users.usersMapped);
+  }
+
   useEffect(() => {
-    getArticles().then((Articles) => {
-      const articlesMapped = Articles.map((wrapper) => {
-        const mappedArticle = {
-          Details: wrapper.id,
-          Finished: wrapper.attributes.Finished,
-          Deadline: wrapper.attributes.Deadline,
-          Size: wrapper.attributes.Size,
-          Journalist: wrapper.attributes.Journalist,
-          Photographer: wrapper.attributes.Photographer,
-          Assistant: wrapper.attributes.Assistant,
-          JournalistAcc: wrapper.attributes.JournalistAcc,
-          PhotographerAcc: wrapper.attributes.PhotoAcc,
-          AssistantAcc: wrapper.attributes.AssiAcc,
-        };
-
-        return mappedArticle;
-      });
-
-      setArticles(articlesMapped);
-    });
+    getArticlesFromDb();
+    getUsersFromDb();
   }, []);
-  if (!Articles) {
+  if (!articles || !users) {
     return (
       <Spinner animation="border" role="status">
         <span className="visually-hidden">Loading...</span>
@@ -37,7 +34,7 @@ export default function StaffAssistantSplit(props) {
     );
   }
 
-  const filteredArticles = Object.values(Articles).filter((article) => {
+  const filteredArticles = Object.values(articles).filter((article) => {
     if (article.AssistantAcc == true) {
       return article;
     }
@@ -81,6 +78,18 @@ export default function StaffAssistantSplit(props) {
   }
   const workSizePerEmp = workSizeCalculation();
 
+  function filterUsers() {
+    for (let i = 0; i < uniqueEmployees.length; i++) {
+      for (let j = 0; j < users.length; j++) {
+        if (uniqueEmployees[i] === users[j].Title) {
+          filteredUsersID.push(users[j].Details);
+        }
+      }
+    }
+    return filteredUsersID;
+  }
+  console.log("User filter:", filterUsers());
+
   return (
     <>
       <table class="table-staff table-hover">
@@ -94,10 +103,12 @@ export default function StaffAssistantSplit(props) {
           {Array.from({ length: uniqueEmployees.slice(0, 3).length }).map(
             (_, index) => (
               <tr>
-                <button variant="light" className="staff--btn">
-                  {uniqueEmployees[index]} : {workSizePerEmp[index]} /{" "}
-                  {workTimeDay}
-                </button>
+                <a href={"/#/staff/staffDetails/" + filteredUsersID[index]}>
+                  <button variant="light" className="staff--btn">
+                    {uniqueEmployees[index]} : {workSizePerEmp[index]} /{" "}
+                    {workTimeDay}
+                  </button>
+                </a>
               </tr>
             )
           )}
