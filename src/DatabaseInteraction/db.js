@@ -143,6 +143,7 @@ async function getStaff(staffId) {
       user.createdAt.toString().substring(11, 15),
     Title: user.attributes.username,
     Role: user.attributes.role,
+    Image: user.attributes.Image,
   };
 }
 

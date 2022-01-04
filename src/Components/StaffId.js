@@ -15,14 +15,16 @@ import StaffIdTable from "./StaffIdTable";
 export default function StaffID(props) {
   const [staff, setStaff] = useState();
   const { staffId } = useParams();
-  console.log("Initial Staff Id:", staffId);
+  const alternativeImage =
+    "https://images.pexels.com/photos/825947/pexels-photo-825947.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+
   async function getStaffFromDb() {
     const staff = await getStaff(staffId);
     setStaff(staff);
     props.passChildData([staffId]);
   }
   useEffect(getStaffFromDb, []);
-  console.log("Staff", staff);
+  console.log("Staff:", staff);
 
   if (!staff) {
     return (
@@ -35,7 +37,7 @@ export default function StaffID(props) {
   return (
     <>
       <div className="form-content-left">
-        <img className="form-img" src={News} alt="news icon" />
+        <img className="form-img-staff" src={staff.Image} alt="news icon" />
       </div>
       <div className="form-content-right">
         <form className="form1">

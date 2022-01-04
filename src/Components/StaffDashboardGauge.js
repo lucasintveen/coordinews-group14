@@ -64,20 +64,21 @@ export default function StaffDashboardGauge(props) {
     .padAngle(0)
     .cornerRadius(2)();
 
-  const getBlobColor = (value) => {
+  const colorPointer = (value) => {
     if (pointerColor === "normal") {
       if (value >= array[0] && value <= array[1]) return "#A6506D";
       if (value > array[1] && value <= array[2]) return "#D1817D";
       if (value > array[2] && value <= array[3]) return "#EDE0C0";
       if (value >= array[3]) return "#6EB89E";
     } else if (pointerColor === "twisted") {
-      // if (value <= array[0]) return "#A6506D";
-      // if (value < array[1] && value >= array[2]) return "#EDE0C0";
-      // // if (value < array[2] && value >= array[3]) return "#D1817D";
-      // if (value <= array[2]) return "#6EB89E";
-      return "#6EB89E";
+      if (value >= array[0]) return "#A6506D";
+      if (value < array[0] && value >= array[1]) return "#D1817D";
+      if (value < array[1] && value >= array[2]) return "#EDE0C0";
+      if (value <= array[2]) return "#6EB89E";
     }
   };
+  // array = [75, 50, 25, 0];
+  console.log("Color:", colorPointer(value));
 
   return (
     <div className="gauge-position">
@@ -97,7 +98,7 @@ export default function StaffDashboardGauge(props) {
             r="0.03"
             strokeWidth="0.01"
             fill="white"
-            stroke={getBlobColor(value)}
+            stroke={colorPointer(value)}
           />
         </svg>
 
