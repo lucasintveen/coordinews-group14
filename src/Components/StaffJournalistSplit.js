@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import "../CSS/App.css";
 import "../CSS/Form.css";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 // Staff Components are handled seperately, as the calculations differ significantly
 export default function StaffJournalistSplit(props) {
@@ -77,10 +79,16 @@ export default function StaffJournalistSplit(props) {
         <tbody className="tbody-messages">
           {Array.from({ length: uniqueEmployees.length }).map((_, index) => (
             <tr>
-              <button className="staff--btn">
+              <a href="/#/addIdea">
+                <button className="staff--btn">
+                  {uniqueEmployees[index]} : {workSizePerEmp[index]} /{" "}
+                  {workTimeDay}
+                </button>
+              </a>
+              <Button variant="light" as={Link} to={"/articles"}>
                 {uniqueEmployees[index]} : {workSizePerEmp[index]} /{" "}
                 {workTimeDay}
-              </button>
+              </Button>
             </tr>
           ))}
         </tbody>

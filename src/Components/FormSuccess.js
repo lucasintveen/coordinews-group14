@@ -11,6 +11,8 @@ export default function FormSuccess(props) {
   var idea;
   if (props.state === "idea") {
     idea = true;
+  } else if (props.state === "article") {
+    idea = false;
   }
 
   return (
@@ -26,7 +28,9 @@ export default function FormSuccess(props) {
             You have successfully added the idea.
           </h1>
         ) : (
-          <h1 className="form-success">TEST 123</h1>
+          <h1 className="form-success">
+            You have successfully deleted the article.
+          </h1>
         )}
       </div>
     </>

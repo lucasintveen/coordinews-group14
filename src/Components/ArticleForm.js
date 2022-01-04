@@ -13,6 +13,7 @@ export default function ArticleForm() {
   const submission = true;
   const [childData, setChildData] = useState("");
   const passedArticleId = childData[0];
+  const article = "article";
 
   return (
     <>
@@ -36,7 +37,7 @@ export default function ArticleForm() {
           />
         ) : submitter ? (
           <>
-            <FormSuccess formType={formTypeArticle} isDeleter={setIsDeleter} />
+            <FormSuccess formType={formTypeArticle} state={article} />
             {/* <ArticleId submission={submission} /> */}
           </>
         ) : (
