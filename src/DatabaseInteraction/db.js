@@ -47,6 +47,26 @@ async function getArticleExport() {
   };
 }
 
+async function getUserInformation() {
+  const User = Parse.Object.extend("User");
+  const queryUser = new Parse.Query(User);
+  const allUsers = await queryUser.findAll();
+  const usersMapped = allUsers.map((user) => {
+    const mappedUser = {
+      Details: user.id,
+      Title: user.attributes.username,
+      Role: user.attributes.role,
+    };
+    return mappedUser;
+  });
+
+  console.log("Mapped Users Database: ", usersMapped);
+
+  return {
+    usersMapped,
+  };
+}
+
 async function getIdeas() {
   const Idea = Parse.Object.extend("Idea");
   const queryIdea = new Parse.Query(Idea);
@@ -106,6 +126,23 @@ async function getIdea(ideaId) {
     Source: idea.get("source"),
     Potential: idea.get("potential"),
     Expiration: idea.get("expiration"),
+  };
+}
+
+async function getStaff(staffId) {
+  console.log("Passed Staff Id:", staffId);
+  const query = new Parse.Query("User");
+  console.log("Query Staff: ", query);
+  const user = await query.get(staffId);
+  console.log("User", user);
+  return {
+    Details: user.id,
+    Created:
+      user.createdAt.toString().substring(8, 11) +
+      user.createdAt.toString().substring(4, 8) +
+      user.createdAt.toString().substring(11, 15),
+    Title: user.attributes.username,
+    Role: user.attributes.role,
   };
 }
 
@@ -249,6 +286,7 @@ export {
   getArticle,
   getIdeas,
   getIdea,
+  getStaff,
   getPhotographer,
   getJournalist,
   uploadArticle,
@@ -258,4 +296,5 @@ export {
   getIdeasRefactored,
   editArticle,
   submitArticle,
+  getUserInformation,
 };

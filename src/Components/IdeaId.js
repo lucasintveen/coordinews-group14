@@ -27,8 +27,6 @@ export default function IdeaID(props) {
       ideaId: idea.IdeaId,
     });
   }
-  console.log("Idea: ", idea);
-  console.log("New Article: ", newArticle);
   useEffect(getIdeaFromDb, []);
 
   async function handleUpload(e) {

@@ -13,6 +13,7 @@ import Home from "./Pages/Home";
 import StaffOverview from "./Pages/StaffOverview";
 import FormSuccess from "./Components/FormSuccess";
 import IdeaAdditionForm from "./Components/IdeaAdditionForm";
+import StaffIdForm from "./Components/StaffIdForm";
 
 function App() {
   return (
@@ -34,6 +35,10 @@ function App() {
           <Route
             path="/ideas/ideaDetails/:ideaId"
             element={<IdeaConverter />}
+          />
+          <Route
+            path="/staff/staffDetails/:staffId"
+            element={<StaffIdForm />}
           />
 
           <Route path="landing" element={<LandingPage />} />

@@ -1,4 +1,7 @@
-import { getArticleExport } from "../DatabaseInteraction/db";
+import {
+  getArticleExport,
+  getUserInformation,
+} from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import "../CSS/App.css";
@@ -8,16 +11,24 @@ import Button from "react-bootstrap/Button";
 
 // Staff Components are handled seperately, as the calculations differ significantly
 export default function StaffJournalistSplit(props) {
-  const [Articles, setArticles] = useState();
+  const [articles, setArticles] = useState();
+  const [users, setUsers] = useState();
   const workTimeDay = 7.5;
   async function getArticlesFromDb() {
     const Articles = await getArticleExport();
     setArticles(Articles.articlesMapped);
   }
+  async function getUsersFromDb() {
+    const Users = await getUserInformation();
+    console.log("Users: ", Users);
+    setUsers(Users.usersMapped);
+  }
+
   useEffect(() => {
     getArticlesFromDb();
+    getUsersFromDb();
   }, []);
-  if (!Articles) {
+  if (!articles || !users) {
     return (
       <Spinner animation="border" role="status">
         <span className="visually-hidden">Loading...</span>
@@ -25,7 +36,8 @@ export default function StaffJournalistSplit(props) {
     );
   }
 
-  const filteredArticles = Object.values(Articles).filter((article) => {
+  // console.log("Staff:", users[10].Details);
+  const filteredArticles = Object.values(articles).filter((article) => {
     if (article.JournalistAcc == true) {
       return article;
     }
@@ -77,20 +89,26 @@ export default function StaffJournalistSplit(props) {
           </tr>
         </thead>
         <tbody className="tbody-messages">
-          {Array.from({ length: uniqueEmployees.length }).map((_, index) => (
-            <tr>
-              <a href="/#/addIdea">
-                <button className="staff--btn">
+          {Array.from({ length: uniqueEmployees.slice(0, 3).length }).map(
+            (_, index) => (
+              <tr>
+                <a href="/#/addIdea">
+                  <button className="staff--btn">
+                    {uniqueEmployees[index]} : {workSizePerEmp[index]} /{" "}
+                    {workTimeDay}
+                  </button>
+                </a>
+                <Button
+                  variant="light"
+                  as={Link}
+                  to={"/staff/staffDetails/" + users[index].Details}
+                >
                   {uniqueEmployees[index]} : {workSizePerEmp[index]} /{" "}
                   {workTimeDay}
-                </button>
-              </a>
-              <Button variant="light" as={Link} to={"/articles"}>
-                {uniqueEmployees[index]} : {workSizePerEmp[index]} /{" "}
-                {workTimeDay}
-              </Button>
-            </tr>
-          ))}
+                </Button>
+              </tr>
+            )
+          )}
         </tbody>
       </table>
     </>

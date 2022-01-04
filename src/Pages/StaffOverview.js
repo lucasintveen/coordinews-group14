@@ -1,4 +1,5 @@
 import React from "react";
+import Parse from "parse";
 import "../CSS/Form.css";
 import DashboardLeft1 from "../Components/StaffDashboardTop";
 import DashboardLeft2 from "../Components/StaffDashboardBottom";
