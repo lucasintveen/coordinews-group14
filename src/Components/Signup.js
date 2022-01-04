@@ -13,6 +13,8 @@ export default function SignUp() {
   // both of the following functions work well, and post the user data via the API
   // I decided to use the Parse functionality, as it turned out to be very simple, whenever needing the current user
   async function createAccount() {
+    const [imageFile, setImageFile] = useState();
+    const [isUploading, setIsUploading] = useState(false);
     const user = new Parse.User();
     user.setUsername(username);
     user.setPassword(password);
