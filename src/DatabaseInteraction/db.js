@@ -1,3 +1,4 @@
+import { treemapSquarify } from "d3";
 import Parse from "parse";
 
 async function getUsers() {
@@ -36,6 +37,7 @@ async function getArticleExport() {
       JournalistAcc: article.attributes.JournalistAcc,
       PhotographerAcc: article.attributes.PhotoAcc,
       AssistantAcc: article.attributes.AssiAcc,
+      Decline: article.attributes.Decline,
     };
     return mappedArticle;
   });
@@ -215,9 +217,15 @@ async function editArticle(articles) {
 }
 
 async function submitArticle(article) {
+  console.log("article received:", article);
+  var journalist = true;
+  var photo = true;
+  var assistant = true;
+
   return await Promise.all(
     article.map((article) => {
       try {
+        console.log("Gelaufen");
         const Article = new Parse.Object("Article");
         Article.set("objectId", article.ArticleId);
         Article.set("Title", article.Title);
@@ -225,7 +233,20 @@ async function submitArticle(article) {
         Article.set("Section", article.Section);
         Article.set("Journalist", article.Journalist);
         Article.set("Photographer", article.Photographer);
-        Article.set("Deadline", article.Deadline);
+        Article.set("Deadline", "8");
+        if (article.Decline === false) {
+          if (Parse.User.current().attributes.role === "Journalist") {
+            journalist = true;
+          } else if (Parse.User.current().attributes.role === "Editor") {
+            Article.set("JournalistAcc", journalist);
+            console.log("If Statement", journalist);
+          } else if (Parse.User.current().attributes.role === "Photographer") {
+            Article.set("PhotoAcc", photo);
+          } else if (Parse.User.current().attributes.role === "Assistant") {
+            Article.set("AssiAcc", assistant);
+          }
+        }
+        Article.set("Decline", article.Decline);
         return Article.save();
       } catch (error) {
         alert(error);
@@ -281,6 +302,26 @@ async function uploadDeletion(deletion) {
   );
 }
 
+async function uploadDecline(decline) {
+  console.log("Decline Object: ", decline);
+  return await Promise.all(
+    decline.map((item) => {
+      try {
+        const EditorCommunication = Parse.Object.extend("EditorCommunication");
+        const newDecline = new EditorCommunication();
+        newDecline.set("Type", "Article Decline");
+        newDecline.set("ArticleId", item.ArticleId);
+        console.log("ArticleId", item.ArticleId);
+
+        return newDecline.save();
+      } catch (error) {
+        alert(error);
+        return Promise.reject("something went wrong");
+      }
+    })
+  );
+}
+
 export {
   getUsers,
   getArticles,
@@ -293,6 +334,7 @@ export {
   uploadArticle,
   uploadDeletion,
   uploadIdea,
+  uploadDecline,
   getArticleExport,
   getIdeasRefactored,
   editArticle,

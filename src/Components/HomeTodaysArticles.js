@@ -9,6 +9,18 @@ import "../CSS/Form.css";
 
 export default function HomeTodaysArticles(props) {
   const [Articles, setArticles] = useState();
+  const missingArticles = [
+    {
+      Title: "No Articles",
+      Section: "To",
+      State: "Display",
+    },
+    {
+      Title: "Contact",
+      Section: "the",
+      State: "Editor",
+    },
+  ];
 
   async function getArticlesFromDb() {
     const Articles = await getArticleExport();
@@ -26,21 +38,13 @@ export default function HomeTodaysArticles(props) {
     );
   }
 
-  //filtering relevant and already accepted articles for the specific user logged in
+  // filtering relevant and already accepted articles for the specific user logged in
   const filteredArticles = Object.values(Articles).filter((article) => {
-    console.log("Test 0:", Parse.User.current().attributes);
-    console.log(
-      "Test 1:",
-      Parse.User.current().attributes.role === "Journalist"
-    );
-    console.log("Test 2:", article.JournalistAcc === true);
-    console.log("Test 3: ", article.Completion === "No");
     if (
       Parse.User.current().attributes.role === "Journalist" &&
       article.JournalistAcc === true &&
       article.Completion === "No"
     ) {
-      console.log("Test fulfilled");
       return article.Journalist.includes(
         Parse.User.current().attributes.username
       );
@@ -62,11 +66,10 @@ export default function HomeTodaysArticles(props) {
       return article.Assistant.includes(
         Parse.User.current().attributes.username
       );
+    } else {
+      return missingArticles;
     }
   });
-  console.log("Article", Articles);
-  console.log("filtered", filteredArticles);
-  console.log("User: ", Parse.User.current().attributes.role);
 
   return (
     <>

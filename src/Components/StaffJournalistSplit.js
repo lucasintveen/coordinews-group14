@@ -6,8 +6,6 @@ import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import "../CSS/App.css";
 import "../CSS/Form.css";
-import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 
 // Staff Components are handled seperately, as the calculations differ significantly
 export default function StaffJournalistSplit(props) {

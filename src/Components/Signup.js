@@ -62,7 +62,7 @@ export default function SignUp() {
   }
 
   return (
-    <div className="background--box">
+    <div className="form-container1">
       <div id="second--signup">
         <form>
           <ul>Sign up to Coordinews {"\u270D"}</ul>
@@ -123,7 +123,7 @@ export default function SignUp() {
                 <>
                   <img
                     alt=""
-                    style={{ maxWidth: "200px", marginRight: "1210px" }}
+                    style={{ maxWidth: "200px", marginRight: "365px" }}
                     src={URL.createObjectURL(imageChosen)}
                   />
                 </>

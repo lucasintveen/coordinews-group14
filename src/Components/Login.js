@@ -19,7 +19,7 @@ export default function Login() {
   }
 
   return (
-    <div className="background--box">
+    <div className="form-container1">
       <div id="second">
         <form>
           <ul>Please log yourself in {"\u270D"}</ul>

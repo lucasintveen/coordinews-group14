@@ -1,4 +1,8 @@
-import { getArticleExport } from "../DatabaseInteraction/db";
+import {
+  getArticleExport,
+  uploadDecline,
+  submitArticle,
+} from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import "../CSS/App.css";
@@ -7,6 +11,10 @@ import "../CSS/Form.css";
 
 export default function HomeUserMessages(props) {
   const [Articles, setArticles] = useState();
+  const [newDecline, setNewDecline] = useState([]);
+  const [articleSubmission, setArticleSubmission] = useState([]);
+  const [render, setRender] = useState(false);
+  const completion = "No";
 
   async function getArticlesFromDb() {
     const Articles = await getArticleExport();
@@ -16,6 +24,22 @@ export default function HomeUserMessages(props) {
     getArticlesFromDb();
   }, []);
 
+  useEffect(() => {
+    if (articleSubmission.length > 0) {
+      submitArticle(articleSubmission);
+    }
+  }, [articleSubmission]);
+
+  useEffect(() => {
+    if (newDecline.length > 0) {
+      uploadDecline(newDecline);
+    }
+  }, [newDecline]);
+
+  useEffect(() => {
+    getArticlesFromDb();
+  }, [render]);
+
   if (!Articles) {
     return (
       <Spinner animation="border" role="status">
@@ -23,60 +47,76 @@ export default function HomeUserMessages(props) {
       </Spinner>
     );
   }
+
   //filtering relevant and already accepted articles for the specific user logged in
   const filteredArticles = Object.values(Articles).filter((article) => {
     if (
       Parse.User.current().attributes.role === "Journalist" &&
-      article.JournalistAcc == false
+      article.JournalistAcc == false &&
+      article.Decline != true
     ) {
-      console.log(
-        "break1: ",
-        article.Journalist.includes(Parse.User.current().attributes.username)
-      );
       return article.Journalist.includes(
         Parse.User.current().attributes.username
       );
     } else if (
       Parse.User.current().attributes.role === "Photographer" &&
-      article.PhotographerAcceptance == false
+      article.PhotographerAcc == false &&
+      article.Decline != true
     ) {
       return article.Photographer.includes(
         Parse.User.current().attributes.username
       );
     } else if (
       Parse.User.current().attributes.role === "Assistant" &&
-      article.AssistanceAcceptance == false
+      article.AssistanceAcc == false &&
+      article.Decline != true
     ) {
       return article.Assistant.includes(
         Parse.User.current().attributes.username
       );
-    } else if (Parse.User.current().attributes.role === "Editor") {
-      return article.Assistant.includes(
+    } else if (
+      Parse.User.current().attributes.role === "Editor" &&
+      article.JournalistAcc === false &&
+      article.Decline != true
+    ) {
+      return article.Journalist.includes(
         Parse.User.current().attributes.username
       );
     }
   });
-  console.log("Filtered: ", filteredArticles);
-  console.log("Error: ", filteredArticles[0].Title);
-  Array.from({ length: filteredArticles.length }).map((dummy, index) =>
-    console.log(index)
-  );
 
-  async function articleAcception(i) {
-    const Article = new Parse.Object("Article");
-    const articleset = Article[i];
-    if (Parse.User.current().attributes.Role === "Journalist") {
-      articleset.set("JournalistAcc", true);
-    } else if (Parse.User.current().attributes.Role === "Photographer") {
-      articleset.set("PhotoAcc", true);
-    } else if (Parse.User.current().attributes.Role === "Assistant") {
-      articleset.set("AssiAcc", true);
+  console.log("Filter art:", filteredArticles);
+  function handleSubmit(i, trigger) {
+    var declined = false;
+    if (trigger === "decline") {
+      declined = true;
     }
+    console.log("Click");
+    setArticleSubmission([
+      {
+        ArticleId: filteredArticles[i].Details,
+        Completion: completion,
+        Title: filteredArticles[i].Title,
+        Section: filteredArticles[i].Section,
+        Journalist: filteredArticles[i].Journalist,
+        Photographer: filteredArticles[i].Photographer,
+        Deadline: filteredArticles[i].Deadline,
+        Decline: declined,
+      },
+    ]);
+    setNewDecline([
+      {
+        ArticleId: filteredArticles[i].Details,
+      },
+    ]);
+    setRender(!render);
   }
+  console.log("Length Before:", filteredLength);
   var filteredLength = filteredArticles.length;
-  if (filteredLength > 3) {
-    filteredLength = 3;
+  if (filteredLength > 5) {
+    filteredLength = 5;
   }
+  console.log("Length After:", filteredLength);
 
   return (
     <>
@@ -108,20 +148,25 @@ export default function HomeUserMessages(props) {
                   defaultValue={filteredArticles[index].State}
                 />
               </div>
+              <div className="form-inputs2">
+                <button
+                  className="form-decline-btn-mes"
+                  type="submit"
+                  onClick={() => handleSubmit(index, "decline")}
+                  style={{ marginTop: "10px" }}
+                >
+                  Decline
+                </button>
+                <button
+                  className="form-delete-btn-mes"
+                  type="submit"
+                  onClick={() => handleSubmit(index, "accept")}
+                  style={{ marginTop: "10px" }}
+                >
+                  Accept
+                </button>
+              </div>
             </div>
-          </div>
-
-          <div className="form-inputs2">
-            <button className="form-decline-btn-mes" type="submit">
-              Decline!
-            </button>
-            <button
-              className="form-delete-btn-mes"
-              type="submit"
-              onClick={articleAcception(index)}
-            >
-              Accept the task
-            </button>
           </div>
         </>
       ))}
