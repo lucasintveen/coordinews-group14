@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "CoordiNews": {
+      "applicationId": "KqoIYLreqOxM9D4hI1VyukJBa7yj03D1dTd75CzR"
+    },
+    "_default": {
+      "link": "CoordiNews"
+    }
+  }
+}

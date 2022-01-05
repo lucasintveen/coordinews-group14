@@ -2,14 +2,14 @@ body {
   margin: 0;
 }
 
-nav {
+/* nav {
   position: absolute;
   width: 1152px;
   height: 157px;
   left: 0px;
   top: 0px;
   background: hsla(289, 31%, 46%, 1);
-}
+} */
 
 .header--profil {
   height: 60px;
@@ -35,7 +35,7 @@ main {
   display: flex;
   align-items: center;
   height: 65px;
-  background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
+  background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
   color: white;
   padding: 20px;
 }
