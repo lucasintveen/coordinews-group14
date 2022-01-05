@@ -19,14 +19,16 @@ export default function ArticleID(props) {
   const [newArticle, setNewArticle] = useState({});
   const completion = "Yes";
   const { articleId } = useParams();
-  async function getArticleFromDb() {
-    const article = await getArticle(articleId);
-    setArticle(article);
-    props.passChildData([articleId, article.Deadline]);
-    const Article = new Parse.Object("Article");
-    Article.set("objectId", articleId);
-  }
-  useEffect(getArticleFromDb, []);
+  useEffect(() => {
+    async function getArticleFromDb() {
+      const article = await getArticle(articleId);
+      setArticle(article);
+      props.passChildData([articleId, article.Deadline]);
+      const Article = new Parse.Object("Article");
+      Article.set("objectId", articleId);
+    }
+    getArticleFromDb();
+  }, []);
 
   function handleChange(event) {
     setNewArticle({
@@ -196,7 +198,8 @@ export default function ArticleID(props) {
           </button>
         </div>
         <span className="form-input-login">
-          You changed your mind about the article? Go <a href="#">back</a>
+          You changed your mind about the article? Go{" "}
+          <a href="#/articles">back</a>
         </span>
       </form>
     </div>

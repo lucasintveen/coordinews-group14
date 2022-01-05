@@ -1,30 +1,21 @@
-import {
-  getArticle,
-  editArticle,
-  submitArticle,
-  getStaff,
-} from "../DatabaseInteraction/db";
+import { getStaff } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { useParams } from "react-router-dom";
 import "../CSS/App.css";
-import Parse from "parse";
-import News from "../Images/News.png";
 import StaffIdTable from "./StaffIdTable";
 
 export default function StaffID(props) {
   const [staff, setStaff] = useState();
   const { staffId } = useParams();
-  const alternativeImage =
-    "https://images.pexels.com/photos/825947/pexels-photo-825947.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
-
-  async function getStaffFromDb() {
-    const staff = await getStaff(staffId);
-    setStaff(staff);
-    props.passChildData([staffId]);
-  }
-  useEffect(getStaffFromDb, []);
-  console.log("Staff:", staff);
+  useEffect(() => {
+    async function getStaffFromDb() {
+      const staff = await getStaff(staffId);
+      setStaff(staff);
+      props.passChildData([staffId]);
+    }
+    getStaffFromDb();
+  }, []);
 
   if (!staff) {
     return (

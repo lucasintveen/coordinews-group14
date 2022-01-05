@@ -17,17 +17,19 @@ export default function IdeaID(props) {
   const { ideaId } = useParams();
   var submitter = true;
 
-  async function getIdeaFromDb() {
-    const idea = await getIdea(ideaId);
-    setIdea(idea);
-    props.passChildData([ideaId, idea.Expiration]);
-    setNewArticle({
-      title: idea.Title,
-      comment: idea.Comment,
-      ideaId: idea.IdeaId,
-    });
-  }
-  useEffect(getIdeaFromDb, []);
+  useEffect(() => {
+    async function getIdeaFromDb() {
+      const idea = await getIdea(ideaId);
+      setIdea(idea);
+      props.passChildData([ideaId, idea.Expiration]);
+      setNewArticle({
+        title: idea.Title,
+        comment: idea.Comment,
+        ideaId: idea.IdeaId,
+      });
+    }
+    getIdeaFromDb();
+  }, []);
 
   async function handleUpload(e) {
     e.preventDefault();
@@ -184,7 +186,7 @@ export default function IdeaID(props) {
           Submit Article
         </button>
         <span className="form-input-login">
-          You changed your mind about the article? Go <a href="#">back</a>
+          You changed your mind about the article? Go <a href="#/ideas">back</a>
         </span>
       </form>
     </div>

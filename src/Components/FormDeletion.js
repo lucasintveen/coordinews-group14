@@ -3,10 +3,8 @@ import "../CSS/Form.css";
 import { uploadDeletion } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Parse from "parse";
-import { useNavigate } from "react-router-dom";
 
 export default function FormDeletion(props) {
-  const navigate = useNavigate();
   const [newDeletion, setNewDeletion] = useState([]);
   const [newCommunication, setNewCommunication] = useState({});
 
@@ -47,11 +45,6 @@ export default function FormDeletion(props) {
   }
   function handleDelete() {
     props.isDeleter(false);
-  }
-
-  function handleSubmission() {
-    props.isDeleter(false);
-    props.submitter(true);
   }
 
   return (

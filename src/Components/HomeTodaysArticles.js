@@ -73,7 +73,7 @@ export default function HomeTodaysArticles(props) {
 
   return (
     <>
-      <table class="table-staff1 table-hover">
+      <table className="table-home">
         <tbody className="tbody--home">
           <tr>
             {Object.keys(Articles[0])

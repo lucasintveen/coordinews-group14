@@ -52,24 +52,24 @@ export default function HomeUserMessages(props) {
   const filteredArticles = Object.values(Articles).filter((article) => {
     if (
       Parse.User.current().attributes.role === "Journalist" &&
-      article.JournalistAcc == false &&
-      article.Decline != true
+      article.JournalistAcc === false &&
+      article.Decline !== true
     ) {
       return article.Journalist.includes(
         Parse.User.current().attributes.username
       );
     } else if (
       Parse.User.current().attributes.role === "Photographer" &&
-      article.PhotographerAcc == false &&
-      article.Decline != true
+      article.PhotographerAcc === false &&
+      article.Decline !== true
     ) {
       return article.Photographer.includes(
         Parse.User.current().attributes.username
       );
     } else if (
       Parse.User.current().attributes.role === "Assistant" &&
-      article.AssistanceAcc == false &&
-      article.Decline != true
+      article.AssistanceAcc === false &&
+      article.Decline !== true
     ) {
       return article.Assistant.includes(
         Parse.User.current().attributes.username
@@ -77,7 +77,7 @@ export default function HomeUserMessages(props) {
     } else if (
       Parse.User.current().attributes.role === "Editor" &&
       article.JournalistAcc === false &&
-      article.Decline != true
+      article.Decline !== true
     ) {
       return article.Journalist.includes(
         Parse.User.current().attributes.username
@@ -85,13 +85,11 @@ export default function HomeUserMessages(props) {
     }
   });
 
-  console.log("Filter art:", filteredArticles);
   function handleSubmit(i, trigger) {
     var declined = false;
     if (trigger === "decline") {
       declined = true;
     }
-    console.log("Click");
     setArticleSubmission([
       {
         ArticleId: filteredArticles[i].Details,
@@ -111,15 +109,13 @@ export default function HomeUserMessages(props) {
     ]);
     setRender(!render);
   }
-  console.log("Length Before:", filteredLength);
   var filteredLength = filteredArticles.length;
   if (filteredLength > 5) {
     filteredLength = 5;
   }
-  console.log("Length After:", filteredLength);
 
   return (
-    <>
+    <div style={{ height: "350px" }}>
       {/*Using this form of mapping over the object as I am using the index in the onClick functionality to accept the task */}
       {Array.from({ length: filteredLength }).map((dummy, index) => (
         <>
@@ -170,6 +166,6 @@ export default function HomeUserMessages(props) {
           </div>
         </>
       ))}
-    </>
+    </div>
   );
 }

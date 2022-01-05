@@ -1,6 +1,5 @@
 import React from "react";
 import "../CSS/Form.css";
-import { useEffect, useState } from "react";
 import Parse from "parse";
 import HomeArt from "../Components/HomeTodaysArticles";
 import NewsBBC from "../APIInteraction/APIBBC";
@@ -28,8 +27,8 @@ export default function Home() {
   return (
     <div className="form-container-home">
       <span className="staff--heading4">
-        Hey {Parse.User.current().attributes.username}, these article await you
-        today:
+        Hey {Parse.User.current().attributes.username}, these article await your
+        work:
       </span>
       <span className="staff--heading1">Edition for the: {dateToday1}</span>
       <span className="staff--heading2">
@@ -39,11 +38,13 @@ export default function Home() {
       <span className="text-cloud-center">
         Stay up-to-date with the news of the day:
       </span>
-      <img className="APILogo1" src={BBCLogo}></img>
-      <img className="APILogo2" src={NYTLogo}></img>
+      <img className="APILogo1" src={BBCLogo} alt="BBCLogo"></img>
+      <img className="APILogo2" src={NYTLogo} alt="NYTLogo"></img>
       <div className="form-content-left-editor">
         <form className="form-split5">
           <HomeArt />
+          <div style={{ height: "80px" }}></div>
+
           <HomeUserMessages />
         </form>
       </div>

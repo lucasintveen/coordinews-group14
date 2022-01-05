@@ -328,6 +328,14 @@
   margin-bottom: 34px;
   text-align: center;
 }
+
+.table-home {
+  width: 100%;
+  margin-left: -20px;
+  text-align: center;
+  width: 570px;
+}
+
 .table-staff-id {
   color: #f5f4f5;
   width: 107%;
@@ -392,7 +400,7 @@ tbody {
 }
 
 .tbody--home {
-  height: 360px;
+  height: 280px;
   overflow-y: auto;
   overflow-x: hidden;
 }

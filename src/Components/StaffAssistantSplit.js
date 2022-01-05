@@ -35,7 +35,7 @@ export default function StaffAssistantSplit(props) {
   }
 
   const filteredArticles = Object.values(articles).filter((article) => {
-    if (article.AssistantAcc == true) {
+    if (article.AssistantAcc === true) {
       return article;
     }
   });
@@ -43,7 +43,7 @@ export default function StaffAssistantSplit(props) {
   function employeesSelector() {
     var employeeSelection = [];
     for (let i = 0; i < filteredArticles.length; i++) {
-      if (filteredArticles[i].Assistant != undefined) {
+      if (filteredArticles[i].Assistant !== undefined) {
         employeeSelection.push(filteredArticles[i].Assistant);
       }
     }

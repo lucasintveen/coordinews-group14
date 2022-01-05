@@ -26,7 +26,7 @@ class News extends Component {
   renderItem() {
     return this.state.news.slice(0, 5).map((item) => (
       <div className="form-inputs">
-        <a href={item.url}>
+        <a target="_blank" href={item.url} rel="noreferrer">
           <input
             className="form-input-api"
             type="text"

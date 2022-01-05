@@ -36,7 +36,7 @@ export default function StaffJournalistSplit(props) {
   }
 
   const filteredArticles = Object.values(articles).filter((article) => {
-    if (article.JournalistAcc == true) {
+    if (article.JournalistAcc === true) {
       return article;
     }
   });

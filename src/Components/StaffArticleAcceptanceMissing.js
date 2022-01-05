@@ -1,4 +1,4 @@
-import { getArticles, getArticleExport } from "../DatabaseInteraction/db";
+import { getArticleExport } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import "../CSS/App.css";

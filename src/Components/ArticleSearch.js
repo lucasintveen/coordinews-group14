@@ -30,9 +30,9 @@ export default function articleSearch(articles, search, section, date) {
         article.Section.includes(section.section) &&
         article.Deadline.includes(date);
     } else if (
-      section.section != undefined &&
-      section.journalist != undefined &&
-      date != undefined
+      section.section !== undefined &&
+      section.journalist !== undefined &&
+      date !== undefined
     ) {
       return (
         article.Title.includes(search) &&

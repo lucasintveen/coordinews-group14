@@ -25,9 +25,9 @@ export default function ideaSearch(ideas, search, section, date) {
         idea.Section.includes(section.section) &&
         idea.Expiration.includes(date);
     } else if (
-      section.section != undefined &&
-      section.Source != undefined &&
-      date != undefined
+      section.section !== undefined &&
+      section.Source !== undefined &&
+      date !== undefined
     ) {
       return (
         idea.Title.includes(search) &&

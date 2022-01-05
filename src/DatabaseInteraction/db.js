@@ -1,4 +1,3 @@
-import { treemapSquarify } from "d3";
 import Parse from "parse";
 
 async function getUsers() {
@@ -25,14 +24,13 @@ async function getArticleExport() {
       Details: article.id,
       Title: article.attributes.Title,
       Section: article.attributes.Section,
+      Journalist: article.attributes.Journalist,
       State: article.attributes.State,
       Deadline: article.attributes.Deadline,
       Completion: article.attributes.Completion,
       Size: article.attributes.Size,
       Photographer: article.attributes.Photographer,
       Finished: article.attributes.Finished,
-      Journalist: article.attributes.Journalist,
-      Photographer: article.attributes.Photographer,
       Assistant: article.attributes.Assistant,
       JournalistAcc: article.attributes.JournalistAcc,
       PhotographerAcc: article.attributes.PhotoAcc,
@@ -41,8 +39,6 @@ async function getArticleExport() {
     };
     return mappedArticle;
   });
-
-  console.log("Mapped Articles Database: ", articlesMapped);
 
   return {
     articlesMapped,
@@ -61,8 +57,6 @@ async function getUserInformation() {
     };
     return mappedUser;
   });
-
-  console.log("Mapped Users Database: ", usersMapped);
 
   return {
     usersMapped,
@@ -92,9 +86,6 @@ async function getIdeasRefactored() {
     };
     return mappedIdea;
   });
-
-  console.log("Mapped Articles Database: ", ideasMapped);
-
   return {
     ideasMapped,
   };
@@ -119,7 +110,6 @@ async function getArticle(articleId) {
 async function getIdea(ideaId) {
   const query = new Parse.Query("Idea");
   const idea = await query.get(ideaId);
-  console.log("Get Idea function: ", idea);
   return {
     IdeaId: idea.id,
     Title: idea.get("title"),
@@ -132,11 +122,8 @@ async function getIdea(ideaId) {
 }
 
 async function getStaff(staffId) {
-  console.log("Passed Staff Id:", staffId);
   const query = new Parse.Query("User");
-  console.log("Query Staff: ", query);
   const user = await query.get(staffId);
-  console.log("User", user);
   return {
     Details: user.id,
     Created:
@@ -190,7 +177,6 @@ async function uploadArticle(articles) {
 }
 
 async function editArticle(articles) {
-  console.log("DB Articles:", articles);
   return await Promise.all(
     articles.map((article) => {
       try {
@@ -217,7 +203,6 @@ async function editArticle(articles) {
 }
 
 async function submitArticle(article) {
-  console.log("article received:", article);
   var journalist = true;
   var photo = true;
   var assistant = true;
@@ -225,7 +210,6 @@ async function submitArticle(article) {
   return await Promise.all(
     article.map((article) => {
       try {
-        console.log("Gelaufen");
         const Article = new Parse.Object("Article");
         Article.set("objectId", article.ArticleId);
         Article.set("Title", article.Title);
@@ -239,7 +223,6 @@ async function submitArticle(article) {
             journalist = true;
           } else if (Parse.User.current().attributes.role === "Editor") {
             Article.set("JournalistAcc", journalist);
-            console.log("If Statement", journalist);
           } else if (Parse.User.current().attributes.role === "Photographer") {
             Article.set("PhotoAcc", photo);
           } else if (Parse.User.current().attributes.role === "Assistant") {
@@ -282,7 +265,6 @@ async function uploadIdea(ideas) {
 }
 
 async function uploadDeletion(deletion) {
-  console.log("Deletion Object: ", deletion);
   return await Promise.all(
     deletion.map((item) => {
       try {
@@ -303,7 +285,6 @@ async function uploadDeletion(deletion) {
 }
 
 async function uploadDecline(decline) {
-  console.log("Decline Object: ", decline);
   return await Promise.all(
     decline.map((item) => {
       try {
@@ -311,7 +292,6 @@ async function uploadDecline(decline) {
         const newDecline = new EditorCommunication();
         newDecline.set("Type", "Article Decline");
         newDecline.set("ArticleId", item.ArticleId);
-        console.log("ArticleId", item.ArticleId);
 
         return newDecline.save();
       } catch (error) {

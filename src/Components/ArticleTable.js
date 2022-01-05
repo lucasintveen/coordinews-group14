@@ -1,4 +1,4 @@
-import { getArticles, getArticleExport } from "../DatabaseInteraction/db";
+import { getArticleExport } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { Link } from "react-router-dom";
@@ -42,7 +42,6 @@ export default function Articletable() {
   }
 
   const filteredArticles = articleSearch(Articles, search, section, date);
-  const rowLength = filteredArticles.length;
   const rowLengthUnfiltered = Articles.length;
   const Section = [];
   const Journalist = [];
@@ -57,7 +56,6 @@ export default function Articletable() {
   }
   var distinctSection = Section.filter(onlyUnique);
   var distinctJournalist = Journalist.filter(onlyUnique);
-  var distinctPhotographer = Photographer.filter(onlyUnique);
   function handleSection(event) {
     setSection({
       [event.target.name]: event.target.value,
@@ -83,7 +81,7 @@ export default function Articletable() {
               Select the Section
             </option>
 
-            {Array.from({ length: distinctSection.length }).map((index) => (
+            {Array.from({ length: distinctSection.length }).map((_, index) => (
               <option>{distinctSection[index]}</option>
             ))}
             <option></option>

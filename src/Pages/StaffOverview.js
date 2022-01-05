@@ -1,5 +1,4 @@
 import React from "react";
-import Parse from "parse";
 import "../CSS/Form.css";
 import DashboardLeft1 from "../Components/StaffDashboardTop";
 import DashboardLeft2 from "../Components/StaffDashboardBottom";
@@ -8,7 +7,6 @@ import JournalistSplit from "../Components/StaffJournalistSplit";
 import PhotographerSplit from "../Components/StaffPhotographerSplit";
 import AssistantSplit from "../Components/StaffAssistantSplit";
 import StaffArtMissing from "../Components/StaffArticleAcceptanceMissing";
-import HomeArt from "../Components/HomeTodaysArticles";
 
 export default function StaffOverview() {
   var today = new Date();

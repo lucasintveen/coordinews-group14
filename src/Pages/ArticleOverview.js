@@ -1,6 +1,7 @@
 import Articletable from "../Components/ArticleTable";
 import "../CSS/Form.css";
 
+//Decision for own component, as further functionality could be included
 export default function ArticleOverview() {
   return (
     <>
@@ -10,7 +11,4 @@ export default function ArticleOverview() {
       </div>
     </>
   );
-}
-{
-  /* Decision for own component, as further functionality could be included*/
 }

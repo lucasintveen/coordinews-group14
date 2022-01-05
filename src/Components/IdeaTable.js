@@ -1,4 +1,4 @@
-import { getIdeas, getIdeasRefactored } from "../DatabaseInteraction/db";
+import { getIdeasRefactored } from "../DatabaseInteraction/db";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { Link } from "react-router-dom";

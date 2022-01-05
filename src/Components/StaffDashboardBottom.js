@@ -27,9 +27,9 @@ export default function StaffDashboardBottom(props) {
 
   const filteredArticles = Object.values(Articles).filter((article) => {
     if (
-      article.JournalistAcc == true &&
-      article.PhotographerAcc == true &&
-      article.AssistantAcc == true
+      article.JournalistAcc === true &&
+      article.PhotographerAcc === true &&
+      article.AssistantAcc === true
     ) {
       return article;
     }

@@ -23,13 +23,21 @@ export default function StaffDashboardTop(props) {
     );
   }
   const filteredArticles = Object.values(Articles).filter((article) => {
-    if (article.Finished == true) {
-      console.log("The article finisher");
-      console.log(
-        "Return Statement Test: ",
-        article.Deadline.includes(props.Today)
-      );
-      return article.Deadline.includes(props.Today);
+    if (article.Completion === "Yes") {
+      var currentDate = props.Today.length;
+      if (currentDate < 10) {
+        var today = new Date();
+        var month = today.getMonth() + 1;
+        var day = today.getDate();
+        if (month.toString().length === 1) {
+          month = "0" + month;
+        }
+        if (day.toString().length === 1) {
+          day = "0" + day;
+        }
+        today = today.getFullYear() + "-" + month + "-" + day;
+      }
+      return article.Deadline.includes(today);
     }
   });
   function sizeCalculation() {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Parse from "parse";
 import { useNavigate } from "react-router-dom";
-import { restCreateUser } from "../DatabaseInteraction/RestAPI";
+//import { restCreateUser } from "../DatabaseInteraction/RestAPI";
 
 export default function SignUp() {
   const [username, setUsername] = useState("");
@@ -10,7 +10,6 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
   const [imageChosen, setImageChosen] = useState();
-  const [isUploading, setIsUploading] = useState(false);
 
   // both of the following functions work well, and post the user data via the API
   // I decided to use the Parse functionality, as it turned out to be very simple, whenever needing the current user
