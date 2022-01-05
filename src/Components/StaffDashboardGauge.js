@@ -17,11 +17,9 @@ export default function StaffDashboardGauge(props) {
 
   if (pointerColor === "normal") {
     array = [0, 25, 50, 75];
-    console.log("Array True: ", array);
   }
   if (pointerColor === "twisted") {
     array = [75, 50, 25, 0];
-    console.log("Array False: ", array);
   }
 
   const angleScale = scaleLinear()

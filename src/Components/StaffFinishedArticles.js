@@ -41,7 +41,6 @@ export default function StaffFinishedArticles(props) {
       return article.Deadline.includes(today);
     }
   });
-  console.log("Dashboard filter", filteredArticles);
 
   return (
     <>

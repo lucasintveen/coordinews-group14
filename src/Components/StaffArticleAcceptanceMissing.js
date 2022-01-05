@@ -16,7 +16,6 @@ export default function StaffArticleAcceptanceMissing(props) {
   useEffect(() => {
     getArticlesFromDb();
   }, []);
-  console.log("Articles: ", Articles);
 
   if (!Articles) {
     return (
@@ -30,10 +29,6 @@ export default function StaffArticleAcceptanceMissing(props) {
       return article;
     }
   });
-  console.log("Filtered: ", filteredArticles);
-  filteredArticles.map((article) =>
-    console.log("/articles/articleDetails/" + article.Details)
-  );
   return (
     <>
       <table class="table-staff1 table-hover">

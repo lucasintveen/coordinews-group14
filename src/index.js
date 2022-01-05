@@ -6,8 +6,8 @@ import "./CSS/App.css";
 import Parse from "parse";
 
 Parse.initialize(
-  "KqoIYLreqOxM9D4hI1VyukJBa7yj03D1dTd75CzR",
-  "zPHndnwR1xEJVLyz1An9bktfus78e1uKmP9F4lVJ"
+  process.env.REACT_APP_Application_Id,
+  process.env.REACT_APP_JavaScript_Key
 );
 
 Parse.serverURL = "https://parseapi.back4app.com/";

@@ -18,7 +18,6 @@ export default function StaffPhotographerSplit(props) {
   }
   async function getUsersFromDb() {
     const Users = await getUserInformation();
-    console.log("Users: ", Users);
     setUsers(Users.usersMapped);
   }
 
@@ -76,7 +75,6 @@ export default function StaffPhotographerSplit(props) {
   }
   const workSizePerEmp = workSizeCalculation();
 
-  console.log("Unique Employees:", uniqueEmployees);
   function filterUsers() {
     for (let i = 0; i < uniqueEmployees.length; i++) {
       for (let j = 0; j < users.length; j++) {
@@ -87,7 +85,6 @@ export default function StaffPhotographerSplit(props) {
     }
     return filteredUsersID;
   }
-  console.log("User filter:", filterUsers());
 
   return (
     <>

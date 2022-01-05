@@ -9,7 +9,9 @@ class News extends Component {
   }
 
   componentDidMount() {
-    const url = `https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=04d6ef3afc214bf5a94913550e4183e2`;
+    const url =
+      `https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=` +
+      process.env.REACT_APP_BBCAPI;
 
     fetch(url)
       .then((response) => {
@@ -25,18 +27,23 @@ class News extends Component {
 
   renderItem() {
     // Top 5 Articles are rendered only, as the objective is to provide only a short overview
-    return this.state.news.slice(0, 5).map((item) => (
-      <div className="form-inputs">
-        <a target="_blank" href={item.url} rel="noreferrer">
-          <input
-            className="form-input-api"
-            type="text"
-            name="title"
-            defaultValue={item.title}
-          />
-        </a>
-      </div>
-    ));
+    if (this.state.news) {
+      console.log("Test worked");
+      return this.state.news.slice(0, 5).map((item) => (
+        <div className="form-inputs">
+          <a target="_blank" href={item.url} rel="noreferrer">
+            <input
+              className="form-input-api"
+              type="text"
+              name="title"
+              defaultValue={item.title}
+            />
+          </a>
+        </div>
+      ));
+    } else {
+      console.log("Schade");
+    }
   }
   render() {
     return <form className="form-api1">{this.renderItem()}</form>;

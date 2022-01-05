@@ -18,7 +18,6 @@ export default function StaffAssistantSplit(props) {
   }
   async function getUsersFromDb() {
     const Users = await getUserInformation();
-    console.log("Users: ", Users);
     setUsers(Users.usersMapped);
   }
 
@@ -88,7 +87,6 @@ export default function StaffAssistantSplit(props) {
     }
     return filteredUsersID;
   }
-  console.log("User filter:", filterUsers());
 
   return (
     <>

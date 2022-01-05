@@ -13,6 +13,7 @@
     "antd": "^4.17.3",
     "bootstrap": "^5.1.3",
     "d3": "^7.2.1",
+    "dotenv": "^10.0.0",
     "emailjs-com": "^3.2.0",
     "parse": "^3.4.0",
     "react": "^17.0.2",
@@ -30,6 +31,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deployb4a--build": "npm run build && cp -r build/* b4a_cloud/public",
+    "deployb4a": "npm run -s deployb4a--build && (cd b4a_cloud ; b4a deploy)",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -9,7 +9,9 @@ class News extends Component {
   }
 
   componentDidMount() {
-    const url = `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=gBng9EwOai9DK8aeJDPUJ1jwnd3xYf5N`;
+    const url =
+      `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=` +
+      process.env.REACT_APP_NYT;
 
     fetch(url)
       .then((response) => {

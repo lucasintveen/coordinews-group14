@@ -19,7 +19,6 @@ export default function StaffJournalistSplit(props) {
   }
   async function getUsersFromDb() {
     const Users = await getUserInformation();
-    console.log("Users: ", Users);
     setUsers(Users.usersMapped);
   }
 
@@ -54,7 +53,6 @@ export default function StaffJournalistSplit(props) {
   }
   const employees = employeesSelector();
   const uniqueEmployees = employees.filter(onlyUnique);
-  console.log("Unique Employees:", uniqueEmployees);
 
   function workSizeCalculation() {
     var articleWork = 0;
@@ -88,7 +86,6 @@ export default function StaffJournalistSplit(props) {
     }
     return filteredUsersID;
   }
-  console.log("User filter:", filterUsers());
   return (
     <>
       <table class="table-staff table-hover">
