@@ -105,6 +105,7 @@ export default function StaffJournalistSplit(props) {
     }
     return filteredUsersID;
   }
+  const userId = filterUsers();
   return (
     <>
       <table class="table-staff table-hover">
@@ -118,7 +119,7 @@ export default function StaffJournalistSplit(props) {
           {Array.from({ length: uniqueEmployees.slice(0, 3).length }).map(
             (_, index) => (
               <tr>
-                <a href={"/#/staff/staffDetails/" + filteredUsersID[index]}>
+                <a href={"/#/staff/staffDetails/" + userId[index]}>
                   <button className="staff--btn">
                     {uniqueEmployees[index]} : {workSizePerEmp[index]} /{" "}
                     {workTimeDay}

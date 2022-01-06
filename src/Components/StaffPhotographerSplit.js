@@ -105,7 +105,7 @@ export default function StaffPhotographerSplit(props) {
     }
     return filteredUsersID;
   }
-
+  const userId = filterUsers();
   return (
     <>
       <table class="table-staff table-hover">
@@ -118,7 +118,7 @@ export default function StaffPhotographerSplit(props) {
         <tbody className="tbody-messages">
           {Array.from({ length: uniqueEmployees.length }).map((_, index) => (
             <tr>
-              <a href={"/#/staff/staffDetails/" + filteredUsersID[index]}>
+              <a href={"/#/staff/staffDetails/" + userId[index]}>
                 <button variant="light" className="staff--btn">
                   {uniqueEmployees[index]} : {workSizePerEmp[index]} /{" "}
                   {workTimeDay}

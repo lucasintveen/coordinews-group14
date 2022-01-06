@@ -107,6 +107,7 @@ export default function StaffAssistantSplit(props) {
     }
     return filteredUsersID;
   }
+  const userId = filterUsers();
 
   return (
     <>
@@ -121,7 +122,7 @@ export default function StaffAssistantSplit(props) {
           {Array.from({ length: uniqueEmployees.slice(0, 3).length }).map(
             (_, index) => (
               <tr>
-                <a href={"/#/staff/staffDetails/" + filteredUsersID[index]}>
+                <a href={"/#/staff/staffDetails/" + userId[index]}>
                   <button variant="light" className="staff--btn">
                     {uniqueEmployees[index]} : {workSizePerEmp[index]} /{" "}
                     {workTimeDay}
