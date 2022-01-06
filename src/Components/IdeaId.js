@@ -41,7 +41,6 @@ export default function IdeaID(props) {
     if (articles.length > 0) {
       uploadArticle(articles);
       props.submit(submitter);
-      console.log("Articles: ", articles);
     }
   }, [articles]);
 

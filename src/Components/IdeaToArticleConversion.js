@@ -6,8 +6,6 @@ import "../CSS/Form.css";
 
 export default function IdeaToArticleConversion() {
   const [childData, setChildData] = useState("");
-  console.log("Child Data: ", childData);
-  console.log("Id: ", childData[0]);
   const [submitter, setSubmitter] = useState();
   const idea = "idea";
 
