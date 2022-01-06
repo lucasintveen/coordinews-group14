@@ -41,6 +41,7 @@ function App() {
             element={<StaffIdForm />}
           />
 
+          <Route path="/" element={<LandingPage />} />
           <Route path="landing" element={<LandingPage />} />
           <Route path="home" element={<Home />} />
           <Route path="deleted" element={<FormSuccess />} />

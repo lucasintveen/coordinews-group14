@@ -13,6 +13,7 @@ export default function Articletable() {
   var today = new Date();
   var dateToday =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  var currentDate = dateToday.length;
 
   const searchOperator = (event) => {
     setSearch(event.target.value);
@@ -34,6 +35,19 @@ export default function Articletable() {
   }
 
   function currentNewspaper() {
+    if (currentDate < 10) {
+      today = new Date();
+      var month = today.getMonth() + 1;
+      var day = today.getDate();
+      if (month.toString().length === 1) {
+        month = "0" + month;
+      }
+      if (day.toString().length === 1) {
+        day = "0" + day;
+      }
+      dateToday = today.getFullYear() + "-" + month + "-" + day;
+    }
+    console.log(dateToday);
     if (date === undefined) {
       setDate(dateToday);
     } else {

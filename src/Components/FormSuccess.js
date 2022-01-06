@@ -6,8 +6,6 @@ export default function FormSuccess(props) {
   function submit() {
     props.submit(false);
   }
-  console.log("Props", props);
-  console.log("Type:", props.formTypeIdea);
   var idea;
   if (props.state === "idea") {
     idea = true;

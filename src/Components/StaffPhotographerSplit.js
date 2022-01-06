@@ -53,12 +53,32 @@ export default function StaffPhotographerSplit(props) {
   const employees = employeesSelector();
   const uniqueEmployees = employees.filter(onlyUnique);
 
+  var today = new Date();
+  var dateToday =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  var currentDate = dateToday.length;
+  if (currentDate < 10) {
+    today = new Date();
+    var month = today.getMonth() + 1;
+    var day = today.getDate();
+    if (month.toString().length === 1) {
+      month = "0" + month;
+    }
+    if (day.toString().length === 1) {
+      day = "0" + day;
+    }
+    dateToday = today.getFullYear() + "-" + month + "-" + day;
+  }
+
   function workSizeCalculation() {
     var articleWork = 0;
     var Counter = [];
     for (let j = 0; j < uniqueEmployees.length; j++) {
       for (let i = 0; i < filteredArticles.length; i++) {
-        if (filteredArticles[i].Photographer === uniqueEmployees[j]) {
+        if (
+          filteredArticles[i].Photographer === uniqueEmployees[j] &&
+          filteredArticles[i].Deadline === dateToday
+        ) {
           if (filteredArticles[i].Size === "L") {
             articleWork += 8;
           } else if (filteredArticles[i].Size === "M") {
