@@ -72,7 +72,6 @@ export default function FormDeletion(props) {
             onClick={handleDelete}
           >
             No, please take me back!
-            <span style={{ color: "#D7BADD" }}>(Dummy)</span>
           </button>
 
           <button
